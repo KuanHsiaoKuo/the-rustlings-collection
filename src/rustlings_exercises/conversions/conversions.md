@@ -1,15 +1,16 @@
 # Type conversions
 
 <!--ts-->
+
 * [Type conversions](#type-conversions)
-   * [Further information](#further-information)
-   * [Rustlings](#rustlings)
-      * [as_ref_mut](#as_ref_mut)
-      * [from_into](#from_into)
-      * [from_str](#from_str)
-      * [try_from_into](#try_from_into)
-      * [try_from_into](#try_from_into-1)
-      * [using_as](#using_as)
+    * [Further information](#further-information)
+    * [Rustlings](#rustlings)
+        * [as_ref_mut](#as_ref_mut)
+        * [from_into](#from_into)
+        * [from_str](#from_str)
+        * [try_from_into](#try_from_into)
+        * [try_from_into](#try_from_into-1)
+        * [using_as](#using_as)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Thu Feb 16 14:06:54 UTC 2023 -->
@@ -43,37 +44,41 @@ These are not directly covered in the book, but the standard library has a great
 
 ### as_ref_mut
 
+~~~admonish note title="as_ref_mut" collapsible=true
 ```rust
 {{#include as_ref_mut.rs}}
 ```
+~~~
 
 ### from_into
 
+~~~admonish note title="from_into" collapsible=true
 ```rust
 {{#include from_into.rs}}
 ```
+~~~
 
 ### from_str
 
+~~~admonish note title="from_str" collapsible=true
 ```rust
 {{#include from_str.rs}}
 ```
+~~~
 
 ### try_from_into
 
+~~~admonish note title="try_from_into" collapsible=true
 ```rust
 {{#include try_from_into.rs}}
 ```
-
-### try_from_into
-
-```rust
-{{#include try_from_into.rs}}
-```
+~~~
 
 ### using_as
 
+~~~admonish note title="using_as" collapsible=true
 ```rust
 {{#include using_as.rs}}
 ```
+~~~
 
