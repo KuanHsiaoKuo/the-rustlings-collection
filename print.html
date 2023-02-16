@@ -249,7 +249,8 @@ fn main() {
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="type-conversions"><a class="header" href="#type-conversions">Type conversions</a></h1>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
-<p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The exercise <a href="rustlings_exercises/conversions/using_as.rs"><code>using_as</code></a> tries to cover this.</p>
+<p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
+exercise <a href="rustlings_exercises/conversions/using_as.rs"><code>using_as</code></a> tries to cover this.</p>
 <p>Rust also offers traits that facilitate type conversions upon implementation. These traits can be found under the <a href="https://doc.rust-lang.org/std/convert/index.html"><code>convert</code></a> module.
 The traits are the following:</p>
 <ul>
@@ -257,7 +258,8 @@ The traits are the following:</p>
 <li><code>TryFrom</code> and <code>TryInto</code> covered in <a href="rustlings_exercises/conversions/try_from_into.rs"><code>try_from_into</code></a></li>
 <li><code>AsRef</code> and <code>AsMut</code> covered in <a href="rustlings_exercises/conversions/as_ref_mut.rs"><code>as_ref_mut</code></a></li>
 </ul>
-<p>Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings. If properly implemented for a given type <code>Person</code>, then <code>let p: Person = &quot;Mark,20&quot;.parse().unwrap()</code> should both compile and run without panicking.</p>
+<p>Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings. If properly implemented for a given type <code>Person</code>,
+then <code>let p: Person = &quot;Mark,20&quot;.parse().unwrap()</code> should both compile and run without panicking.</p>
 <p>These should be the main ways <em><strong>within the standard library</strong></em> to convert data into your desired types.</p>
 <h2 id="further-information-1"><a class="header" href="#further-information-1">Further information</a></h2>
 <p>These are not directly covered in the book, but the standard library has a great documentation for it.</p>
@@ -331,6 +333,681 @@ mod tests {
 }
 <span class="boring">}
 </span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">// The From trait is used for value-to-value conversions.
+// If From is implemented correctly for a type, the Into trait should work conversely.
+// You can read more about it at https://doc.rust-lang.org/std/convert/trait.From.html
+// Execute `rustlings hint from_into` or use the `hint` watch subcommand for a hint.
+
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: usize,
+}
+
+// We implement the Default trait to use it as a fallback
+// when the provided string is not convertible into a Person object
+impl Default for Person {
+    fn default() -&gt; Person {
+        Person {
+            name: String::from(&quot;John&quot;),
+            age: 30,
+        }
+    }
+}
+
+// Your task is to complete this implementation
+// in order for the line `let p = Person::from(&quot;Mark,20&quot;)` to compile
+// Please note that you'll need to parse the age component into a `usize`
+// with something like `&quot;4&quot;.parse::&lt;usize&gt;()`. The outcome of this needs to
+// be handled appropriately.
+//
+// Steps:
+// 1. If the length of the provided string is 0, then return the default of Person
+// 2. Split the given string on the commas present in it
+// 3. Extract the first element from the split operation and use it as the name
+// 4. If the name is empty, then return the default of Person
+// 5. Extract the other element from the split operation and parse it into a `usize` as the age
+// If while parsing the age, something goes wrong, then return the default of Person
+// Otherwise, then return an instantiated Person object with the results
+
+// I AM NOT DONE
+
+impl From&lt;&amp;str&gt; for Person {
+    fn from(s: &amp;str) -&gt; Person {
+    }
+}
+
+fn main() {
+    // Use the `from` function
+    let p1 = Person::from(&quot;Mark,20&quot;);
+    // Since From is implemented for Person, we should be able to use Into
+    let p2: Person = &quot;Gerald,70&quot;.into();
+    println!(&quot;{:?}&quot;, p1);
+    println!(&quot;{:?}&quot;, p2);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_default() {
+        // Test that the default person is 30 year old John
+        let dp = Person::default();
+        assert_eq!(dp.name, &quot;John&quot;);
+        assert_eq!(dp.age, 30);
+    }
+    #[test]
+    fn test_bad_convert() {
+        // Test that John is returned when bad string is provided
+        let p = Person::from(&quot;&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+    #[test]
+    fn test_good_convert() {
+        // Test that &quot;Mark,20&quot; works
+        let p = Person::from(&quot;Mark,20&quot;);
+        assert_eq!(p.name, &quot;Mark&quot;);
+        assert_eq!(p.age, 20);
+    }
+    #[test]
+    fn test_bad_age() {
+        // Test that &quot;Mark,twenty&quot; will return the default person due to an error in parsing age
+        let p = Person::from(&quot;Mark,twenty&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_comma_and_age() {
+        let p: Person = Person::from(&quot;Mark&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_age() {
+        let p: Person = Person::from(&quot;Mark,&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name() {
+        let p: Person = Person::from(&quot;,1&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name_and_age() {
+        let p: Person = Person::from(&quot;,&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_missing_name_and_invalid_age() {
+        let p: Person = Person::from(&quot;,one&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_trailing_comma() {
+        let p: Person = Person::from(&quot;Mike,32,&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+
+    #[test]
+    fn test_trailing_comma_and_some_string() {
+        let p: Person = Person::from(&quot;Mike,32,man&quot;);
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 30);
+    }
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">// from_str.rs
+// This is similar to from_into.rs, but this time we'll implement `FromStr`
+// and return errors instead of falling back to a default value.
+// Additionally, upon implementing FromStr, you can use the `parse` method
+// on strings to generate an object of the implementor type.
+// You can read more about it at https://doc.rust-lang.org/std/str/trait.FromStr.html
+// Execute `rustlings hint from_str` or use the `hint` watch subcommand for a hint.
+
+use std::num::ParseIntError;
+use std::str::FromStr;
+
+#[derive(Debug, PartialEq)]
+struct Person {
+    name: String,
+    age: usize,
+}
+
+// We will use this error type for the `FromStr` implementation.
+#[derive(Debug, PartialEq)]
+enum ParsePersonError {
+    // Empty input string
+    Empty,
+    // Incorrect number of fields
+    BadLen,
+    // Empty name field
+    NoName,
+    // Wrapped error from parse::&lt;usize&gt;()
+    ParseInt(ParseIntError),
+}
+
+// I AM NOT DONE
+
+// Steps:
+// 1. If the length of the provided string is 0, an error should be returned
+// 2. Split the given string on the commas present in it
+// 3. Only 2 elements should be returned from the split, otherwise return an error
+// 4. Extract the first element from the split operation and use it as the name
+// 5. Extract the other element from the split operation and parse it into a `usize` as the age
+//    with something like `&quot;4&quot;.parse::&lt;usize&gt;()`
+// 6. If while extracting the name and the age something goes wrong, an error should be returned
+// If everything goes well, then return a Result of a Person object
+//
+// As an aside: `Box&lt;dyn Error&gt;` implements `From&lt;&amp;'_ str&gt;`. This means that if you want to return a
+// string error message, you can do so via just using return `Err(&quot;my error message&quot;.into())`.
+
+impl FromStr for Person {
+    type Err = ParsePersonError;
+    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
+    }
+}
+
+fn main() {
+    let p = &quot;Mark,20&quot;.parse::&lt;Person&gt;().unwrap();
+    println!(&quot;{:?}&quot;, p);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn empty_input() {
+        assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
+    }
+    #[test]
+    fn good_input() {
+        let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
+        assert!(p.is_ok());
+        let p = p.unwrap();
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 32);
+    }
+    #[test]
+    fn missing_age() {
+        assert!(matches!(
+            &quot;John,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn invalid_age() {
+        assert!(matches!(
+            &quot;John,twenty&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn missing_comma_and_age() {
+        assert_eq!(&quot;John&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+    }
+
+    #[test]
+    fn missing_name() {
+        assert_eq!(&quot;,1&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::NoName));
+    }
+
+    #[test]
+    fn missing_name_and_age() {
+        assert!(matches!(
+            &quot;,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn missing_name_and_invalid_age() {
+        assert!(matches!(
+            &quot;,one&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn trailing_comma() {
+        assert_eq!(&quot;John,32,&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+    }
+
+    #[test]
+    fn trailing_comma_and_some_string() {
+        assert_eq!(
+            &quot;John,32,man&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::BadLen)
+        );
+    }
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">// try_from_into.rs
+// TryFrom is a simple and safe type conversion that may fail in a controlled way under some circumstances.
+// Basically, this is the same as From. The main difference is that this should return a Result type
+// instead of the target type itself.
+// You can read more about it at https://doc.rust-lang.org/std/convert/trait.TryFrom.html
+// Execute `rustlings hint try_from_into` or use the `hint` watch subcommand for a hint.
+
+use std::convert::{TryFrom, TryInto};
+
+#[derive(Debug, PartialEq)]
+struct Color {
+    red: u8,
+    green: u8,
+    blue: u8,
+}
+
+// We will use this error type for these `TryFrom` conversions.
+#[derive(Debug, PartialEq)]
+enum IntoColorError {
+    // Incorrect length of slice
+    BadLen,
+    // Integer conversion error
+    IntConversion,
+}
+
+// I AM NOT DONE
+
+// Your task is to complete this implementation
+// and return an Ok result of inner type Color.
+// You need to create an implementation for a tuple of three integers,
+// an array of three integers, and a slice of integers.
+//
+// Note that the implementation for tuple and array will be checked at compile time,
+// but the slice implementation needs to check the slice length!
+// Also note that correct RGB color values must be integers in the 0..=255 range.
+
+// Tuple implementation
+impl TryFrom&lt;(i16, i16, i16)&gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(tuple: (i16, i16, i16)) -&gt; Result&lt;Self, Self::Error&gt; {
+    }
+}
+
+// Array implementation
+impl TryFrom&lt;[i16; 3]&gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(arr: [i16; 3]) -&gt; Result&lt;Self, Self::Error&gt; {
+    }
+}
+
+// Slice implementation
+impl TryFrom&lt;&amp;[i16]&gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(slice: &amp;[i16]) -&gt; Result&lt;Self, Self::Error&gt; {
+    }
+}
+
+fn main() {
+    // Use the `try_from` function
+    let c1 = Color::try_from((183, 65, 14));
+    println!(&quot;{:?}&quot;, c1);
+
+    // Since TryFrom is implemented for Color, we should be able to use TryInto
+    let c2: Result&lt;Color, _&gt; = [183, 65, 14].try_into();
+    println!(&quot;{:?}&quot;, c2);
+
+    let v = vec![183, 65, 14];
+    // With slice we should use `try_from` function
+    let c3 = Color::try_from(&amp;v[..]);
+    println!(&quot;{:?}&quot;, c3);
+    // or take slice within round brackets and use TryInto
+    let c4: Result&lt;Color, _&gt; = (&amp;v[..]).try_into();
+    println!(&quot;{:?}&quot;, c4);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_tuple_out_of_range_positive() {
+        assert_eq!(
+            Color::try_from((256, 1000, 10000)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_out_of_range_negative() {
+        assert_eq!(
+            Color::try_from((-1, -10, -256)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_sum() {
+        assert_eq!(
+            Color::try_from((-1, 255, 255)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_correct() {
+        let c: Result&lt;Color, _&gt; = (183, 65, 14).try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_array_out_of_range_positive() {
+        let c: Result&lt;Color, _&gt; = [1000, 10000, 256].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_out_of_range_negative() {
+        let c: Result&lt;Color, _&gt; = [-10, -256, -1].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_sum() {
+        let c: Result&lt;Color, _&gt; = [-1, 255, 255].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_correct() {
+        let c: Result&lt;Color, _&gt; = [183, 65, 14].try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_slice_out_of_range_positive() {
+        let arr = [10000, 256, 1000];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_out_of_range_negative() {
+        let arr = [-256, -1, -10];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_sum() {
+        let arr = [-1, 255, 255];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_correct() {
+        let v = vec![183, 65, 14];
+        let c: Result&lt;Color, _&gt; = Color::try_from(&amp;v[..]);
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_slice_excess_length() {
+        let v = vec![0, 0, 0, 0];
+        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
+    }
+    #[test]
+    fn test_slice_insufficient_length() {
+        let v = vec![0, 0];
+        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
+    }
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">// try_from_into.rs
+// TryFrom is a simple and safe type conversion that may fail in a controlled way under some circumstances.
+// Basically, this is the same as From. The main difference is that this should return a Result type
+// instead of the target type itself.
+// You can read more about it at https://doc.rust-lang.org/std/convert/trait.TryFrom.html
+// Execute `rustlings hint try_from_into` or use the `hint` watch subcommand for a hint.
+
+use std::convert::{TryFrom, TryInto};
+
+#[derive(Debug, PartialEq)]
+struct Color {
+    red: u8,
+    green: u8,
+    blue: u8,
+}
+
+// We will use this error type for these `TryFrom` conversions.
+#[derive(Debug, PartialEq)]
+enum IntoColorError {
+    // Incorrect length of slice
+    BadLen,
+    // Integer conversion error
+    IntConversion,
+}
+
+// I AM NOT DONE
+
+// Your task is to complete this implementation
+// and return an Ok result of inner type Color.
+// You need to create an implementation for a tuple of three integers,
+// an array of three integers, and a slice of integers.
+//
+// Note that the implementation for tuple and array will be checked at compile time,
+// but the slice implementation needs to check the slice length!
+// Also note that correct RGB color values must be integers in the 0..=255 range.
+
+// Tuple implementation
+impl TryFrom&lt;(i16, i16, i16)&gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(tuple: (i16, i16, i16)) -&gt; Result&lt;Self, Self::Error&gt; {
+    }
+}
+
+// Array implementation
+impl TryFrom&lt;[i16; 3]&gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(arr: [i16; 3]) -&gt; Result&lt;Self, Self::Error&gt; {
+    }
+}
+
+// Slice implementation
+impl TryFrom&lt;&amp;[i16]&gt; for Color {
+    type Error = IntoColorError;
+    fn try_from(slice: &amp;[i16]) -&gt; Result&lt;Self, Self::Error&gt; {
+    }
+}
+
+fn main() {
+    // Use the `try_from` function
+    let c1 = Color::try_from((183, 65, 14));
+    println!(&quot;{:?}&quot;, c1);
+
+    // Since TryFrom is implemented for Color, we should be able to use TryInto
+    let c2: Result&lt;Color, _&gt; = [183, 65, 14].try_into();
+    println!(&quot;{:?}&quot;, c2);
+
+    let v = vec![183, 65, 14];
+    // With slice we should use `try_from` function
+    let c3 = Color::try_from(&amp;v[..]);
+    println!(&quot;{:?}&quot;, c3);
+    // or take slice within round brackets and use TryInto
+    let c4: Result&lt;Color, _&gt; = (&amp;v[..]).try_into();
+    println!(&quot;{:?}&quot;, c4);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_tuple_out_of_range_positive() {
+        assert_eq!(
+            Color::try_from((256, 1000, 10000)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_out_of_range_negative() {
+        assert_eq!(
+            Color::try_from((-1, -10, -256)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_sum() {
+        assert_eq!(
+            Color::try_from((-1, 255, 255)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_tuple_correct() {
+        let c: Result&lt;Color, _&gt; = (183, 65, 14).try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_array_out_of_range_positive() {
+        let c: Result&lt;Color, _&gt; = [1000, 10000, 256].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_out_of_range_negative() {
+        let c: Result&lt;Color, _&gt; = [-10, -256, -1].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_sum() {
+        let c: Result&lt;Color, _&gt; = [-1, 255, 255].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    #[test]
+    fn test_array_correct() {
+        let c: Result&lt;Color, _&gt; = [183, 65, 14].try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_slice_out_of_range_positive() {
+        let arr = [10000, 256, 1000];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_out_of_range_negative() {
+        let arr = [-256, -1, -10];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_sum() {
+        let arr = [-1, 255, 255];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    #[test]
+    fn test_slice_correct() {
+        let v = vec![183, 65, 14];
+        let c: Result&lt;Color, _&gt; = Color::try_from(&amp;v[..]);
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    #[test]
+    fn test_slice_excess_length() {
+        let v = vec![0, 0, 0, 0];
+        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
+    }
+    #[test]
+    fn test_slice_insufficient_length() {
+        let v = vec![0, 0];
+        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
+    }
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust">// Type casting in Rust is done via the usage of the `as` operator.
+// Please note that the `as` operator is not only used when type casting.
+// It also helps with renaming imports.
+//
+// The goal is to make sure that the division does not fail to compile
+// and returns the proper type.
+// Execute `rustlings hint using_as` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn average(values: &amp;[f64]) -&gt; f64 {
+    let total = values.iter().sum::&lt;f64&gt;();
+    total / values.len()
+}
+
+fn main() {
+    let values = [3.5, 0.3, 13.0, 11.7];
+    println!(&quot;{}&quot;, average(&amp;values));
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn returns_proper_type_and_value() {
+        assert_eq!(average(&amp;[3.5, 0.3, 13.0, 11.7]), 7.125);
+    }
+}
+</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="checklist"><a class="header" href="#checklist">Checklist</a></h1>
 
             </main>
