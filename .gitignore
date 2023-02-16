@@ -1,0 +1,10 @@
+book/
+*~
+.idea
+.DS_Store
+target
+tmp
+index.html
+rustlings_exercises
+.cargo
+
