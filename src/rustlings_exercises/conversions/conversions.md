@@ -1,6 +1,19 @@
 # Type conversions
 
 <!--ts-->
+* [Type conversions](#type-conversions)
+   * [Further information](#further-information)
+   * [Rustlings](#rustlings)
+      * [as_ref_mut](#as_ref_mut)
+      * [from_into](#from_into)
+      * [from_str](#from_str)
+      * [try_from_into](#try_from_into)
+      * [try_from_into](#try_from_into-1)
+      * [using_as](#using_as)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Feb 16 14:06:54 UTC 2023 -->
+
 <!--te-->
 Rust offers a multitude of ways to convert a value of a given type into another type.
 
