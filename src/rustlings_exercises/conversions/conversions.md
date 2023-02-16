@@ -1,5 +1,7 @@
 # Type conversions
 
+<!--ts-->
+<!--te-->
 Rust offers a multitude of ways to convert a value of a given type into another type.
 
 The simplest form of type conversion is a type cast expression. It is denoted with the binary operator `as`. For instance, `println!("{}", 1 + 1.0);` would not compile, since `1` is an integer while `1.0` is a float. However, `println!("{}", 1 as f32 + 1.0)` should compile. The
@@ -26,25 +28,37 @@ These are not directly covered in the book, but the standard library has a great
 
 ## Rustlings
 
+### as_ref_mut
+
 ```rust
 {{#include as_ref_mut.rs}}
 ```
+
+### from_into
 
 ```rust
 {{#include from_into.rs}}
 ```
 
+### from_str
+
 ```rust
 {{#include from_str.rs}}
 ```
 
-```rust
-{{#include try_from_into.rs}}
-```
+### try_from_into
 
 ```rust
 {{#include try_from_into.rs}}
 ```
+
+### try_from_into
+
+```rust
+{{#include try_from_into.rs}}
+```
+
+### using_as
 
 ```rust
 {{#include using_as.rs}}
