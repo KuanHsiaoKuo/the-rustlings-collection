@@ -95,7 +95,7 @@
 
 <nav id="sidebar" class="sidebar" aria-label="Table of contents">
     <div class="sidebar-scrollbox">
-        <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="rustlings_exercises/rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="rustlings_exercises/clippy/clippy.html"><strong aria-hidden="true">2.1.</strong> clippy</a></li><li class="chapter-item "><a href="rustlings_exercises/conversions/conversions.html"><strong aria-hidden="true">2.2.</strong> conversions</a></li></ol></li><li class="chapter-item expanded "><a href="checklist.html">Checklist</a></li></ol>
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="rustlings_exercises/rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="rustlings_exercises/intro/intro.html"><strong aria-hidden="true">2.1.</strong> intro</a></li><li class="chapter-item "><a href="rustlings_exercises/clippy/clippy.html"><strong aria-hidden="true">2.2.</strong> clippy</a></li><li class="chapter-item "><a href="rustlings_exercises/conversions/conversions.html"><strong aria-hidden="true">2.3.</strong> conversions</a></li><li class="chapter-item "><a href="rustlings_exercises/enums/enums.html"><strong aria-hidden="true">2.4.</strong> enums</a></li><li class="chapter-item "><a href="rustlings_exercises/error_handling/error_handling.html"><strong aria-hidden="true">2.5.</strong> error_handling</a></li><li class="chapter-item "><a href="rustlings_exercises/functions/functions.html"><strong aria-hidden="true">2.6.</strong> functions</a></li><li class="chapter-item "><a href="rustlings_exercises/generics/generics.html"><strong aria-hidden="true">2.7.</strong> generics</a></li><li class="chapter-item "><a href="rustlings_exercises/hashmaps/hashmaps.html"><strong aria-hidden="true">2.8.</strong> hashmaps</a></li><li class="chapter-item "><a href="rustlings_exercises/if/if.html"><strong aria-hidden="true">2.9.</strong> if</a></li><li class="chapter-item "><a href="rustlings_exercises/iterators/iterators.html"><strong aria-hidden="true">2.10.</strong> iterators</a></li><li class="chapter-item "><a href="rustlings_exercises/lifetimes/lifetimes.html"><strong aria-hidden="true">2.11.</strong> lifetimes</a></li><li class="chapter-item "><a href="rustlings_exercises/macros/macros.html"><strong aria-hidden="true">2.12.</strong> macros</a></li><li class="chapter-item "><a href="rustlings_exercises/modules/modules.html"><strong aria-hidden="true">2.13.</strong> modules</a></li><li class="chapter-item "><a href="rustlings_exercises/move_semantics/move_semantics.html"><strong aria-hidden="true">2.14.</strong> move_semantics</a></li><li class="chapter-item "><a href="rustlings_exercises/options/options.html"><strong aria-hidden="true">2.15.</strong> options</a></li><li class="chapter-item "><a href="rustlings_exercises/primitive_types/primitive_types.html"><strong aria-hidden="true">2.16.</strong> primitive_types</a></li><li class="chapter-item "><a href="rustlings_exercises/smart_pointers/smart_pointers.html"><strong aria-hidden="true">2.17.</strong> smart_pointers</a></li><li class="chapter-item "><a href="rustlings_exercises/strings/strings.html"><strong aria-hidden="true">2.18.</strong> strings</a></li><li class="chapter-item "><a href="rustlings_exercises/structs/structs.html"><strong aria-hidden="true">2.19.</strong> structs</a></li><li class="chapter-item "><a href="rustlings_exercises/tests/tests.html"><strong aria-hidden="true">2.20.</strong> tests</a></li><li class="chapter-item "><a href="rustlings_exercises/threads/threads.html"><strong aria-hidden="true">2.21.</strong> threads</a></li><li class="chapter-item "><a href="rustlings_exercises/traits/traits.html"><strong aria-hidden="true">2.22.</strong> traits</a></li><li class="chapter-item "><a href="rustlings_exercises/variables/variables.html"><strong aria-hidden="true">2.23.</strong> variables</a></li><li class="chapter-item "><a href="rustlings_exercises/vecs/vecs.html"><strong aria-hidden="true">2.24.</strong> vecs</a></li></ol></li><li class="chapter-item expanded "><a href="checklist.html">Checklist</a></li></ol>
     </div>
     <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
 </nav>
@@ -214,7 +214,8 @@
 <tr><td>clippy</td><td>§21.4</td></tr>
 <tr><td>conversions</td><td>n/a</td></tr>
 </tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="clippy"><a class="header" href="#clippy">Clippy</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="intro"><a class="header" href="#intro">intro</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clippy"><a class="header" href="#clippy">Clippy</a></h1>
 <p>The Clippy tool is a collection of lints to analyze your code so you can catch common mistakes and improve your Rust code.</p>
 <p>If you used the installation script for Rustlings, Clippy should be already installed.
 If not you can install it manually via <code>rustup component add clippy</code>.</p>
@@ -223,6 +224,12 @@ If not you can install it manually via <code>rustup component add clippy</code>.
 <li><a href="https://github.com/rust-lang/rust-clippy">GitHub Repository</a>.</li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-clippy1" class="admonition note">
+<summary class="admonition-title">
+<p>clippy1</p>
+<p><a class="admonition-anchor-link" href="rustlings_exercises/clippy/clippy.html#admonition-clippy1"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust">// clippy1.rs
 // The Clippy tool is a collection of lints to analyze your code
 // so you can catch common mistakes and improve your Rust code.
@@ -247,6 +254,67 @@ fn main() {
     )
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-clippy2" class="admonition note">
+<summary class="admonition-title">
+<p>clippy2</p>
+<p><a class="admonition-anchor-link" href="rustlings_exercises/clippy/clippy.html#admonition-clippy2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// clippy2.rs
+// Execute `rustlings hint clippy2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let mut res = 42;
+    let option = Some(12);
+    for x in option {
+        res += x;
+    }
+    println!(&quot;{}&quot;, res);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-clippy3" class="admonition note">
+<summary class="admonition-title">
+<p>clippy3</p>
+<p><a class="admonition-anchor-link" href="rustlings_exercises/clippy/clippy.html#admonition-clippy3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// clippy3.rs
+// Here's a couple more easy Clippy fixes, so you can see its utility.
+
+// I AM NOT DONE
+
+#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&lt;()&gt; = None;
+    if my_option.is_none() {
+        my_option.unwrap();
+    }
+
+    let my_arr = &amp;[
+        -1, -2, -3
+        -4, -5, -6
+    ];
+    println!(&quot;My array! Here it is: {:?}&quot;, my_arr);
+
+    let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+    println!(&quot;This Vec is empty, see? {:?}&quot;, my_empty_vec);
+
+    let mut value_a = 45;
+    let mut value_b = 66;
+    // Let's swap these two!
+    value_a = value_b;
+    value_b = value_a;
+    println!(&quot;value a: {}; value b: {}&quot;, value_a, value_b);
+}
+</code></pre></pre>
+</div>
+</details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="type-conversions"><a class="header" href="#type-conversions">Type conversions</a></h1>
 <!--ts-->
 <ul>
@@ -266,7 +334,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Feb 16 14:15:40 UTC 2023 -->
+<!-- Added by: runner, at: Fri Feb 17 14:03:16 UTC 2023 -->
 <!--te-->
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
 <p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
@@ -882,6 +950,27 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="enums"><a class="header" href="#enums">enums</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="error_handling"><a class="header" href="#error_handling">error_handling</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generics"><a class="header" href="#generics">generics</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hashmaps"><a class="header" href="#hashmaps">hashmaps</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="if"><a class="header" href="#if">if</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="iterators"><a class="header" href="#iterators">iterators</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lifetimes"><a class="header" href="#lifetimes">lifetimes</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="macros"><a class="header" href="#macros">macros</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="modules"><a class="header" href="#modules">modules</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="move_semantics"><a class="header" href="#move_semantics">move_semantics</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="options"><a class="header" href="#options">options</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="primitive_types"><a class="header" href="#primitive_types">primitive_types</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="smart_pointers"><a class="header" href="#smart_pointers">smart_pointers</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="strings"><a class="header" href="#strings">strings</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="structs"><a class="header" href="#structs">structs</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tests"><a class="header" href="#tests">tests</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="threads"><a class="header" href="#threads">threads</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="traits"><a class="header" href="#traits">traits</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="variables"><a class="header" href="#variables">variables</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vecs"><a class="header" href="#vecs">vecs</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="checklist"><a class="header" href="#checklist">Checklist</a></h1>
 
             </main>

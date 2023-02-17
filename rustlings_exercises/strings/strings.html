@@ -3,7 +3,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>clippy - Rust错题本</title>
+    <title>strings - Rust错题本</title>
 
 
     <!-- Custom HTML head -->
@@ -94,7 +94,7 @@
 
 <nav id="sidebar" class="sidebar" aria-label="Table of contents">
     <div class="sidebar-scrollbox">
-        <ol class="chapter"><li class="chapter-item expanded "><a href="../../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../../../rustlings_exercises/index.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../rustlings_exercises/clippy/index.html" class="active"><strong aria-hidden="true">2.1.</strong> clippy</a></li></ol></li><li class="chapter-item expanded "><a href="../../checklist.html">Checklist</a></li></ol>
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../../rustlings_exercises/rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rustlings_exercises/intro/intro.html"><strong aria-hidden="true">2.1.</strong> intro</a></li><li class="chapter-item "><a href="../../rustlings_exercises/clippy/clippy.html"><strong aria-hidden="true">2.2.</strong> clippy</a></li><li class="chapter-item "><a href="../../rustlings_exercises/conversions/conversions.html"><strong aria-hidden="true">2.3.</strong> conversions</a></li><li class="chapter-item "><a href="../../rustlings_exercises/enums/enums.html"><strong aria-hidden="true">2.4.</strong> enums</a></li><li class="chapter-item "><a href="../../rustlings_exercises/error_handling/error_handling.html"><strong aria-hidden="true">2.5.</strong> error_handling</a></li><li class="chapter-item "><a href="../../rustlings_exercises/functions/functions.html"><strong aria-hidden="true">2.6.</strong> functions</a></li><li class="chapter-item "><a href="../../rustlings_exercises/generics/generics.html"><strong aria-hidden="true">2.7.</strong> generics</a></li><li class="chapter-item "><a href="../../rustlings_exercises/hashmaps/hashmaps.html"><strong aria-hidden="true">2.8.</strong> hashmaps</a></li><li class="chapter-item "><a href="../../rustlings_exercises/if/if.html"><strong aria-hidden="true">2.9.</strong> if</a></li><li class="chapter-item "><a href="../../rustlings_exercises/iterators/iterators.html"><strong aria-hidden="true">2.10.</strong> iterators</a></li><li class="chapter-item "><a href="../../rustlings_exercises/lifetimes/lifetimes.html"><strong aria-hidden="true">2.11.</strong> lifetimes</a></li><li class="chapter-item "><a href="../../rustlings_exercises/macros/macros.html"><strong aria-hidden="true">2.12.</strong> macros</a></li><li class="chapter-item "><a href="../../rustlings_exercises/modules/modules.html"><strong aria-hidden="true">2.13.</strong> modules</a></li><li class="chapter-item "><a href="../../rustlings_exercises/move_semantics/move_semantics.html"><strong aria-hidden="true">2.14.</strong> move_semantics</a></li><li class="chapter-item "><a href="../../rustlings_exercises/options/options.html"><strong aria-hidden="true">2.15.</strong> options</a></li><li class="chapter-item "><a href="../../rustlings_exercises/primitive_types/primitive_types.html"><strong aria-hidden="true">2.16.</strong> primitive_types</a></li><li class="chapter-item "><a href="../../rustlings_exercises/smart_pointers/smart_pointers.html"><strong aria-hidden="true">2.17.</strong> smart_pointers</a></li><li class="chapter-item expanded "><a href="../../rustlings_exercises/strings/strings.html" class="active"><strong aria-hidden="true">2.18.</strong> strings</a></li><li class="chapter-item "><a href="../../rustlings_exercises/structs/structs.html"><strong aria-hidden="true">2.19.</strong> structs</a></li><li class="chapter-item "><a href="../../rustlings_exercises/tests/tests.html"><strong aria-hidden="true">2.20.</strong> tests</a></li><li class="chapter-item "><a href="../../rustlings_exercises/threads/threads.html"><strong aria-hidden="true">2.21.</strong> threads</a></li><li class="chapter-item "><a href="../../rustlings_exercises/traits/traits.html"><strong aria-hidden="true">2.22.</strong> traits</a></li><li class="chapter-item "><a href="../../rustlings_exercises/variables/variables.html"><strong aria-hidden="true">2.23.</strong> variables</a></li><li class="chapter-item "><a href="../../rustlings_exercises/vecs/vecs.html"><strong aria-hidden="true">2.24.</strong> vecs</a></li></ol></li><li class="chapter-item expanded "><a href="../../checklist.html">Checklist</a></li></ol>
     </div>
     <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
 </nav>
@@ -179,15 +179,7 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="clippy"><a class="header" href="#clippy">Clippy</a></h1>
-<p>The Clippy tool is a collection of lints to analyze your code so you can catch common mistakes and improve your Rust code.</p>
-<p>If you used the installation script for Rustlings, Clippy should be already installed.
-If not you can install it manually via <code>rustup component add clippy</code>.</p>
-<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
-<ul>
-<li><a href="https://github.com/rust-lang/rust-clippy">GitHub Repository</a>.</li>
-</ul>
-<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+                <h1 id="strings"><a class="header" href="#strings">strings</a></h1>
 
             </main>
 
@@ -200,12 +192,12 @@ If not you can install it manually via <code>rustup component add clippy</code>.
 
             <nav class="nav-wrapper" aria-label="Page navigation">
                 <!-- Mobile navigation buttons -->
-                    <a rel="prev" href="../../../rustlings_exercises/index.html" class="mobile-nav-chapters previous"
+                    <a rel="prev" href="../../rustlings_exercises/smart_pointers/smart_pointers.html" class="mobile-nav-chapters previous"
                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../checklist.html" class="mobile-nav-chapters next"
+                    <a rel="next" href="../../rustlings_exercises/structs/structs.html" class="mobile-nav-chapters next"
                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -216,12 +208,12 @@ If not you can install it manually via <code>rustup component add clippy</code>.
     </div>
 
     <nav class="nav-wide-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../../rustlings_exercises/index.html" class="nav-chapters previous" title="Previous chapter"
+            <a rel="prev" href="../../rustlings_exercises/smart_pointers/smart_pointers.html" class="nav-chapters previous" title="Previous chapter"
                aria-label="Previous chapter" aria-keyshortcuts="Left">
                 <i class="fa fa-angle-left"></i>
             </a>
 
-            <a rel="next" href="../../checklist.html" class="nav-chapters next" title="Next chapter"
+            <a rel="next" href="../../rustlings_exercises/structs/structs.html" class="nav-chapters next" title="Next chapter"
                aria-label="Next chapter" aria-keyshortcuts="Right">
                 <i class="fa fa-angle-right"></i>
             </a>
