@@ -5,6 +5,5 @@ book/
 target
 tmp
 index.html
-rustlings_exercises
 .cargo
 
