@@ -179,7 +179,107 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="tests"><a class="header" href="#tests">tests</a></h1>
+                <h1 id="tests"><a class="header" href="#tests">Tests</a></h1>
+<p>Going out of order from the book to cover tests – many of the following exercises will ask you to make tests pass!</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch11-01-writing-tests.html">Writing Tests</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-tests1" class="admonition note">
+<summary class="admonition-title">
+<p>tests1</p>
+<p><a class="admonition-anchor-link" href="#admonition-tests1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// tests1.rs
+// Tests are important to ensure that your code does what you think it should do.
+// Tests can be run on this file with the following command:
+// rustlings run tests1
+
+// This test has a problem with it -- make the test compile! Make the test
+// pass! Make the test fail!
+// Execute `rustlings hint tests1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert() {
+        assert!();
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-tests2" class="admonition note">
+<summary class="admonition-title">
+<p>tests2</p>
+<p><a class="admonition-anchor-link" href="#admonition-tests2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// tests2.rs
+// This test has a problem with it -- make the test compile! Make the test
+// pass! Make the test fail!
+// Execute `rustlings hint tests2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn you_can_assert_eq() {
+        assert_eq!();
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-tests3" class="admonition note">
+<summary class="admonition-title">
+<p>tests3</p>
+<p><a class="admonition-anchor-link" href="#admonition-tests3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// tests3.rs
+// This test isn't testing our function -- make it do that in such a way that
+// the test passes. Then write a second test that tests whether we get the result
+// we expect to get when we call `is_even(5)`.
+// Execute `rustlings hint tests3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+pub fn is_even(num: i32) -&gt; bool {
+    num % 2 == 0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_true_when_even() {
+        assert!();
+    }
+
+    #[test]
+    fn is_false_when_odd() {
+        assert!();
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
 
             </main>
 

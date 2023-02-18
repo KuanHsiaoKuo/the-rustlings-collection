@@ -179,7 +179,404 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="iterators"><a class="header" href="#iterators">iterators</a></h1>
+                <h1 id="iterators"><a class="header" href="#iterators">Iterators</a></h1>
+<p>This section will teach you about Iterators.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch13-02-iterators.html">Iterator</a></li>
+<li><a href="https://doc.rust-lang.org/stable/std/iter/">Iterator documentation</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-iterators1" class="admonition note">
+<summary class="admonition-title">
+<p>iterators1</p>
+<p><a class="admonition-anchor-link" href="#admonition-iterators1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// iterators1.rs
+//
+//  Make me compile by filling in the `???`s
+//
+// When performing operations on elements within a collection, iterators are essential.
+// This module helps you get familiar with the structure of using an iterator and
+// how to go through elements within an iterable collection.
+//
+// Execute `rustlings hint iterators1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main () {
+    let my_fav_fruits = vec![&quot;banana&quot;, &quot;custard apple&quot;, &quot;avocado&quot;, &quot;peach&quot;, &quot;raspberry&quot;];
+
+    let mut my_iterable_fav_fruits = ???;   // TODO: Step 1
+
+    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;banana&quot;));
+    assert_eq!(my_iterable_fav_fruits.next(), ???);     // TODO: Step 2
+    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;avocado&quot;));
+    assert_eq!(my_iterable_fav_fruits.next(), ???);     // TODO: Step 3
+    assert_eq!(my_iterable_fav_fruits.next(), Some(&amp;&quot;raspberry&quot;));
+    assert_eq!(my_iterable_fav_fruits.next(), ???);     // TODO: Step 4
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-iterators2" class="admonition note">
+<summary class="admonition-title">
+<p>iterators2</p>
+<p><a class="admonition-anchor-link" href="#admonition-iterators2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// iterators2.rs
+// In this exercise, you'll learn some of the unique advantages that iterators
+// can offer. Follow the steps to complete the exercise.
+// Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+// Step 1.
+// Complete the `capitalize_first` function.
+// &quot;hello&quot; -&gt; &quot;Hello&quot;
+pub fn capitalize_first(input: &amp;str) -&gt; String {
+    let mut c = input.chars();
+    match c.next() {
+        None =&gt; String::new(),
+        Some(first) =&gt; ???,
+    }
+}
+
+// Step 2.
+// Apply the `capitalize_first` function to a slice of string slices.
+// Return a vector of strings.
+// [&quot;hello&quot;, &quot;world&quot;] -&gt; [&quot;Hello&quot;, &quot;World&quot;]
+pub fn capitalize_words_vector(words: &amp;[&amp;str]) -&gt; Vec&lt;String&gt; {
+    vec![]
+}
+
+// Step 3.
+// Apply the `capitalize_first` function again to a slice of string slices.
+// Return a single string.
+// [&quot;hello&quot;, &quot; &quot;, &quot;world&quot;] -&gt; &quot;Hello World&quot;
+pub fn capitalize_words_string(words: &amp;[&amp;str]) -&gt; String {
+    String::new()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_success() {
+        assert_eq!(capitalize_first(&quot;hello&quot;), &quot;Hello&quot;);
+    }
+
+    #[test]
+    fn test_empty() {
+        assert_eq!(capitalize_first(&quot;&quot;), &quot;&quot;);
+    }
+
+    #[test]
+    fn test_iterate_string_vec() {
+        let words = vec![&quot;hello&quot;, &quot;world&quot;];
+        assert_eq!(capitalize_words_vector(&amp;words), [&quot;Hello&quot;, &quot;World&quot;]);
+    }
+
+    #[test]
+    fn test_iterate_into_string() {
+        let words = vec![&quot;hello&quot;, &quot; &quot;, &quot;world&quot;];
+        assert_eq!(capitalize_words_string(&amp;words), &quot;Hello World&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-iterators3" class="admonition note">
+<summary class="admonition-title">
+<p>iterators3</p>
+<p><a class="admonition-anchor-link" href="#admonition-iterators3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// iterators3.rs
+// This is a bigger exercise than most of the others! You can do it!
+// Here is your mission, should you choose to accept it:
+// 1. Complete the divide function to get the first four tests to pass.
+// 2. Get the remaining tests to pass by completing the result_with_list and
+//    list_of_results functions.
+// Execute `rustlings hint iterators3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum DivisionError {
+    NotDivisible(NotDivisibleError),
+    DivideByZero,
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub struct NotDivisibleError {
+    dividend: i32,
+    divisor: i32,
+}
+
+// Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
+// Otherwise, return a suitable error.
+pub fn divide(a: i32, b: i32) -&gt; Result&lt;i32, DivisionError&gt; {
+    todo!();
+}
+
+// Complete the function and return a value of the correct type so the test passes.
+// Desired output: Ok([1, 11, 1426, 3])
+fn result_with_list() -&gt; () {
+    let numbers = vec![27, 297, 38502, 81];
+    let division_results = numbers.into_iter().map(|n| divide(n, 27));
+}
+
+// Complete the function and return a value of the correct type so the test passes.
+// Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
+fn list_of_results() -&gt; () {
+    let numbers = vec![27, 297, 38502, 81];
+    let division_results = numbers.into_iter().map(|n| divide(n, 27));
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_success() {
+        assert_eq!(divide(81, 9), Ok(9));
+    }
+
+    #[test]
+    fn test_not_divisible() {
+        assert_eq!(
+            divide(81, 6),
+            Err(DivisionError::NotDivisible(NotDivisibleError {
+                dividend: 81,
+                divisor: 6
+            }))
+        );
+    }
+
+    #[test]
+    fn test_divide_by_0() {
+        assert_eq!(divide(81, 0), Err(DivisionError::DivideByZero));
+    }
+
+    #[test]
+    fn test_divide_0_by_something() {
+        assert_eq!(divide(0, 81), Ok(0));
+    }
+
+    #[test]
+    fn test_result_with_list() {
+        assert_eq!(format!(&quot;{:?}&quot;, result_with_list()), &quot;Ok([1, 11, 1426, 3])&quot;);
+    }
+
+    #[test]
+    fn test_list_of_results() {
+        assert_eq!(
+            format!(&quot;{:?}&quot;, list_of_results()),
+            &quot;[Ok(1), Ok(11), Ok(1426), Ok(3)]&quot;
+        );
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-iterators4" class="admonition note">
+<summary class="admonition-title">
+<p>iterators4</p>
+<p><a class="admonition-anchor-link" href="#admonition-iterators4"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// iterators4.rs
+// Execute `rustlings hint iterators4` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+pub fn factorial(num: u64) -&gt; u64 {
+    // Complete this function to return the factorial of num
+    // Do not use:
+    // - return
+    // Try not to use:
+    // - imperative style loops (for, while)
+    // - additional variables
+    // For an extra challenge, don't use:
+    // - recursion
+    // Execute `rustlings hint iterators4` for hints.
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn factorial_of_0() {
+        assert_eq!(1, factorial(0));
+    }
+
+    #[test]
+    fn factorial_of_1() {
+        assert_eq!(1, factorial(1));
+    }
+    #[test]
+    fn factorial_of_2() {
+        assert_eq!(2, factorial(2));
+    }
+
+    #[test]
+    fn factorial_of_4() {
+        assert_eq!(24, factorial(4));
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-iterators5" class="admonition note">
+<summary class="admonition-title">
+<p>iterators5</p>
+<p><a class="admonition-anchor-link" href="#admonition-iterators5"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// iterators5.rs
+// Let's define a simple model to track Rustlings exercise progress. Progress
+// will be modelled using a hash map. The name of the exercise is the key and
+// the progress is the value. Two counting functions were created to count the
+// number of exercises with a given progress. These counting functions use
+// imperative style for loops. Recreate this counting functionality using
+// iterators. Only the two iterator methods (count_iterator and
+// count_collection_iterator) need to be modified.
+// Execute `rustlings hint iterators5` or use the `hint` watch subcommand for a hint.
+//
+// Make the code compile and the tests pass.
+
+// I AM NOT DONE
+
+use std::collections::HashMap;
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Progress {
+    None,
+    Some,
+    Complete,
+}
+
+fn count_for(map: &amp;HashMap&lt;String, Progress&gt;, value: Progress) -&gt; usize {
+    let mut count = 0;
+    for val in map.values() {
+        if val == &amp;value {
+            count += 1;
+        }
+    }
+    count
+}
+
+fn count_iterator(map: &amp;HashMap&lt;String, Progress&gt;, value: Progress) -&gt; usize {
+    // map is a hashmap with String keys and Progress values.
+    // map = { &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... }
+    todo!();
+}
+
+fn count_collection_for(collection: &amp;[HashMap&lt;String, Progress&gt;], value: Progress) -&gt; usize {
+    let mut count = 0;
+    for map in collection {
+        for val in map.values() {
+            if val == &amp;value {
+                count += 1;
+            }
+        }
+    }
+    count
+}
+
+fn count_collection_iterator(collection: &amp;[HashMap&lt;String, Progress&gt;], value: Progress) -&gt; usize {
+    // collection is a slice of hashmaps.
+    // collection = [{ &quot;variables1&quot;: Complete, &quot;from_str&quot;: None, ... },
+    //     { &quot;variables2&quot;: Complete, ... }, ... ]
+    todo!();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn count_complete() {
+        let map = get_map();
+        assert_eq!(3, count_iterator(&amp;map, Progress::Complete));
+    }
+
+    #[test]
+    fn count_equals_for() {
+        let map = get_map();
+        assert_eq!(
+            count_for(&amp;map, Progress::Complete),
+            count_iterator(&amp;map, Progress::Complete)
+        );
+    }
+
+    #[test]
+    fn count_collection_complete() {
+        let collection = get_vec_map();
+        assert_eq!(
+            6,
+            count_collection_iterator(&amp;collection, Progress::Complete)
+        );
+    }
+
+    #[test]
+    fn count_collection_equals_for() {
+        let collection = get_vec_map();
+        assert_eq!(
+            count_collection_for(&amp;collection, Progress::Complete),
+            count_collection_iterator(&amp;collection, Progress::Complete)
+        );
+    }
+
+    fn get_map() -&gt; HashMap&lt;String, Progress&gt; {
+        use Progress::*;
+
+        let mut map = HashMap::new();
+        map.insert(String::from(&quot;variables1&quot;), Complete);
+        map.insert(String::from(&quot;functions1&quot;), Complete);
+        map.insert(String::from(&quot;hashmap1&quot;), Complete);
+        map.insert(String::from(&quot;arc1&quot;), Some);
+        map.insert(String::from(&quot;as_ref_mut&quot;), None);
+        map.insert(String::from(&quot;from_str&quot;), None);
+
+        map
+    }
+
+    fn get_vec_map() -&gt; Vec&lt;HashMap&lt;String, Progress&gt;&gt; {
+        use Progress::*;
+
+        let map = get_map();
+
+        let mut other = HashMap::new();
+        other.insert(String::from(&quot;variables2&quot;), Complete);
+        other.insert(String::from(&quot;functions2&quot;), Complete);
+        other.insert(String::from(&quot;if1&quot;), Complete);
+        other.insert(String::from(&quot;from_into&quot;), None);
+        other.insert(String::from(&quot;try_from_into&quot;), None);
+
+        vec![map, other]
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
 
             </main>
 

@@ -179,7 +179,182 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="primitive_types"><a class="header" href="#primitive_types">primitive_types</a></h1>
+                <h1 id="primitive-types"><a class="header" href="#primitive-types">Primitive Types</a></h1>
+<p>Rust has a couple of basic types that are directly implemented into the
+compiler. In this section, we’ll go through the most important ones.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/stable/book/ch03-02-data-types.html">Data Types</a></li>
+<li><a href="https://doc.rust-lang.org/stable/book/ch04-03-slices.html">The Slice Type</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-primitive_types1" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types1</p>
+<p><a class="admonition-anchor-link" href="#admonition-primitive_types1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// primitive_types1.rs
+// Fill in the rest of the line that has code missing!
+// No hints, there's no tricks, just get used to typing these :)
+
+// I AM NOT DONE
+
+fn main() {
+    // Booleans (`bool`)
+
+    let is_morning = true;
+    if is_morning {
+        println!(&quot;Good morning!&quot;);
+    }
+
+    let // Finish the rest of this line like the example! Or make it be false!
+    if is_evening {
+        println!(&quot;Good evening!&quot;);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-primitive_types2" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types2</p>
+<p><a class="admonition-anchor-link" href="#admonition-primitive_types2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// primitive_types2.rs
+// Fill in the rest of the line that has code missing!
+// No hints, there's no tricks, just get used to typing these :)
+
+// I AM NOT DONE
+
+fn main() {
+    // Characters (`char`)
+
+    // Note the _single_ quotes, these are different from the double quotes
+    // you've been seeing around.
+    let my_first_initial = 'C';
+    if my_first_initial.is_alphabetic() {
+        println!(&quot;Alphabetical!&quot;);
+    } else if my_first_initial.is_numeric() {
+        println!(&quot;Numerical!&quot;);
+    } else {
+        println!(&quot;Neither alphabetic nor numeric!&quot;);
+    }
+
+    let // Finish this line like the example! What's your favorite character?
+    // Try a letter, try a number, try a special character, try a character
+    // from a different language than your own, try an emoji!
+    if your_character.is_alphabetic() {
+        println!(&quot;Alphabetical!&quot;);
+    } else if your_character.is_numeric() {
+        println!(&quot;Numerical!&quot;);
+    } else {
+        println!(&quot;Neither alphabetic nor numeric!&quot;);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-primitive_types3" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types3</p>
+<p><a class="admonition-anchor-link" href="#admonition-primitive_types3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// primitive_types3.rs
+// Create an array with at least 100 elements in it where the ??? is.
+// Execute `rustlings hint primitive_types3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let a = ???
+
+    if a.len() &gt;= 100 {
+        println!(&quot;Wow, that's a big array!&quot;);
+    } else {
+        println!(&quot;Meh, I eat arrays like that for breakfast.&quot;);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-primitive_types4" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types4</p>
+<p><a class="admonition-anchor-link" href="#admonition-primitive_types4"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// primitive_types4.rs
+// Get a slice out of Array a where the ??? is so that the test passes.
+// Execute `rustlings hint primitive_types4` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[test]
+fn slice_out_of_array() {
+    let a = [1, 2, 3, 4, 5];
+
+    let nice_slice = ???
+
+    assert_eq!([2, 3, 4], nice_slice)
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-primitive_types5" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types5</p>
+<p><a class="admonition-anchor-link" href="#admonition-primitive_types5"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// primitive_types5.rs
+// Destructure the `cat` tuple so that the println will work.
+// Execute `rustlings hint primitive_types5` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let cat = (&quot;Furry McFurson&quot;, 3.5);
+    let /* your pattern here */ = cat;
+
+    println!(&quot;{} is {} years old.&quot;, name, age);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-primitive_types6" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types6</p>
+<p><a class="admonition-anchor-link" href="#admonition-primitive_types6"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// primitive_types6.rs
+// Use a tuple index to access the second element of `numbers`.
+// You can put the expression for the second element where ??? is so that the test passes.
+// Execute `rustlings hint primitive_types6` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[test]
+fn indexing_tuple() {
+    let numbers = (1, 2, 3);
+    // Replace below ??? with the tuple indexing syntax.
+    let second = ???;
+
+    assert_eq!(2, second,
+        &quot;This is not the 2nd number in the tuple!&quot;)
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
 
             </main>
 

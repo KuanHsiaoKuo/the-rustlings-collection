@@ -179,7 +179,228 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="structs"><a class="header" href="#structs">structs</a></h1>
+                <h1 id="structs"><a class="header" href="#structs">Structs</a></h1>
+<p>Rust has three struct types: a classic C struct, a tuple struct, and a unit struct.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch05-01-defining-structs.html">Structures</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch05-03-method-syntax.html">Method Syntax</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-structs1" class="admonition note">
+<summary class="admonition-title">
+<p>structs1</p>
+<p><a class="admonition-anchor-link" href="#admonition-structs1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// structs1.rs
+// Address all the TODOs to make the tests pass!
+// Execute `rustlings hint structs1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+struct ColorClassicStruct {
+    // TODO: Something goes here
+}
+
+struct ColorTupleStruct(/* TODO: Something goes here */);
+
+#[derive(Debug)]
+struct UnitLikeStruct;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn classic_c_structs() {
+        // TODO: Instantiate a classic c struct!
+        // let green =
+
+        assert_eq!(green.red, 0);
+        assert_eq!(green.green, 255);
+        assert_eq!(green.blue, 0);
+    }
+
+    #[test]
+    fn tuple_structs() {
+        // TODO: Instantiate a tuple struct!
+        // let green =
+
+        assert_eq!(green.0, 0);
+        assert_eq!(green.1, 255);
+        assert_eq!(green.2, 0);
+    }
+
+    #[test]
+    fn unit_structs() {
+        // TODO: Instantiate a unit-like struct!
+        // let unit_like_struct =
+        let message = format!(&quot;{:?}s are fun!&quot;, unit_like_struct);
+
+        assert_eq!(message, &quot;UnitLikeStructs are fun!&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-structs2" class="admonition note">
+<summary class="admonition-title">
+<p>structs2</p>
+<p><a class="admonition-anchor-link" href="#admonition-structs2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// structs2.rs
+// Address all the TODOs to make the tests pass!
+// Execute `rustlings hint structs2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[derive(Debug)]
+struct Order {
+    name: String,
+    year: u32,
+    made_by_phone: bool,
+    made_by_mobile: bool,
+    made_by_email: bool,
+    item_number: u32,
+    count: u32,
+}
+
+fn create_order_template() -&gt; Order {
+    Order {
+        name: String::from(&quot;Bob&quot;),
+        year: 2019,
+        made_by_phone: false,
+        made_by_mobile: false,
+        made_by_email: true,
+        item_number: 123,
+        count: 0,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn your_order() {
+        let order_template = create_order_template();
+        // TODO: Create your own order using the update syntax and template above!
+        // let your_order =
+        assert_eq!(your_order.name, &quot;Hacker in Rust&quot;);
+        assert_eq!(your_order.year, order_template.year);
+        assert_eq!(your_order.made_by_phone, order_template.made_by_phone);
+        assert_eq!(your_order.made_by_mobile, order_template.made_by_mobile);
+        assert_eq!(your_order.made_by_email, order_template.made_by_email);
+        assert_eq!(your_order.item_number, order_template.item_number);
+        assert_eq!(your_order.count, 1);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-structs3" class="admonition note">
+<summary class="admonition-title">
+<p>structs3</p>
+<p><a class="admonition-anchor-link" href="#admonition-structs3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// structs3.rs
+// Structs contain data, but can also have logic. In this exercise we have
+// defined the Package struct and we want to test some logic attached to it.
+// Make the code compile and the tests pass!
+// Execute `rustlings hint structs3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[derive(Debug)]
+struct Package {
+    sender_country: String,
+    recipient_country: String,
+    weight_in_grams: i32,
+}
+
+impl Package {
+    fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -&gt; Package {
+        if weight_in_grams &lt;= 0 {
+            panic!(&quot;Can not ship a weightless package.&quot;)
+        } else {
+            Package {
+                sender_country,
+                recipient_country,
+                weight_in_grams,
+            }
+        }
+    }
+
+    fn is_international(&amp;self) -&gt; ??? {
+        // Something goes here...
+    }
+
+    fn get_fees(&amp;self, cents_per_gram: i32) -&gt; ??? {
+        // Something goes here...
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic]
+    fn fail_creating_weightless_package() {
+        let sender_country = String::from(&quot;Spain&quot;);
+        let recipient_country = String::from(&quot;Austria&quot;);
+
+        Package::new(sender_country, recipient_country, -2210);
+    }
+
+    #[test]
+    fn create_international_package() {
+        let sender_country = String::from(&quot;Spain&quot;);
+        let recipient_country = String::from(&quot;Russia&quot;);
+
+        let package = Package::new(sender_country, recipient_country, 1200);
+
+        assert!(package.is_international());
+    }
+
+    #[test]
+    fn create_local_package() {
+        let sender_country = String::from(&quot;Canada&quot;);
+        let recipient_country = sender_country.clone();
+
+        let package = Package::new(sender_country, recipient_country, 1200);
+
+        assert!(!package.is_international());
+    }
+
+    #[test]
+    fn calculate_transport_fees() {
+        let sender_country = String::from(&quot;Spain&quot;);
+        let recipient_country = String::from(&quot;Spain&quot;);
+
+        let cents_per_gram = 3;
+
+        let package = Package::new(sender_country, recipient_country, 1500);
+
+        assert_eq!(package.get_fees(cents_per_gram), 4500);
+        assert_eq!(package.get_fees(cents_per_gram * 2), 9000);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
 
             </main>
 

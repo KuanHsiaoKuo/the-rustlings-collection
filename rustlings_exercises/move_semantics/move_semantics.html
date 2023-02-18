@@ -179,7 +179,219 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="move_semantics"><a class="header" href="#move_semantics">move_semantics</a></h1>
+                <h1 id="move-semantics"><a class="header" href="#move-semantics">Move Semantics</a></h1>
+<p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<p>For this section, the book links are especially important.</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html">Ownership</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html">Reference and borrowing</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-move_semantics1" class="admonition note">
+<summary class="admonition-title">
+<p>move_semantics1</p>
+<p><a class="admonition-anchor-link" href="#admonition-move_semantics1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// move_semantics1.rs
+// Execute `rustlings hint move_semantics1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let vec1 = fill_vec(vec0);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-move_semantics2" class="admonition note">
+<summary class="admonition-title">
+<p>move_semantics2</p>
+<p><a class="admonition-anchor-link" href="#admonition-move_semantics2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// move_semantics2.rs
+// Make me compile without changing line 13 or moving line 10!
+// Execute `rustlings hint move_semantics2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    // Do not change the following line!
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec0&quot;, vec0.len(), vec0);
+
+    vec1.push(88);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-move_semantics3" class="admonition note">
+<summary class="admonition-title">
+<p>move_semantics3</p>
+<p><a class="admonition-anchor-link" href="#admonition-move_semantics3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// move_semantics3.rs
+// Make me compile without adding new lines-- just changing existing lines!
+// (no lines with multiple semicolons necessary!)
+// Execute `rustlings hint move_semantics3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+}
+
+fn fill_vec(vec: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-move_semantics4" class="admonition note">
+<summary class="admonition-title">
+<p>move_semantics4</p>
+<p><a class="admonition-anchor-link" href="#admonition-move_semantics4"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// move_semantics4.rs
+// Refactor this code so that instead of passing `vec0` into the `fill_vec` function,
+// the Vector gets created in the function itself and passed back to the main
+// function.
+// Execute `rustlings hint move_semantics4` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let vec0 = Vec::new();
+
+    let mut vec1 = fill_vec(vec0);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+
+    vec1.push(88);
+
+    println!(&quot;{} has length {} content `{:?}`&quot;, &quot;vec1&quot;, vec1.len(), vec1);
+}
+
+// `fill_vec()` no longer takes `vec: Vec&lt;i32&gt;` as argument
+fn fill_vec() -&gt; Vec&lt;i32&gt; {
+    let mut vec = vec;
+
+    vec.push(22);
+    vec.push(44);
+    vec.push(66);
+
+    vec
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-move_semantics5" class="admonition note">
+<summary class="admonition-title">
+<p>move_semantics5</p>
+<p><a class="admonition-anchor-link" href="#admonition-move_semantics5"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// move_semantics5.rs
+// Make me compile only by reordering the lines in `main()`, but without
+// adding, changing or removing any of them.
+// Execute `rustlings hint move_semantics5` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let mut x = 100;
+    let y = &amp;mut x;
+    let z = &amp;mut x;
+    *y += 100;
+    *z += 1000;
+    assert_eq!(x, 1200);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-move_semantics6" class="admonition note">
+<summary class="admonition-title">
+<p>move_semantics6</p>
+<p><a class="admonition-anchor-link" href="#admonition-move_semantics6"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// move_semantics6.rs
+// Execute `rustlings hint move_semantics6` or use the `hint` watch subcommand for a hint.
+// You can't change anything except adding or removing references.
+
+// I AM NOT DONE
+
+fn main() {
+    let data = &quot;Rust is great!&quot;.to_string();
+
+    get_char(data);
+
+    string_uppercase(&amp;data);
+}
+
+// Should not take ownership
+fn get_char(data: String) -&gt; char {
+    data.chars().last().unwrap()
+}
+
+// Should take ownership
+fn string_uppercase(mut data: &amp;String) {
+    data = &amp;data.to_uppercase();
+
+    println!(&quot;{}&quot;, data);
+}
+</code></pre></pre>
+</div>
+</details>
 
             </main>
 

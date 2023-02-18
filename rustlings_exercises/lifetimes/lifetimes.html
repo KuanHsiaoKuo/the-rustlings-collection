@@ -179,8 +179,122 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="lifetimes"><a class="header" href="#lifetimes">lifetimes</a></h1>
+                <h1 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h1>
+<p>Lifetimes tell the compiler how to check whether references live long
+enough to be valid in any given situation. For example lifetimes say
+“make sure parameter ‘a’ lives as long as parameter ‘b’ so that the return
+value is valid”.</p>
+<p>They are only necessary on borrows, i.e. references,
+since copied parameters or moves are owned in their scope and cannot
+be referenced outside. Lifetimes mean that calling code of e.g. functions
+can be checked to make sure their arguments are valid. Lifetimes are
+restrictive of their callers.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html">Validating References with Lifetimes</a></li>
+<li><a href="https://doc.rust-lang.org/stable/rust-by-example/scope/lifetime.html">Lifetimes (in Rust By Example)</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-lifetimes1" class="admonition note">
+<summary class="admonition-title">
+<p>lifetimes1</p>
+<p><a class="admonition-anchor-link" href="#admonition-lifetimes1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// lifetimes1.rs
+//
+// The Rust compiler needs to know how to check whether supplied references are
+// valid, so that it can let the programmer know if a reference is at risk
+// of going out of scope before it is used. Remember, references are borrows
+// and do not own their own data. What if their owner goes out of scope?
+//
+// Execute `rustlings hint lifetimes1` or use the `hint` watch subcommand for a hint.
 
+// I AM NOT DONE
+
+fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
+    if x.len() &gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let string1 = String::from(&quot;abcd&quot;);
+    let string2 = &quot;xyz&quot;;
+
+    let result = longest(string1.as_str(), string2);
+    println!(&quot;The longest string is '{}'&quot;, result);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-lifetimes2" class="admonition note">
+<summary class="admonition-title">
+<p>lifetimes2</p>
+<p><a class="admonition-anchor-link" href="#admonition-lifetimes2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// lifetimes2.rs
+//
+// So if the compiler is just validating the references passed
+// to the annotated parameters and the return type, what do
+// we need to change?
+//
+// Execute `rustlings hint lifetimes2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
+    if x.len() &gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let string1 = String::from(&quot;long string is long&quot;);
+    let result;
+    {
+        let string2 = String::from(&quot;xyz&quot;);
+        result = longest(string1.as_str(), string2.as_str());
+    }
+    println!(&quot;The longest string is '{}'&quot;, result);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-lifetimes3" class="admonition note">
+<summary class="admonition-title">
+<p>lifetimes3</p>
+<p><a class="admonition-anchor-link" href="#admonition-lifetimes3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// lifetimes3.rs
+//
+// Lifetimes are also needed when structs hold references.
+//
+// Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+struct Book {
+    author: &amp;str,
+    title: &amp;str,
+}
+
+fn main() {
+    let name = String::from(&quot;Jill Smith&quot;);
+    let title = String::from(&quot;Fish Flying&quot;);
+    let book = Book { author: &amp;name, title: &amp;title };
+
+    println!(&quot;{} by {}&quot;, book.title, book.author);
+}
+</code></pre></pre>
+</div>
+</details>
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->

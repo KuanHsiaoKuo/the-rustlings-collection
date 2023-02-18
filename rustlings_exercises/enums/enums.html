@@ -179,8 +179,156 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="enums"><a class="header" href="#enums">enums</a></h1>
+                <h1 id="enums"><a class="header" href="#enums">Enums</a></h1>
+<p>Rust allows you to define types called “enums” which enumerate possible values.
+Enums are a feature in many languages, but their capabilities differ in each language. Rust’s enums are most similar to algebraic data types in functional languages, such as F#, OCaml, and Haskell.
+Useful in combination with enums is Rust’s “pattern matching” facility, which makes it easy to run different code for different values of an enumeration.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch06-00-enums.html">Enums</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch18-03-pattern-syntax.html">Pattern syntax</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-enums1" class="admonition note">
+<summary class="admonition-title">
+<p>enums1</p>
+<p><a class="admonition-anchor-link" href="#admonition-enums1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// enums1.rs
+// No hints this time! ;)
 
+// I AM NOT DONE
+
+#[derive(Debug)]
+enum Message {
+    // TODO: define a few types of messages as used below
+}
+
+fn main() {
+    println!(&quot;{:?}&quot;, Message::Quit);
+    println!(&quot;{:?}&quot;, Message::Echo);
+    println!(&quot;{:?}&quot;, Message::Move);
+    println!(&quot;{:?}&quot;, Message::ChangeColor);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-enums2" class="admonition note">
+<summary class="admonition-title">
+<p>enums2</p>
+<p><a class="admonition-anchor-link" href="#admonition-enums2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// enums2.rs
+// Execute `rustlings hint enums2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[derive(Debug)]
+enum Message {
+    // TODO: define the different variants used below
+}
+
+impl Message {
+    fn call(&amp;self) {
+        println!(&quot;{:?}&quot;, self);
+    }
+}
+
+fn main() {
+    let messages = [
+        Message::Move { x: 10, y: 30 },
+        Message::Echo(String::from(&quot;hello world&quot;)),
+        Message::ChangeColor(200, 255, 255),
+        Message::Quit,
+    ];
+
+    for message in &amp;messages {
+        message.call();
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-enums3" class="admonition note">
+<summary class="admonition-title">
+<p>enums3</p>
+<p><a class="admonition-anchor-link" href="#admonition-enums3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// enums3.rs
+// Address all the TODOs to make the tests pass!
+// Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+enum Message {
+    // TODO: implement the message variant types based on their usage below
+}
+
+struct Point {
+    x: u8,
+    y: u8,
+}
+
+struct State {
+    color: (u8, u8, u8),
+    position: Point,
+    quit: bool,
+}
+
+impl State {
+    fn change_color(&amp;mut self, color: (u8, u8, u8)) {
+        self.color = color;
+    }
+
+    fn quit(&amp;mut self) {
+        self.quit = true;
+    }
+
+    fn echo(&amp;self, s: String) {
+        println!(&quot;{}&quot;, s);
+    }
+
+    fn move_position(&amp;mut self, p: Point) {
+        self.position = p;
+    }
+
+    fn process(&amp;mut self, message: Message) {
+        // TODO: create a match expression to process the different message variants
+        // Remember: When passing a tuple as a function argument, you'll need extra parentheses: fn function((t, u, p, l, e))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_match_message_call() {
+        let mut state = State {
+            quit: false,
+            position: Point { x: 0, y: 0 },
+            color: (0, 0, 0),
+        };
+        state.process(Message::ChangeColor(255, 0, 255));
+        state.process(Message::Echo(String::from(&quot;hello world&quot;)));
+        state.process(Message::Move(Point { x: 10, y: 15 }));
+        state.process(Message::Quit);
+
+        assert_eq!(state.color, (255, 0, 255));
+        assert_eq!(state.position.x, 10);
+        assert_eq!(state.position.y, 15);
+        assert_eq!(state.quit, true);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->

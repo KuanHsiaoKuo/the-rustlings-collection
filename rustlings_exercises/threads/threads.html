@@ -179,7 +179,178 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="threads"><a class="header" href="#threads">threads</a></h1>
+                <h1 id="threads"><a class="header" href="#threads">Threads</a></h1>
+<p>In most current operating systems, an executed program’s code is run in a process, and the operating system manages multiple processes at once.
+Within your program, you can also have independent parts that run simultaneously. The features that run these independent parts are called threads.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/1.4.0/book/dining-philosophers.html">Dining Philosophers example</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch16-01-threads.html">Using Threads to Run Code Simultaneously</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-threads1" class="admonition note">
+<summary class="admonition-title">
+<p>threads1</p>
+<p><a class="admonition-anchor-link" href="#admonition-threads1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// threads1.rs
+// Execute `rustlings hint threads1` or use the `hint` watch subcommand for a hint.
+
+// This program spawns multiple threads that each run for at least 250ms,
+// and each thread returns how much time they took to complete.
+// The program should wait until all the spawned threads have finished and
+// should collect their return values into a vector.
+
+// I AM NOT DONE
+
+use std::thread;
+use std::time::{Duration, Instant};
+
+fn main() {
+    let mut handles = vec![];
+    for i in 0..10 {
+        handles.push(thread::spawn(move || {
+            let start = Instant::now();
+            thread::sleep(Duration::from_millis(250));
+            println!(&quot;thread {} is complete&quot;, i);
+            start.elapsed().as_millis()
+        }));
+    }
+
+    let mut results: Vec&lt;u128&gt; = vec![];
+    for handle in handles {
+        // TODO: a struct is returned from thread::spawn, can you use it?
+    }
+
+    if results.len() != 10 {
+        panic!(&quot;Oh no! All the spawned threads did not finish!&quot;);
+    }
+    
+    println!();
+    for (i, result) in results.into_iter().enumerate() {
+        println!(&quot;thread {} took {}ms&quot;, i, result);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-threads2" class="admonition note">
+<summary class="admonition-title">
+<p>threads2</p>
+<p><a class="admonition-anchor-link" href="#admonition-threads2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// threads2.rs
+// Execute `rustlings hint threads2` or use the `hint` watch subcommand for a hint.
+// Building on the last exercise, we want all of the threads to complete their work but this time
+// the spawned threads need to be in charge of updating a shared value: JobStatus.jobs_completed
+
+// I AM NOT DONE
+
+use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+
+struct JobStatus {
+    jobs_completed: u32,
+}
+
+fn main() {
+    let status = Arc::new(JobStatus { jobs_completed: 0 });
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&amp;status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            // TODO: You must take an action before you update a shared value
+            status_shared.jobs_completed += 1;
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+        // TODO: Print the value of the JobStatus.jobs_completed. Did you notice anything
+        // interesting in the output? Do you have to 'join' on all the handles?
+        println!(&quot;jobs completed {}&quot;, ???);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-threads3" class="admonition note">
+<summary class="admonition-title">
+<p>threads3</p>
+<p><a class="admonition-anchor-link" href="#admonition-threads3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// threads3.rs
+// Execute `rustlings hint threads3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::sync::mpsc;
+use std::sync::Arc;
+use std::thread;
+use std::time::Duration;
+
+struct Queue {
+    length: u32,
+    first_half: Vec&lt;u32&gt;,
+    second_half: Vec&lt;u32&gt;,
+}
+
+impl Queue {
+    fn new() -&gt; Self {
+        Queue {
+            length: 10,
+            first_half: vec![1, 2, 3, 4, 5],
+            second_half: vec![6, 7, 8, 9, 10],
+        }
+    }
+}
+
+fn send_tx(q: Queue, tx: mpsc::Sender&lt;u32&gt;) -&gt; () {
+    let qc = Arc::new(q);
+    let qc1 = Arc::clone(&amp;qc);
+    let qc2 = Arc::clone(&amp;qc);
+
+    thread::spawn(move || {
+        for val in &amp;qc1.first_half {
+            println!(&quot;sending {:?}&quot;, val);
+            tx.send(*val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+
+    thread::spawn(move || {
+        for val in &amp;qc2.second_half {
+            println!(&quot;sending {:?}&quot;, val);
+            tx.send(*val).unwrap();
+            thread::sleep(Duration::from_secs(1));
+        }
+    });
+}
+
+fn main() {
+    let (tx, rx) = mpsc::channel();
+    let queue = Queue::new();
+    let queue_length = queue.length;
+
+    send_tx(queue, tx);
+
+    let mut total_received: u32 = 0;
+    for received in rx {
+        println!(&quot;Got: {}&quot;, received);
+        total_received += 1;
+    }
+
+    println!(&quot;total numbers received: {}&quot;, total_received);
+    assert_eq!(total_received, queue_length)
+}
+</code></pre></pre>
+</div>
+</details>
 
             </main>
 

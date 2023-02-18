@@ -179,7 +179,100 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="if"><a class="header" href="#if">if</a></h1>
+                <h1 id="if"><a class="header" href="#if">If</a></h1>
+<p><code>if</code>, the most basic (but still surprisingly versatile!) type of control flow, is what you’ll learn here.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch03-05-control-flow.html#if-expressions">Control Flow - if expressions</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-if1" class="admonition note">
+<summary class="admonition-title">
+<p>if1</p>
+<p><a class="admonition-anchor-link" href="#admonition-if1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// if1.rs
+// Execute `rustlings hint if1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+pub fn bigger(a: i32, b: i32) -&gt; i32 {
+    // Complete this function to return the bigger number!
+    // Do not use:
+    // - another function call
+    // - additional variables
+}
+
+// Don't mind this for now :)
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn ten_is_bigger_than_eight() {
+        assert_eq!(10, bigger(10, 8));
+    }
+
+    #[test]
+    fn fortytwo_is_bigger_than_thirtytwo() {
+        assert_eq!(42, bigger(32, 42));
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-if2" class="admonition note">
+<summary class="admonition-title">
+<p>if2</p>
+<p><a class="admonition-anchor-link" href="#admonition-if2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// if2.rs
+
+// Step 1: Make me compile!
+// Step 2: Get the bar_for_fuzz and default_to_baz tests passing!
+// Execute `rustlings hint if2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+pub fn foo_if_fizz(fizzish: &amp;str) -&gt; &amp;str {
+    if fizzish == &quot;fizz&quot; {
+        &quot;foo&quot;
+    } else {
+        1
+    }
+}
+
+// No test changes needed!
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn foo_for_fizz() {
+        assert_eq!(foo_if_fizz(&quot;fizz&quot;), &quot;foo&quot;)
+    }
+
+    #[test]
+    fn bar_for_fuzz() {
+        assert_eq!(foo_if_fizz(&quot;fuzz&quot;), &quot;bar&quot;)
+    }
+
+    #[test]
+    fn default_to_baz() {
+        assert_eq!(foo_if_fizz(&quot;literally anything&quot;), &quot;baz&quot;)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
 
             </main>
 

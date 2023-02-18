@@ -179,7 +179,80 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="generics"><a class="header" href="#generics">generics</a></h1>
+                <h1 id="generics"><a class="header" href="#generics">Generics</a></h1>
+<p>Generics is the topic of generalizing types and functionalities to broader cases.
+This is extremely useful for reducing code duplication in many ways, but can call for rather involving syntax.
+Namely, being generic requires taking great care to specify over which types a generic type is actually considered valid.
+The simplest and most common use of generics is for type parameters.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/stable/book/ch10-01-syntax.html">Generic Data Types</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/generics/bounds.html">Bounds</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-generics1" class="admonition note">
+<summary class="admonition-title">
+<p>generics1</p>
+<p><a class="admonition-anchor-link" href="#admonition-generics1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// This shopping list program isn't compiling!
+// Use your knowledge of generics to fix it.
+
+// Execute `rustlings hint generics1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let mut shopping_list: Vec&lt;?&gt; = Vec::new();
+    shopping_list.push(&quot;milk&quot;);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-generics2" class="admonition note">
+<summary class="admonition-title">
+<p>generics2</p>
+<p><a class="admonition-anchor-link" href="#admonition-generics2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// This powerful wrapper provides the ability to store a positive integer value.
+// Rewrite it using generics so that it supports wrapping ANY type.
+
+// Execute `rustlings hint generics2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+struct Wrapper {
+    value: u32,
+}
+
+impl Wrapper {
+    pub fn new(value: u32) -&gt; Self {
+        Wrapper { value }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn store_u32_in_wrapper() {
+        assert_eq!(Wrapper::new(42).value, 42);
+    }
+
+    #[test]
+    fn store_str_in_wrapper() {
+        assert_eq!(Wrapper::new(&quot;Foo&quot;).value, &quot;Foo&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
 
             </main>
 

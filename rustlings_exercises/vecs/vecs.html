@@ -179,7 +179,120 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="vecs"><a class="header" href="#vecs">vecs</a></h1>
+                <h1 id="vectors"><a class="header" href="#vectors">Vectors</a></h1>
+<p>Vectors are one of the most-used Rust data structures. In other programming
+languages, they’d simply be called Arrays, but since Rust operates on a
+bit of a lower level, an array in Rust is stored on the stack (meaning it
+can’t grow or shrink, and the size needs to be known at compile time),
+and a Vector is stored in the heap (where these restrictions do not apply).</p>
+<p>Vectors are a bit of a later chapter in the book, but we think that they’re
+useful enough to talk about them a bit earlier. We shall be talking about
+the other useful data structure, hash maps, later.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/stable/book/ch08-01-vectors.html">Storing Lists of Values with Vectors</a></li>
+<li><a href="https://doc.rust-lang.org/std/primitive.slice.html#method.iter_mut"><code>iter_mut</code></a></li>
+<li><a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map"><code>map</code></a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-vecs1" class="admonition note">
+<summary class="admonition-title">
+<p>vecs1</p>
+<p><a class="admonition-anchor-link" href="#admonition-vecs1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// vecs1.rs
+// Your task is to create a `Vec` which holds the exact same elements
+// as in the array `a`.
+// Make me compile and pass the test!
+// Execute `rustlings hint vecs1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn array_and_vec() -&gt; ([i32; 4], Vec&lt;i32&gt;) {
+    let a = [10, 20, 30, 40]; // a plain array
+    let v = // TODO: declare your vector here with the macro for vectors
+
+    (a, v)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_array_and_vec_similarity() {
+        let (a, v) = array_and_vec();
+        assert_eq!(a, v[..]);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-vecs2" class="admonition note">
+<summary class="admonition-title">
+<p>vecs2</p>
+<p><a class="admonition-anchor-link" href="#admonition-vecs2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// vecs2.rs
+// A Vec of even numbers is given. Your task is to complete the loop
+// so that each number in the Vec is multiplied by 2.
+//
+// Make me pass the test!
+//
+// Execute `rustlings hint vecs2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn vec_loop(mut v: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    for i in v.iter_mut() {
+        // TODO: Fill this up so that each element in the Vec `v` is
+        // multiplied by 2.
+        ???
+    }
+
+    // At this point, `v` should be equal to [4, 8, 12, 16, 20].
+    v
+}
+
+fn vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    v.iter().map(|num| {
+        // TODO: Do the same thing as above - but instead of mutating the
+        // Vec, you can just return the new number!
+        ???
+    }).collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_vec_loop() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_loop(v.clone());
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+
+    #[test]
+    fn test_vec_map() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_map(&amp;v);
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
 
             </main>
 

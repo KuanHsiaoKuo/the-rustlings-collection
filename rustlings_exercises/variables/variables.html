@@ -179,7 +179,132 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="variables"><a class="header" href="#variables">variables</a></h1>
+                <h1 id="variables"><a class="header" href="#variables">Variables</a></h1>
+<p>In Rust, variables are immutable by default.
+When a variable is immutable, once a value is bound to a name, you can’t change that value.
+You can make them mutable by adding mut in front of the variable name.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html">Variables and Mutability</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-variables1" class="admonition note">
+<summary class="admonition-title">
+<p>variables1</p>
+<p><a class="admonition-anchor-link" href="#admonition-variables1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// variables1.rs
+// Make me compile!
+// Execute `rustlings hint variables1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    x = 5;
+    println!(&quot;x has the value {}&quot;, x);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-variables2" class="admonition note">
+<summary class="admonition-title">
+<p>variables2</p>
+<p><a class="admonition-anchor-link" href="#admonition-variables2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// variables2.rs
+// Execute `rustlings hint variables2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let x;
+    if x == 10 {
+        println!(&quot;x is ten!&quot;);
+    } else {
+        println!(&quot;x is not ten!&quot;);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-variables3" class="admonition note">
+<summary class="admonition-title">
+<p>variables3</p>
+<p><a class="admonition-anchor-link" href="#admonition-variables3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// variables3.rs
+// Execute `rustlings hint variables3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let x: i32;
+    println!(&quot;Number {}&quot;, x);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-variables4" class="admonition note">
+<summary class="admonition-title">
+<p>variables4</p>
+<p><a class="admonition-anchor-link" href="#admonition-variables4"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// variables4.rs
+// Execute `rustlings hint variables4` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let x = 3;
+    println!(&quot;Number {}&quot;, x);
+    x = 5; // don't change this line
+    println!(&quot;Number {}&quot;, x);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-variables5" class="admonition note">
+<summary class="admonition-title">
+<p>variables5</p>
+<p><a class="admonition-anchor-link" href="#admonition-variables5"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// variables5.rs
+// Execute `rustlings hint variables5` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let number = &quot;T-H-R-E-E&quot;; // don't change this line
+    println!(&quot;Spell a Number : {}&quot;, number);
+    number = 3; // don't rename this variable
+    println!(&quot;Number plus two is : {}&quot;, number + 2);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-variables6" class="admonition note">
+<summary class="admonition-title">
+<p>variables6</p>
+<p><a class="admonition-anchor-link" href="#admonition-variables6"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// variables6.rs
+// Execute `rustlings hint variables6` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+const NUMBER = 3;
+fn main() {
+    println!(&quot;Number {}&quot;, NUMBER);
+}
+</code></pre></pre>
+</div>
+</details>
 
             </main>
 

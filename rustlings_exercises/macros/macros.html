@@ -179,7 +179,118 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="macros"><a class="header" href="#macros">macros</a></h1>
+                <h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
+<p>Rust’s macro system is very powerful, but also kind of difficult to wrap your
+head around. We’re not going to teach you how to write your own fully-featured
+macros. Instead, we’ll show you how to use and create them.</p>
+<p>If you’d like to learn more about writing your own macros, the
+<a href="https://github.com/tfpk/macrokata">macrokata</a> project has a similar style
+of exercises to Rustlings, but is all about learning to write Macros.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch19-06-macros.html">Macros</a></li>
+<li><a href="https://veykril.github.io/tlborm/">The Little Book of Rust Macros</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-macros1" class="admonition note">
+<summary class="admonition-title">
+<p>macros1</p>
+<p><a class="admonition-anchor-link" href="#admonition-macros1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// macros1.rs
+// Execute `rustlings hint macros1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+macro_rules! my_macro {
+    () =&gt; {
+        println!(&quot;Check out my macro!&quot;);
+    };
+}
+
+fn main() {
+    my_macro();
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-macros2" class="admonition note">
+<summary class="admonition-title">
+<p>macros2</p>
+<p><a class="admonition-anchor-link" href="#admonition-macros2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// macros2.rs
+// Execute `rustlings hint macros2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    my_macro!();
+}
+
+macro_rules! my_macro {
+    () =&gt; {
+        println!(&quot;Check out my macro!&quot;);
+    };
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-macros3" class="admonition note">
+<summary class="admonition-title">
+<p>macros3</p>
+<p><a class="admonition-anchor-link" href="#admonition-macros3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// macros3.rs
+// Make me compile, without taking the macro out of the module!
+// Execute `rustlings hint macros3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+mod macros {
+    macro_rules! my_macro {
+        () =&gt; {
+            println!(&quot;Check out my macro!&quot;);
+        };
+    }
+}
+
+fn main() {
+    my_macro!();
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-macros4" class="admonition note">
+<summary class="admonition-title">
+<p>macros4</p>
+<p><a class="admonition-anchor-link" href="#admonition-macros4"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// macros4.rs
+// Execute `rustlings hint macros4` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+macro_rules! my_macro {
+    () =&gt; {
+        println!(&quot;Check out my macro!&quot;);
+    }
+    ($val:expr) =&gt; {
+        println!(&quot;Look at this other macro: {}&quot;, $val);
+    }
+}
+
+fn main() {
+    my_macro!();
+    my_macro!(7777);
+}
+</code></pre></pre>
+</div>
+</details>
 
             </main>
 

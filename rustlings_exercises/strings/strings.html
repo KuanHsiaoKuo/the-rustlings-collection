@@ -179,7 +179,158 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h1 id="strings"><a class="header" href="#strings">strings</a></h1>
+                <h1 id="strings"><a class="header" href="#strings">Strings</a></h1>
+<p>Rust has two string types, a string slice (<code>&amp;str</code>) and an owned string (<code>String</code>).
+We’re not going to dictate when you should use which one, but we’ll show you how
+to identify and create them, as well as use them.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch08-02-strings.html">Strings</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-strings1" class="admonition note">
+<summary class="admonition-title">
+<p>strings1</p>
+<p><a class="admonition-anchor-link" href="#admonition-strings1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// strings1.rs
+// Make me compile without changing the function signature!
+// Execute `rustlings hint strings1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let answer = current_favorite_color();
+    println!(&quot;My current favorite color is {}&quot;, answer);
+}
+
+fn current_favorite_color() -&gt; String {
+    &quot;blue&quot;
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-strings2" class="admonition note">
+<summary class="admonition-title">
+<p>strings2</p>
+<p><a class="admonition-anchor-link" href="#admonition-strings2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// strings2.rs
+// Make me compile without changing the function signature!
+// Execute `rustlings hint strings2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let word = String::from(&quot;green&quot;); // Try not changing this line :)
+    if is_a_color_word(word) {
+        println!(&quot;That is a color word I know!&quot;);
+    } else {
+        println!(&quot;That is not a color word I know.&quot;);
+    }
+}
+
+fn is_a_color_word(attempt: &amp;str) -&gt; bool {
+    attempt == &quot;green&quot; || attempt == &quot;blue&quot; || attempt == &quot;red&quot;
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-strings3" class="admonition note">
+<summary class="admonition-title">
+<p>strings3</p>
+<p><a class="admonition-anchor-link" href="#admonition-strings3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// strings3.rs
+// Execute `rustlings hint strings3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn trim_me(input: &amp;str) -&gt; String {
+    // TODO: Remove whitespace from both ends of a string!
+    ???
+}
+
+fn compose_me(input: &amp;str) -&gt; String {
+    // TODO: Add &quot; world!&quot; to the string! There's multiple ways to do this!
+    ???
+}
+
+fn replace_me(input: &amp;str) -&gt; String {
+    // TODO: Replace &quot;cars&quot; in the string with &quot;balloons&quot;!
+    ???
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn trim_a_string() {
+        assert_eq!(trim_me(&quot;Hello!     &quot;), &quot;Hello!&quot;);
+        assert_eq!(trim_me(&quot;  What's up!&quot;), &quot;What's up!&quot;);
+        assert_eq!(trim_me(&quot;   Hola!  &quot;), &quot;Hola!&quot;);
+    }
+
+    #[test]
+    fn compose_a_string() {
+        assert_eq!(compose_me(&quot;Hello&quot;), &quot;Hello world!&quot;);
+        assert_eq!(compose_me(&quot;Goodbye&quot;), &quot;Goodbye world!&quot;);
+    }
+
+    #[test]
+    fn replace_a_string() {
+        assert_eq!(replace_me(&quot;I think cars are cool&quot;), &quot;I think balloons are cool&quot;);
+        assert_eq!(replace_me(&quot;I love to look at cars&quot;), &quot;I love to look at balloons&quot;);
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<details id="admonition-strings4" class="admonition note">
+<summary class="admonition-title">
+<p>strings4</p>
+<p><a class="admonition-anchor-link" href="#admonition-strings4"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// strings4.rs
+
+// Ok, here are a bunch of values-- some are `String`s, some are `&amp;str`s. Your
+// task is to call one of these two functions on each value depending on what
+// you think each value is. That is, add either `string_slice` or `string`
+// before the parentheses on each line. If you're right, it will compile!
+// No hints this time!
+
+// I AM NOT DONE
+
+fn string_slice(arg: &amp;str) {
+    println!(&quot;{}&quot;, arg);
+}
+fn string(arg: String) {
+    println!(&quot;{}&quot;, arg);
+}
+
+fn main() {
+    ???(&quot;blue&quot;);
+    ???(&quot;red&quot;.to_string());
+    ???(String::from(&quot;hi&quot;));
+    ???(&quot;rust is fun!&quot;.to_owned());
+    ???(&quot;nice weather&quot;.into());
+    ???(format!(&quot;Interpolation {}&quot;, &quot;Station&quot;));
+    ???(&amp;String::from(&quot;abc&quot;)[0..1]);
+    ???(&quot;  hello there &quot;.trim());
+    ???(&quot;Happy Monday!&quot;.to_string().replace(&quot;Mon&quot;, &quot;Tues&quot;));
+    ???(&quot;mY sHiFt KeY iS sTiCkY&quot;.to_lowercase());
+}
+</code></pre></pre>
+</div>
+</details>
 
             </main>
 
