@@ -10,7 +10,7 @@
       * [Rc](#rc)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 18 12:23:23 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 20 12:21:44 UTC 2023 -->
 
 <!--te-->
 In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
