@@ -94,7 +94,7 @@
 
 <nav id="sidebar" class="sidebar" aria-label="Table of contents">
     <div class="sidebar-scrollbox">
-        <ol class="chapter"><li class="chapter-item expanded "><a href="../../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../../../rustlings_exercises/rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../rustlings_exercises/clippy/clippy.html" class="active"><strong aria-hidden="true">2.1.</strong> clippy</a></li></ol></li><li class="chapter-item expanded "><a href="../../checklist.html">Checklist</a></li></ol>
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../../rustlings_exercises/rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rustlings_exercises/intro/intro.html"><strong aria-hidden="true">2.1.</strong> intro</a></li><li class="chapter-item expanded "><a href="../../rustlings_exercises/clippy/clippy.html" class="active"><strong aria-hidden="true">2.2.</strong> clippy</a></li><li class="chapter-item "><a href="../../rustlings_exercises/conversions/conversions.html"><strong aria-hidden="true">2.3.</strong> conversions</a></li><li class="chapter-item "><a href="../../rustlings_exercises/enums/enums.html"><strong aria-hidden="true">2.4.</strong> enums</a></li><li class="chapter-item "><a href="../../rustlings_exercises/error_handling/error_handling.html"><strong aria-hidden="true">2.5.</strong> error_handling</a></li><li class="chapter-item "><a href="../../rustlings_exercises/functions/functions.html"><strong aria-hidden="true">2.6.</strong> functions</a></li><li class="chapter-item "><a href="../../rustlings_exercises/generics/generics.html"><strong aria-hidden="true">2.7.</strong> generics</a></li><li class="chapter-item "><a href="../../rustlings_exercises/hashmaps/hashmaps.html"><strong aria-hidden="true">2.8.</strong> hashmaps</a></li><li class="chapter-item "><a href="../../rustlings_exercises/if/if.html"><strong aria-hidden="true">2.9.</strong> if</a></li><li class="chapter-item "><a href="../../rustlings_exercises/iterators/iterators.html"><strong aria-hidden="true">2.10.</strong> iterators</a></li><li class="chapter-item "><a href="../../rustlings_exercises/lifetimes/lifetimes.html"><strong aria-hidden="true">2.11.</strong> lifetimes</a></li><li class="chapter-item "><a href="../../rustlings_exercises/macros/macros.html"><strong aria-hidden="true">2.12.</strong> macros</a></li><li class="chapter-item "><a href="../../rustlings_exercises/modules/modules.html"><strong aria-hidden="true">2.13.</strong> modules</a></li><li class="chapter-item "><a href="../../rustlings_exercises/move_semantics/move_semantics.html"><strong aria-hidden="true">2.14.</strong> move_semantics</a></li><li class="chapter-item "><a href="../../rustlings_exercises/options/options.html"><strong aria-hidden="true">2.15.</strong> options</a></li><li class="chapter-item "><a href="../../rustlings_exercises/primitive_types/primitive_types.html"><strong aria-hidden="true">2.16.</strong> primitive_types</a></li><li class="chapter-item "><a href="../../rustlings_exercises/smart_pointers/smart_pointer.html"><strong aria-hidden="true">2.17.</strong> smart_pointer</a></li><li class="chapter-item "><a href="../../rustlings_exercises/strings/strings.html"><strong aria-hidden="true">2.18.</strong> strings</a></li><li class="chapter-item "><a href="../../rustlings_exercises/structs/structs.html"><strong aria-hidden="true">2.19.</strong> structs</a></li><li class="chapter-item "><a href="../../rustlings_exercises/tests/tests.html"><strong aria-hidden="true">2.20.</strong> tests</a></li><li class="chapter-item "><a href="../../rustlings_exercises/threads/threads.html"><strong aria-hidden="true">2.21.</strong> threads</a></li><li class="chapter-item "><a href="../../rustlings_exercises/traits/traits.html"><strong aria-hidden="true">2.22.</strong> traits</a></li><li class="chapter-item "><a href="../../rustlings_exercises/variables/variables.html"><strong aria-hidden="true">2.23.</strong> variables</a></li><li class="chapter-item "><a href="../../rustlings_exercises/vecs/vecs.html"><strong aria-hidden="true">2.24.</strong> vecs</a></li></ol></li><li class="chapter-item expanded "><a href="../../checklist.html">Checklist</a></li></ol>
     </div>
     <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
 </nav>
@@ -188,7 +188,13 @@ If not you can install it manually via <code>rustup component add clippy</code>.
 <li><a href="https://github.com/rust-lang/rust-clippy">GitHub Repository</a>.</li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
-<pre><pre class="playground"><code class="language-rust">// clippy1.rs
+<details id="admonition-clippy1" class="admonition note">
+<summary class="admonition-title">
+<p>clippy1</p>
+<p><a class="admonition-anchor-link" href="#admonition-clippy1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// clippy1.rs
 // The Clippy tool is a collection of lints to analyze your code
 // so you can catch common mistakes and improve your Rust code.
 //
@@ -212,6 +218,67 @@ fn main() {
     )
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-clippy2" class="admonition note">
+<summary class="admonition-title">
+<p>clippy2</p>
+<p><a class="admonition-anchor-link" href="#admonition-clippy2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// clippy2.rs
+// Execute `rustlings hint clippy2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+fn main() {
+    let mut res = 42;
+    let option = Some(12);
+    for x in option {
+        res += x;
+    }
+    println!(&quot;{}&quot;, res);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-clippy3" class="admonition note">
+<summary class="admonition-title">
+<p>clippy3</p>
+<p><a class="admonition-anchor-link" href="#admonition-clippy3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// clippy3.rs
+// Here's a couple more easy Clippy fixes, so you can see its utility.
+
+// I AM NOT DONE
+
+#[allow(unused_variables, unused_assignments)]
+fn main() {
+    let my_option: Option&lt;()&gt; = None;
+    if my_option.is_none() {
+        my_option.unwrap();
+    }
+
+    let my_arr = &amp;[
+        -1, -2, -3
+        -4, -5, -6
+    ];
+    println!(&quot;My array! Here it is: {:?}&quot;, my_arr);
+
+    let my_empty_vec = vec![1, 2, 3, 4, 5].resize(0, 5);
+    println!(&quot;This Vec is empty, see? {:?}&quot;, my_empty_vec);
+
+    let mut value_a = 45;
+    let mut value_b = 66;
+    // Let's swap these two!
+    value_a = value_b;
+    value_b = value_a;
+    println!(&quot;value a: {}; value b: {}&quot;, value_a, value_b);
+}
+</code></pre></pre>
+</div>
+</details>
 
             </main>
 
@@ -224,12 +291,12 @@ fn main() {
 
             <nav class="nav-wrapper" aria-label="Page navigation">
                 <!-- Mobile navigation buttons -->
-                    <a rel="prev" href="../../../rustlings_exercises/rustling_exercises.html" class="mobile-nav-chapters previous"
+                    <a rel="prev" href="../../rustlings_exercises/intro/intro.html" class="mobile-nav-chapters previous"
                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../checklist.html" class="mobile-nav-chapters next"
+                    <a rel="next" href="../../rustlings_exercises/conversions/conversions.html" class="mobile-nav-chapters next"
                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -240,12 +307,12 @@ fn main() {
     </div>
 
     <nav class="nav-wide-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../../rustlings_exercises/rustling_exercises.html" class="nav-chapters previous" title="Previous chapter"
+            <a rel="prev" href="../../rustlings_exercises/intro/intro.html" class="nav-chapters previous" title="Previous chapter"
                aria-label="Previous chapter" aria-keyshortcuts="Left">
                 <i class="fa fa-angle-left"></i>
             </a>
 
-            <a rel="next" href="../../checklist.html" class="nav-chapters next" title="Next chapter"
+            <a rel="next" href="../../rustlings_exercises/conversions/conversions.html" class="nav-chapters next" title="Next chapter"
                aria-label="Next chapter" aria-keyshortcuts="Right">
                 <i class="fa fa-angle-right"></i>
             </a>
