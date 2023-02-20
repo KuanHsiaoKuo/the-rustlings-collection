@@ -19,13 +19,13 @@ the other useful data structure, hash maps, later.
 ## Rustlings
 
 ~~~admonish note title="vecs1" collapsible=true
-```rust
+```rust,editable
 {{#include vecs1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="vecs2" collapsible=true
-```rust
+```rust,editable
 {{#include vecs2.rs}}
 ```
 ~~~

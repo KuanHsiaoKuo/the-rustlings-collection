@@ -13,13 +13,13 @@ The simplest and most common use of generics is for type parameters.
 ## Rustlings
 
 ~~~admonish note title="generics1" collapsible=true
-```rust
+```rust,editable
 {{#include generics1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="generics2" collapsible=true
-```rust
+```rust,editable
 {{#include generics2.rs}}
 ```
 ~~~

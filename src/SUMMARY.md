@@ -18,7 +18,7 @@
     - [move_semantics](rustlings_exercises/move_semantics/move_semantics.md)
     - [options](rustlings_exercises/options/options.md)
     - [primitive_types](rustlings_exercises/primitive_types/primitive_types.md)
-    - [smart_pointers](rustlings_exercises/smart_pointers/smart_pointers.md)
+    - [smart_pointer](rustlings_exercises/smart_pointers/smart_pointer.md)
     - [strings](rustlings_exercises/strings/strings.md)
     - [structs](rustlings_exercises/structs/structs.md)
     - [tests](rustlings_exercises/tests/tests.md)

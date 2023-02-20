@@ -23,19 +23,19 @@ Option types are very common in Rust code, as they have a number of uses:
 ## Rustlings
 
 ~~~admonish note title="options1" collapsible=true
-```rust
+```rust,editable
 {{#include options1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="options2" collapsible=true
-```rust
+```rust,editable
 {{#include options2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="options3" collapsible=true
-```rust
+```rust,editable
 {{#include options3.rs}}
 ```
 ~~~

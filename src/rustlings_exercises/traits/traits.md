@@ -21,31 +21,31 @@ Because traits indicate shared behavior between data types, they are useful when
 ## Rustlings
 
 ~~~admonish note title="traits1" collapsible=true
-```rust
+```rust,editable
 {{#include traits1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="traits2" collapsible=true
-```rust
+```rust,editable
 {{#include traits2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="traits3" collapsible=true
-```rust
+```rust,editable
 {{#include traits3.rs}}
 ```
 ~~~
 
 ~~~admonish note title="traits4" collapsible=true
-```rust
+```rust,editable
 {{#include traits4.rs}}
 ```
 ~~~
 
 ~~~admonish note title="traits5" collapsible=true
-```rust
+```rust,editable
 {{#include traits5.rs}}
 ```
 ~~~

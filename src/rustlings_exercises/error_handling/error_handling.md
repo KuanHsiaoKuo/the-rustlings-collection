@@ -14,37 +14,37 @@ For example, if you try to open a file and that operation fails because the file
 ## Rustlings
 
 ~~~admonish note title="errors1" collapsible=true
-```rust
+```rust,editable
 {{#include errors1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="errors2" collapsible=true
-```rust
+```rust,editable
 {{#include errors2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="errors3" collapsible=true
-```rust
+```rust,editable
 {{#include errors3.rs}}
 ```
 ~~~
 
 ~~~admonish note title="errors4" collapsible=true
-```rust
+```rust,editable
 {{#include errors4.rs}}
 ```
 ~~~
 
 ~~~admonish note title="errors5" collapsible=true
-```rust
+```rust,editable
 {{#include errors5.rs}}
 ```
 ~~~
 
 ~~~admonish note title="errors6" collapsible=true
-```rust
+```rust,editable
 {{#include errors6.rs}}
 ```
 ~~~

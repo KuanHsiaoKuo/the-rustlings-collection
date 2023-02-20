@@ -9,19 +9,19 @@ In this section we'll give you an introduction to Rust's module system.
 ## Rustlings
 
 ~~~admonish note title="modules1" collapsible=true
-```rust
+```rust,editable
 {{#include modules1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="modules2" collapsible=true
-```rust
+```rust,editable
 {{#include modules2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="modules3" collapsible=true
-```rust
+```rust,editable
 {{#include modules3.rs}}
 ```
 ~~~

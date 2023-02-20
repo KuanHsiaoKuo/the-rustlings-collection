@@ -9,19 +9,19 @@ Going out of order from the book to cover tests -- many of the following exercis
 ## Rustlings
 
 ~~~admonish note title="tests1" collapsible=true
-```rust
+```rust,editable
 {{#include tests1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="tests2" collapsible=true
-```rust
+```rust,editable
 {{#include tests2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="tests3" collapsible=true
-```rust
+```rust,editable
 {{#include tests3.rs}}
 ```
 ~~~

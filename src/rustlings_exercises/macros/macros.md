@@ -16,25 +16,25 @@ of exercises to Rustlings, but is all about learning to write Macros.
 ## Rustlings
 
 ~~~admonish note title="macros1" collapsible=true
-```rust
+```rust,editable
 {{#include macros1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="macros2" collapsible=true
-```rust
+```rust,editable
 {{#include macros2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="macros3" collapsible=true
-```rust
+```rust,editable
 {{#include macros3.rs}}
 ```
 ~~~
 
 ~~~admonish note title="macros4" collapsible=true
-```rust
+```rust,editable
 {{#include macros4.rs}}
 ```
 ~~~

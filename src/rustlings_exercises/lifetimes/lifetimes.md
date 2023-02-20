@@ -19,19 +19,19 @@ restrictive of their callers.
 ## Rustlings
 
 ~~~admonish note title="lifetimes1" collapsible=true
-```rust
+```rust,editable
 {{#include lifetimes1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="lifetimes2" collapsible=true
-```rust
+```rust,editable
 {{#include lifetimes2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="lifetimes3" collapsible=true
-```rust
+```rust,editable
 {{#include lifetimes3.rs}}
 ```
 ~~~

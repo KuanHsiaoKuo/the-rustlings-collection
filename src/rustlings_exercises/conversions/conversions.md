@@ -43,7 +43,7 @@ These are not directly covered in the book, but the standard library has a great
 ### as_ref_mut
 
 ~~~admonish note title="as_ref_mut" collapsible=true
-```rust
+```rust,editable
 {{#include as_ref_mut.rs}}
 ```
 ~~~
@@ -51,7 +51,7 @@ These are not directly covered in the book, but the standard library has a great
 ### from_into
 
 ~~~admonish note title="from_into" collapsible=true
-```rust
+```rust,editable
 {{#include from_into.rs}}
 ```
 ~~~
@@ -59,7 +59,7 @@ These are not directly covered in the book, but the standard library has a great
 ### from_str
 
 ~~~admonish note title="from_str" collapsible=true
-```rust
+```rust,editable
 {{#include from_str.rs}}
 ```
 ~~~
@@ -67,7 +67,7 @@ These are not directly covered in the book, but the standard library has a great
 ### try_from_into
 
 ~~~admonish note title="try_from_into" collapsible=true
-```rust
+```rust,editable
 {{#include try_from_into.rs}}
 ```
 ~~~
@@ -75,7 +75,7 @@ These are not directly covered in the book, but the standard library has a great
 ### using_as
 
 ~~~admonish note title="using_as" collapsible=true
-```rust
+```rust,editable
 {{#include using_as.rs}}
 ```
 ~~~

@@ -9,13 +9,13 @@
 ## Rustlings
 
 ~~~admonish note title="if1" collapsible=true
-```rust
+```rust,editable
 {{#include if1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="if2" collapsible=true
-```rust
+```rust,editable
 {{#include if2.rs}}
 ```
 ~~~

@@ -10,27 +10,27 @@ This section will teach you about Iterators.
 ## Rustlings
 
 ~~~admonish note title="iterators1" collapsible=true
-```rust
+```rust,editable
 {{#include iterators1.rs}}
 ```
 ~~~
 ~~~admonish note title="iterators2" collapsible=true
-```rust
+```rust,editable
 {{#include iterators2.rs}}
 ```
 ~~~
 ~~~admonish note title="iterators3" collapsible=true
-```rust
+```rust,editable
 {{#include iterators3.rs}}
 ```
 ~~~
 ~~~admonish note title="iterators4" collapsible=true
-```rust
+```rust,editable
 {{#include iterators4.rs}}
 ```
 ~~~
 ~~~admonish note title="iterators5" collapsible=true
-```rust
+```rust,editable
 {{#include iterators5.rs}}
 ```
 ~~~

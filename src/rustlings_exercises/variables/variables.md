@@ -11,37 +11,37 @@ You can make them mutable by adding mut in front of the variable name.
 ## Rustlings
 
 ~~~admonish note title="variables1" collapsible=true
-```rust
+```rust,editable
 {{#include variables1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="variables2" collapsible=true
-```rust
+```rust,editable
 {{#include variables2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="variables3" collapsible=true
-```rust
+```rust,editable
 {{#include variables3.rs}}
 ```
 ~~~
 
 ~~~admonish note title="variables4" collapsible=true
-```rust
+```rust,editable
 {{#include variables4.rs}}
 ```
 ~~~
 
 ~~~admonish note title="variables5" collapsible=true
-```rust
+```rust,editable
 {{#include variables5.rs}}
 ```
 ~~~
 
 ~~~admonish note title="variables6" collapsible=true
-```rust
+```rust,editable
 {{#include variables6.rs}}
 ```
 ~~~

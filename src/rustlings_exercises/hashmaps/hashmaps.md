@@ -14,19 +14,19 @@ talking about Vecs.
 ## Rustlings
 
 ~~~admonish note title="hashmaps1" collapsible=true
-```rust
+```rust,editable
 {{#include hashmaps1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="hashmaps2" collapsible=true
-```rust
+```rust,editable
 {{#include hashmaps2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="hashmaps3" collapsible=true
-```rust
+```rust,editable
 {{#include hashmaps3.rs}}
 ```
 ~~~

@@ -10,17 +10,17 @@ Rust has three struct types: a classic C struct, a tuple struct, and a unit stru
 ## Rustlings
 
 ~~~admonish note title="structs1" collapsible=true
-```rust
+```rust,editable
 {{#include structs1.rs}}
 ```
 ~~~
 ~~~admonish note title="structs2" collapsible=true
-```rust
+```rust,editable
 {{#include structs2.rs}}
 ```
 ~~~
 ~~~admonish note title="structs3" collapsible=true
-```rust
+```rust,editable
 {{#include structs3.rs}}
 ```
 ~~~

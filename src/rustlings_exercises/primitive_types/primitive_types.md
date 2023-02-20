@@ -11,37 +11,37 @@ compiler. In this section, we'll go through the most important ones.
 ## Rustlings
 
 ~~~admonish note title="primitive_types1" collapsible=true
-```rust
+```rust,editable
 {{#include primitive_types1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="primitive_types2" collapsible=true
-```rust
+```rust,editable
 {{#include primitive_types2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="primitive_types3" collapsible=true
-```rust
+```rust,editable
 {{#include primitive_types3.rs}}
 ```
 ~~~
 
 ~~~admonish note title="primitive_types4" collapsible=true
-```rust
+```rust,editable
 {{#include primitive_types4.rs}}
 ```
 ~~~
 
 ~~~admonish note title="primitive_types5" collapsible=true
-```rust
+```rust,editable
 {{#include primitive_types5.rs}}
 ```
 ~~~
 
 ~~~admonish note title="primitive_types6" collapsible=true
-```rust
+```rust,editable
 {{#include primitive_types6.rs}}
 ```
 ~~~

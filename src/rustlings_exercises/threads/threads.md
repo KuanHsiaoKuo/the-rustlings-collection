@@ -11,19 +11,19 @@ Within your program, you can also have independent parts that run simultaneously
 ## Rustlings
 
 ~~~admonish note title="threads1" collapsible=true
-```rust
+```rust,editable
 {{#include threads1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="threads2" collapsible=true
-```rust
+```rust,editable
 {{#include threads2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="threads3" collapsible=true
-```rust
+```rust,editable
 {{#include threads3.rs}}
 ```
 ~~~

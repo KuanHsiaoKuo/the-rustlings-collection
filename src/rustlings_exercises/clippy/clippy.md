@@ -12,19 +12,19 @@ If not you can install it manually via `rustup component add clippy`.
 ## Rustlings
 
 ~~~admonish note title="clippy1" collapsible=true
-```rust
+```rust,editable
 {{#include clippy1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="clippy2" collapsible=true
-```rust
+```rust,editable
 {{#include clippy2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="clippy3" collapsible=true
-```rust
+```rust,editable
 {{#include clippy3.rs}}
 ```
 ~~~

@@ -12,19 +12,19 @@ Useful in combination with enums is Rust's "pattern matching" facility, which ma
 ## Rustlings
 
 ~~~admonish note title="enums1" collapsible=true
-```rust
+```rust,editable
 {{#include enums1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="enums2" collapsible=true
-```rust
+```rust,editable
 {{#include enums2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="enums3" collapsible=true
-```rust
+```rust,editable
 {{#include enums3.rs}}
 ```
 ~~~

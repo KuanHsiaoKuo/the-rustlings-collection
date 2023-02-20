@@ -29,7 +29,7 @@ Smart pointers in Rust often own the data they point to, while references only b
 ### Arc
 
 ~~~admonish note title="arc1" collapsible=true
-```rust
+```rust,editable
 {{#include arc1.rs}}
 ```
 ~~~
@@ -37,7 +37,7 @@ Smart pointers in Rust often own the data they point to, while references only b
 ### Box
 
 ~~~admonish note title="box1" collapsible=true
-```rust
+```rust,editable
 {{#include box1.rs}}
 ```
 ~~~
@@ -45,7 +45,7 @@ Smart pointers in Rust often own the data they point to, while references only b
 ### Cow
 
 ~~~admonish note title="cow1" collapsible=true
-```rust
+```rust,editable
 {{#include cow1.rs}}
 ```
 ~~~
@@ -53,7 +53,7 @@ Smart pointers in Rust often own the data they point to, while references only b
 ### Rc
 
 ~~~admonish note title="rc1" collapsible=true
-```rust
+```rust,editable
 {{#include rc1.rs}}
 ```
 ~~~

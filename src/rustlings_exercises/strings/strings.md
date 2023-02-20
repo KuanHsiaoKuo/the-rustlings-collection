@@ -11,25 +11,25 @@ to identify and create them, as well as use them.
 ## Rustlings
 
 ~~~admonish note title="strings1" collapsible=true
-```rust
+```rust,editable
 {{#include strings1.rs}}
 ```
 ~~~
 
 ~~~admonish note title="strings2" collapsible=true
-```rust
+```rust,editable
 {{#include strings2.rs}}
 ```
 ~~~
 
 ~~~admonish note title="strings3" collapsible=true
-```rust
+```rust,editable
 {{#include strings3.rs}}
 ```
 ~~~
 
 ~~~admonish note title="strings4" collapsible=true
-```rust
+```rust,editable
 {{#include strings4.rs}}
 ```
 ~~~
