@@ -1,15 +1,20 @@
 # Lifetimes
 
-Lifetimes tell the compiler how to check whether references live long
-enough to be valid in any given situation. For example lifetimes say
-"make sure parameter 'a' lives as long as parameter 'b' so that the return
-value is valid".
+<!--ts-->
+<!--te-->
+Lifetimes tell the compiler how to check:
 
-They are only necessary on borrows, i.e. references,
-since copied parameters or moves are owned in their scope and cannot
-be referenced outside. Lifetimes mean that calling code of e.g. functions
-can be checked to make sure their arguments are valid. Lifetimes are
-restrictive of their callers.
+> whether `references` live long enough to be valid in any given situation.
+
+For example lifetimes say "make sure parameter 'a' lives as long as parameter 'b' so that the return value is valid".
+
+> They are only necessary on borrows, i.e. references
+
+- Since copied parameters or moves are owned in their scope and cannot
+  be referenced outside.
+- Lifetimes mean that calling code of e.g. functions
+  can be checked to make sure their arguments are valid.
+- Lifetimes are restrictive of their callers.
 
 ## Further information
 
@@ -18,11 +23,21 @@ restrictive of their callers.
 
 ## Rustlings
 
-~~~admonish note title="lifetimes1" collapsible=true
+### expected named lifetime parameter
+
+~~~admonish note title="function" collapsible=true
 ```rust,editable
 {{#include lifetimes1.rs}}
 ```
 ~~~
+
+~~~admonish note title="struct" collapsible=true
+```rust,editable
+{{#include lifetimes3.rs}}
+```
+~~~
+
+### borrowed value does not live long enough
 
 ~~~admonish note title="lifetimes2" collapsible=true
 ```rust,editable
@@ -30,8 +45,3 @@ restrictive of their callers.
 ```
 ~~~
 
-~~~admonish note title="lifetimes3" collapsible=true
-```rust,editable
-{{#include lifetimes3.rs}}
-```
-~~~
