@@ -12,7 +12,7 @@
     - [hashmaps](rustlings_exercises/hashmaps/hashmaps.md)
     - [if](rustlings_exercises/if/if.md)
     - [iterators](rustlings_exercises/iterators/iterators.md)
-    - [lifetimes](rustlings_exercises/lifetimes/lifetimes.md)
+    - [⭐️lifetimes](rustlings_exercises/lifetimes/lifetimes.md)
     - [macros](rustlings_exercises/macros/macros.md)
     - [modules](rustlings_exercises/modules/modules.md)
     - [move_semantics](rustlings_exercises/move_semantics/move_semantics.md)
