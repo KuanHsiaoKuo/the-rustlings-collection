@@ -11,7 +11,7 @@
       * [using_as](#using_as)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Feb 21 11:03:27 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 21 11:09:25 UTC 2023 -->
 
 <!--te-->
 Rust offers a multitude of ways to convert a value of a given type into another type.
