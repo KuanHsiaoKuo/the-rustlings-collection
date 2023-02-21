@@ -371,7 +371,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 20 12:21:40 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 21 11:03:27 UTC 2023 -->
 <!--te-->
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
 <p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
@@ -2425,25 +2425,49 @@ mod tests {
 </div>
 </details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h1>
-<p>Lifetimes tell the compiler how to check whether references live long
-enough to be valid in any given situation. For example lifetimes say
-“make sure parameter ‘a’ lives as long as parameter ‘b’ so that the return
-value is valid”.</p>
-<p>They are only necessary on borrows, i.e. references,
-since copied parameters or moves are owned in their scope and cannot
-be referenced outside. Lifetimes mean that calling code of e.g. functions
-can be checked to make sure their arguments are valid. Lifetimes are
-restrictive of their callers.</p>
+<!--ts-->
+<ul>
+<li><a href="rustlings_exercises/lifetimes/lifetimes.html#lifetimes">Lifetimes</a>
+<ul>
+<li><a href="rustlings_exercises/lifetimes/lifetimes.html#further-information">Further information</a></li>
+<li><a href="rustlings_exercises/lifetimes/lifetimes.html#rustlings">Rustlings</a>
+<ul>
+<li><a href="rustlings_exercises/lifetimes/lifetimes.html#expected-named-lifetime-parameter">expected named lifetime parameter</a></li>
+<li><a href="rustlings_exercises/lifetimes/lifetimes.html#borrowed-value-does-not-live-long-enough">borrowed value does not live long enough</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Feb 21 11:03:29 UTC 2023 -->
+<!--te-->
+<p>Lifetimes tell the compiler how to check:</p>
+<blockquote>
+<p>whether <code>references</code> live long enough to be valid in any given situation.</p>
+</blockquote>
+<p>For example lifetimes say “make sure parameter ‘a’ lives as long as parameter ‘b’ so that the return value is valid”.</p>
+<blockquote>
+<p>They are only necessary on borrows, i.e. references</p>
+</blockquote>
+<ul>
+<li>Since copied parameters or moves are owned in their scope and cannot
+be referenced outside.</li>
+<li>Lifetimes mean that calling code of e.g. functions
+can be checked to make sure their arguments are valid.</li>
+<li>Lifetimes are restrictive of their callers.</li>
+</ul>
 <h2 id="further-information-10"><a class="header" href="#further-information-10">Further information</a></h2>
 <ul>
 <li><a href="https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html">Validating References with Lifetimes</a></li>
 <li><a href="https://doc.rust-lang.org/stable/rust-by-example/scope/lifetime.html">Lifetimes (in Rust By Example)</a></li>
 </ul>
 <h2 id="rustlings-9"><a class="header" href="#rustlings-9">Rustlings</a></h2>
-<details id="admonition-lifetimes1" class="admonition note">
+<h3 id="expected-named-lifetime-parameter"><a class="header" href="#expected-named-lifetime-parameter">expected named lifetime parameter</a></h3>
+<details id="admonition-function" class="admonition note">
 <summary class="admonition-title">
-<p>lifetimes1</p>
-<p><a class="admonition-anchor-link" href="rustlings_exercises/lifetimes/lifetimes.html#admonition-lifetimes1"></a></p>
+<p>function</p>
+<p><a class="admonition-anchor-link" href="rustlings_exercises/lifetimes/lifetimes.html#admonition-function"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// lifetimes1.rs
@@ -2475,6 +2499,36 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-struct" class="admonition note">
+<summary class="admonition-title">
+<p>struct</p>
+<p><a class="admonition-anchor-link" href="rustlings_exercises/lifetimes/lifetimes.html#admonition-struct"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// lifetimes3.rs
+//
+// Lifetimes are also needed when structs hold references.
+//
+// Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+struct Book {
+    author: &amp;str,
+    title: &amp;str,
+}
+
+fn main() {
+    let name = String::from(&quot;Jill Smith&quot;);
+    let title = String::from(&quot;Fish Flying&quot;);
+    let book = Book { author: &amp;name, title: &amp;title };
+
+    println!(&quot;{} by {}&quot;, book.title, book.author);
+}
+</code></pre></pre>
+</div>
+</details>
+<h3 id="borrowed-value-does-not-live-long-enough"><a class="header" href="#borrowed-value-does-not-live-long-enough">borrowed value does not live long enough</a></h3>
 <details id="admonition-lifetimes2" class="admonition note">
 <summary class="admonition-title">
 <p>lifetimes2</p>
@@ -2511,35 +2565,7 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-lifetimes3" class="admonition note">
-<summary class="admonition-title">
-<p>lifetimes3</p>
-<p><a class="admonition-anchor-link" href="rustlings_exercises/lifetimes/lifetimes.html#admonition-lifetimes3"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// lifetimes3.rs
-//
-// Lifetimes are also needed when structs hold references.
-//
-// Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a hint.
-
-// I AM NOT DONE
-
-struct Book {
-    author: &amp;str,
-    title: &amp;str,
-}
-
-fn main() {
-    let name = String::from(&quot;Jill Smith&quot;);
-    let title = String::from(&quot;Fish Flying&quot;);
-    let book = Book { author: &amp;name, title: &amp;title };
-
-    println!(&quot;{} by {}&quot;, book.title, book.author);
-}
-</code></pre></pre>
-</div>
-</details><div style="break-before: page; page-break-before: always;"></div><h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
 <p>Rust’s macro system is very powerful, but also kind of difficult to wrap your
 head around. We’re not going to teach you how to write your own fully-featured
 macros. Instead, we’ll show you how to use and create them.</p>
@@ -3291,7 +3317,7 @@ fn indexing_tuple() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 20 12:21:44 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 21 11:03:36 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>

@@ -180,25 +180,49 @@
                     <nav class="pagetoc"></nav>
                 </div>
                 <h1 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h1>
-<p>Lifetimes tell the compiler how to check whether references live long
-enough to be valid in any given situation. For example lifetimes say
-“make sure parameter ‘a’ lives as long as parameter ‘b’ so that the return
-value is valid”.</p>
-<p>They are only necessary on borrows, i.e. references,
-since copied parameters or moves are owned in their scope and cannot
-be referenced outside. Lifetimes mean that calling code of e.g. functions
-can be checked to make sure their arguments are valid. Lifetimes are
-restrictive of their callers.</p>
+<!--ts-->
+<ul>
+<li><a href="#lifetimes">Lifetimes</a>
+<ul>
+<li><a href="#further-information">Further information</a></li>
+<li><a href="#rustlings">Rustlings</a>
+<ul>
+<li><a href="#expected-named-lifetime-parameter">expected named lifetime parameter</a></li>
+<li><a href="#borrowed-value-does-not-live-long-enough">borrowed value does not live long enough</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Feb 21 11:03:29 UTC 2023 -->
+<!--te-->
+<p>Lifetimes tell the compiler how to check:</p>
+<blockquote>
+<p>whether <code>references</code> live long enough to be valid in any given situation.</p>
+</blockquote>
+<p>For example lifetimes say “make sure parameter ‘a’ lives as long as parameter ‘b’ so that the return value is valid”.</p>
+<blockquote>
+<p>They are only necessary on borrows, i.e. references</p>
+</blockquote>
+<ul>
+<li>Since copied parameters or moves are owned in their scope and cannot
+be referenced outside.</li>
+<li>Lifetimes mean that calling code of e.g. functions
+can be checked to make sure their arguments are valid.</li>
+<li>Lifetimes are restrictive of their callers.</li>
+</ul>
 <h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
 <ul>
 <li><a href="https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html">Validating References with Lifetimes</a></li>
 <li><a href="https://doc.rust-lang.org/stable/rust-by-example/scope/lifetime.html">Lifetimes (in Rust By Example)</a></li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
-<details id="admonition-lifetimes1" class="admonition note">
+<h3 id="expected-named-lifetime-parameter"><a class="header" href="#expected-named-lifetime-parameter">expected named lifetime parameter</a></h3>
+<details id="admonition-function" class="admonition note">
 <summary class="admonition-title">
-<p>lifetimes1</p>
-<p><a class="admonition-anchor-link" href="#admonition-lifetimes1"></a></p>
+<p>function</p>
+<p><a class="admonition-anchor-link" href="#admonition-function"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// lifetimes1.rs
@@ -230,6 +254,36 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-struct" class="admonition note">
+<summary class="admonition-title">
+<p>struct</p>
+<p><a class="admonition-anchor-link" href="#admonition-struct"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// lifetimes3.rs
+//
+// Lifetimes are also needed when structs hold references.
+//
+// Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+struct Book {
+    author: &amp;str,
+    title: &amp;str,
+}
+
+fn main() {
+    let name = String::from(&quot;Jill Smith&quot;);
+    let title = String::from(&quot;Fish Flying&quot;);
+    let book = Book { author: &amp;name, title: &amp;title };
+
+    println!(&quot;{} by {}&quot;, book.title, book.author);
+}
+</code></pre></pre>
+</div>
+</details>
+<h3 id="borrowed-value-does-not-live-long-enough"><a class="header" href="#borrowed-value-does-not-live-long-enough">borrowed value does not live long enough</a></h3>
 <details id="admonition-lifetimes2" class="admonition note">
 <summary class="admonition-title">
 <p>lifetimes2</p>
@@ -266,35 +320,7 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-lifetimes3" class="admonition note">
-<summary class="admonition-title">
-<p>lifetimes3</p>
-<p><a class="admonition-anchor-link" href="#admonition-lifetimes3"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// lifetimes3.rs
-//
-// Lifetimes are also needed when structs hold references.
-//
-// Execute `rustlings hint lifetimes3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
-struct Book {
-    author: &amp;str,
-    title: &amp;str,
-}
-
-fn main() {
-    let name = String::from(&quot;Jill Smith&quot;);
-    let title = String::from(&quot;Fish Flying&quot;);
-    let book = Book { author: &amp;name, title: &amp;title };
-
-    println!(&quot;{} by {}&quot;, book.title, book.author);
-}
-</code></pre></pre>
-</div>
-</details>
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
