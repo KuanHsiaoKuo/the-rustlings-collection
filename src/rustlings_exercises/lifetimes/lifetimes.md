@@ -1,11 +1,12 @@
 # Lifetimes
 
 <!--ts-->
+
 * [Lifetimes](#lifetimes)
-   * [Further information](#further-information)
-   * [Rustlings](#rustlings)
-      * [expected named lifetime parameter](#expected-named-lifetime-parameter)
-      * [borrowed value does not live long enough](#borrowed-value-does-not-live-long-enough)
+    * [Further information](#further-information)
+    * [Rustlings](#rustlings)
+        * [expected named lifetime parameter](#expected-named-lifetime-parameter)
+        * [borrowed value does not live long enough](#borrowed-value-does-not-live-long-enough)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Tue Feb 21 11:03:29 UTC 2023 -->
@@ -29,6 +30,7 @@ For example lifetimes say "make sure parameter 'a' lives as long as parameter 'b
 
 - [Validating References with Lifetimes](https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html)
 - [Lifetimes (in Rust By Example)](https://doc.rust-lang.org/stable/rust-by-example/scope/lifetime.html)
+- [Lifetimes - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/scope/lifetime.html)
 
 ## Rustlings
 
