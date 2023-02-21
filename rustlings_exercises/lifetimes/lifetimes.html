@@ -195,7 +195,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Feb 21 13:54:55 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 21 13:57:18 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -255,15 +255,15 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<div id="admonition-hint" class="admonition tip">
-<div class="admonition-title">
+<details id="admonition-hint" class="admonition tip">
+<summary class="admonition-title">
 <p>Hint</p>
 <p><a class="admonition-anchor-link" href="#admonition-hint"></a></p>
-</div>
+</summary>
 <div>
 <p>Let the compiler guide you. Also take a look at <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-03-lifetime-syntax.html">the book</a> if you need help:</p>
 </div>
-</div>
+</details>
 <details id="admonition-struct" class="admonition bug">
 <summary class="admonition-title">
 <p>struct</p>
@@ -291,6 +291,15 @@ fn main() {
     println!(&quot;{} by {}&quot;, book.title, book.author);
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-1" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-1"></a></p>
+</summary>
+<div>
+<p>If you use a lifetime annotation in a struct’s fields, where else does it need to be added?</p>
 </div>
 </details>
 <h3 id="borrowed-value-does-not-live-long-enough"><a class="header" href="#borrowed-value-does-not-live-long-enough">borrowed value does not live long enough</a></h3>
@@ -330,20 +339,11 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<div id="admonition-hint-1" class="admonition tip">
-<div class="admonition-title">
-<p>Hint</p>
-<p><a class="admonition-anchor-link" href="#admonition-hint-1"></a></p>
-</div>
-<div>
-<p>If you use a lifetime annotation in a struct’s fields, where else does it need to be added?</p>
-</div>
-</div>
-<div id="admonition-hint-将块看作生命周期隐式声明" class="admonition tip">
-<div class="admonition-title">
+<details id="admonition-hint-将块看作生命周期隐式声明" class="admonition tip">
+<summary class="admonition-title">
 <p>Hint: 将块看作生命周期隐式声明</p>
 <p><a class="admonition-anchor-link" href="#admonition-hint-将块看作生命周期隐式声明"></a></p>
-</div>
+</summary>
 <div>
 <p>Remember that the generic lifetime ’a will get the concrete lifetime that is equal to the smaller of the lifetimes of x and y.
 You can take at least two paths to achieve the desired result while keeping the inner block:</p>
@@ -352,12 +352,12 @@ You can take at least two paths to achieve the desired result while keeping the 
 <li>Move println! into the inner block</li>
 </ol>
 </div>
-</div>
-<div id="admonition-qa" class="admonition info">
-<div class="admonition-title">
+</details>
+<details id="admonition-qa" class="admonition info">
+<summary class="admonition-title">
 <p>Q&amp;A</p>
 <p><a class="admonition-anchor-link" href="#admonition-qa"></a></p>
-</div>
+</summary>
 <div>
 <h2 id="q-为什么不能改成"><a class="header" href="#q-为什么不能改成">Q: 为什么不能改成</a></h2>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
@@ -375,7 +375,7 @@ You can take at least two paths to achieve the desired result while keeping the 
 <p>A: 因为可能返回’a x, 也可能返回’b y. 这里主要问题在于返回的引用有两种生命周期。</p>
 </blockquote>
 </div>
-</div>
+</details>
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
