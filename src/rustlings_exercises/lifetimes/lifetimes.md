@@ -41,7 +41,7 @@ For example lifetimes say "make sure parameter 'a' lives as long as parameter 'b
 ```
 ~~~
 
-~~~admonish tip title="Hint" collasible=true
+~~~admonish tip title="Hint" collapsible=true
 Let the compiler guide you. Also take a look at [the book](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-03-lifetime-syntax.html) if you need help:
 ~~~
 
@@ -59,18 +59,18 @@ Let the compiler guide you. Also take a look at [the book](https://kuanhsiaokuo.
 ```
 ~~~
 
-~~~admonish tip title="Hint" collasible=true
+~~~admonish tip title="Hint" collapsible=true
 If you use a lifetime annotation in a struct's fields, where else does it need to be added?
 ~~~
 
-~~~admonish tip title="Hint: 将块看作生命周期隐式声明" collasible=true
+~~~admonish tip title="Hint: 将块看作生命周期隐式声明" collapsible=true
 Remember that the generic lifetime 'a will get the concrete lifetime that is equal to the smaller of the lifetimes of x and y.
 You can take at least two paths to achieve the desired result while keeping the inner block:
 1. Move the string2 declaration to make it live as long as string1 (how is result declared?)
 2. Move println! into the inner block
 ~~~
 
-~~~admonish info title="Q&A" collsible=true
+~~~admonish info title="Q&A" collapsible=true
 ## Q: 为什么不能改成
 ```rust
 fn longest<'a:'b, 'b>(x: &'a str, y: &'b str) -> &'b str {
