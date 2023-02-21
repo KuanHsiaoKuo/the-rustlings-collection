@@ -195,7 +195,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Feb 21 11:09:28 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 21 13:52:32 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -220,7 +220,7 @@ can be checked to make sure their arguments are valid.</li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
 <h3 id="expected-named-lifetime-parameter"><a class="header" href="#expected-named-lifetime-parameter">expected named lifetime parameter</a></h3>
-<details id="admonition-function" class="admonition note">
+<details id="admonition-function" class="admonition bug">
 <summary class="admonition-title">
 <p>function</p>
 <p><a class="admonition-anchor-link" href="#admonition-function"></a></p>
@@ -255,7 +255,16 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-struct" class="admonition note">
+<div id="admonition-hint" class="admonition tip">
+<div class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint"></a></p>
+</div>
+<div>
+<p>Let the compiler guide you. Also take a look at <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-03-lifetime-syntax.html">the book</a> if you need help:</p>
+</div>
+</div>
+<details id="admonition-struct" class="admonition bug">
 <summary class="admonition-title">
 <p>struct</p>
 <p><a class="admonition-anchor-link" href="#admonition-struct"></a></p>
@@ -285,7 +294,7 @@ fn main() {
 </div>
 </details>
 <h3 id="borrowed-value-does-not-live-long-enough"><a class="header" href="#borrowed-value-does-not-live-long-enough">borrowed value does not live long enough</a></h3>
-<details id="admonition-lifetimes2" class="admonition note">
+<details id="admonition-lifetimes2" class="admonition bug">
 <summary class="admonition-title">
 <p>lifetimes2</p>
 <p><a class="admonition-anchor-link" href="#admonition-lifetimes2"></a></p>
@@ -317,11 +326,56 @@ fn main() {
         result = longest(string1.as_str(), string2.as_str());
     }
     println!(&quot;The longest string is '{}'&quot;, result);
-}
+}:
 </code></pre></pre>
 </div>
 </details>
-
+<div id="admonition-hint-1" class="admonition tip">
+<div class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-1"></a></p>
+</div>
+<div>
+<p>If you use a lifetime annotation in a struct’s fields, where else does it need to be added?</p>
+</div>
+</div>
+<div id="admonition-hint-2" class="admonition tip">
+<div class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-2"></a></p>
+</div>
+<div>
+<p>Remember that the generic lifetime ’a will get the concrete lifetime that is equal to the smaller of the lifetimes of x and y.
+You can take at least two paths to achieve the desired result while keeping the inner block:</p>
+<ol>
+<li>Move the string2 declaration to make it live as long as string1 (how is result declared?)</li>
+<li>Move println! into the inner block</li>
+</ol>
+</div>
+</div>
+<div id="admonition-qa" class="admonition info">
+<div class="admonition-title">
+<p>Q&amp;A</p>
+<p><a class="admonition-anchor-link" href="#admonition-qa"></a></p>
+</div>
+<div>
+<h2 id="q-为什么不能改成"><a class="header" href="#q-为什么不能改成">Q: 为什么不能改成</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn longest&lt;'a:'b, 'b&gt;(x: &amp;'a str, y: &amp;'b str) -&gt; &amp;'b str {
+    if x.len() &gt; y.len() {
+        x
+    } else {
+        y
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>A: 因为可能返回’a x, 也可能返回’b y. 这里主要问题在于返回的引用有两种生命周期。</p>
+</blockquote>
+</div>
+</div>
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
