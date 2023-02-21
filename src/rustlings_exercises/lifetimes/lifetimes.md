@@ -1,15 +1,14 @@
 # Lifetimes
 
 <!--ts-->
-
 * [Lifetimes](#lifetimes)
-    * [Further information](#further-information)
-    * [Rustlings](#rustlings)
-        * [expected named lifetime parameter](#expected-named-lifetime-parameter)
-        * [borrowed value does not live long enough](#borrowed-value-does-not-live-long-enough)
+   * [Further information](#further-information)
+   * [Rustlings](#rustlings)
+      * [expected named lifetime parameter](#expected-named-lifetime-parameter)
+      * [borrowed value does not live long enough](#borrowed-value-does-not-live-long-enough)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Feb 21 13:52:32 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 21 13:54:55 UTC 2023 -->
 
 <!--te-->
 Lifetimes tell the compiler how to check:
