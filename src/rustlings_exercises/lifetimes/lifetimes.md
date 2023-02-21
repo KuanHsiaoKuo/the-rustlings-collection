@@ -51,16 +51,16 @@ Let the compiler guide you. Also take a look at [the book](https://kuanhsiaokuo.
 ```
 ~~~
 
+~~~admonish tip title="Hint" collapsible=true
+If you use a lifetime annotation in a struct's fields, where else does it need to be added?
+~~~
+
 ### borrowed value does not live long enough
 
 ~~~admonish bug title="lifetimes2" collapsible=true
 ```rust,editable
 {{#include lifetimes2.rs}}:
 ```
-~~~
-
-~~~admonish tip title="Hint" collapsible=true
-If you use a lifetime annotation in a struct's fields, where else does it need to be added?
 ~~~
 
 ~~~admonish tip title="Hint: 将块看作生命周期隐式声明" collapsible=true
