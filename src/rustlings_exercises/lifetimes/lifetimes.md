@@ -1,11 +1,12 @@
 # Lifetimes
 
 <!--ts-->
+
 * [Lifetimes](#lifetimes)
-   * [Further information](#further-information)
-   * [Rustlings](#rustlings)
-      * [expected named lifetime parameter](#expected-named-lifetime-parameter)
-      * [borrowed value does not live long enough](#borrowed-value-does-not-live-long-enough)
+    * [Further information](#further-information)
+    * [Rustlings](#rustlings)
+        * [expected named lifetime parameter](#expected-named-lifetime-parameter)
+        * [borrowed value does not live long enough](#borrowed-value-does-not-live-long-enough)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Tue Feb 21 13:52:32 UTC 2023 -->
@@ -63,7 +64,7 @@ Let the compiler guide you. Also take a look at [the book](https://kuanhsiaokuo.
 If you use a lifetime annotation in a struct's fields, where else does it need to be added?
 ~~~
 
-~~~admonish tip title="Hint" collasible=true
+~~~admonish tip title="Hint: 将块看作生命周期隐式声明" collasible=true
 Remember that the generic lifetime 'a will get the concrete lifetime that is equal to the smaller of the lifetimes of x and y.
 You can take at least two paths to achieve the desired result while keeping the inner block:
 1. Move the string2 declaration to make it live as long as string1 (how is result declared?)
