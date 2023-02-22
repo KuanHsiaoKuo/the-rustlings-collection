@@ -8,7 +8,7 @@
       * [borrowed value does not live long enough](#borrowed-value-does-not-live-long-enough)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Feb 21 13:57:18 UTC 2023 -->
+<!-- Added by: runner, at: Wed Feb 22 07:12:37 UTC 2023 -->
 
 <!--te-->
 Lifetimes tell the compiler how to check:
