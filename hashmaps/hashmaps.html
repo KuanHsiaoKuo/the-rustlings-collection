@@ -1,0 +1,503 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>hashmaps - Rust错题本</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff"/>
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../md-favicon.png">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../assets/ferris/ferris.css">
+        <link rel="stylesheet" href="../theme/2018-edition.css">
+        <link rel="stylesheet" href="../assets/pagetoc/pagetoc_style.css">
+        <link rel="stylesheet" href="../assets/css/mdbook-admonish.css">
+
+</head>
+<body>
+<!-- Provide site root to javascript -->
+<script type="text/javascript">
+    var path_to_root = "../";
+    var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+</script>
+
+<!-- Work around some values being stored in localStorage wrapped in quotes -->
+<script type="text/javascript">
+    try {
+        var theme = localStorage.getItem('mdbook-theme');
+        var sidebar = localStorage.getItem('mdbook-sidebar');
+
+        if (theme.startsWith('"') && theme.endsWith('"')) {
+            localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+        }
+
+        if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+            localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        }
+    } catch (e) {
+    }
+</script>
+
+<!-- Set the theme before any content is loaded, prevents flash -->
+<script type="text/javascript">
+    var theme;
+    try {
+        theme = localStorage.getItem('mdbook-theme');
+    } catch (e) {
+    }
+    if (theme === null || theme === undefined) {
+        theme = default_theme;
+    }
+    var html = document.querySelector('html');
+    html.classList.remove('no-js')
+    html.classList.remove('navy')
+    html.classList.add(theme);
+    html.classList.add('js');
+</script>
+
+<!-- Hide / unhide sidebar before it is displayed -->
+<script type="text/javascript">
+    var html = document.querySelector('html');
+    var sidebar = 'hidden';
+    if (document.body.clientWidth >= 1080) {
+        try {
+            sidebar = localStorage.getItem('mdbook-sidebar');
+        } catch (e) {
+        }
+        sidebar = sidebar || 'visible';
+    }
+    html.classList.remove('sidebar-visible');
+    html.classList.add("sidebar-" + sidebar);
+</script>
+
+<nav id="sidebar" class="sidebar" aria-label="Table of contents">
+    <div class="sidebar-scrollbox">
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../intro/intro.html"><strong aria-hidden="true">2.1.</strong> intro</a></li><li class="chapter-item "><a href="../clippy/clippy.html"><strong aria-hidden="true">2.2.</strong> clippy</a></li><li class="chapter-item "><a href="../conversions/conversions.html"><strong aria-hidden="true">2.3.</strong> conversions</a></li><li class="chapter-item "><a href="../enums/enums.html"><strong aria-hidden="true">2.4.</strong> enums</a></li><li class="chapter-item "><a href="../error_handling/error_handling.html"><strong aria-hidden="true">2.5.</strong> error_handling</a></li><li class="chapter-item "><a href="../functions/functions.html"><strong aria-hidden="true">2.6.</strong> functions</a></li><li class="chapter-item "><a href="../generics/generics.html"><strong aria-hidden="true">2.7.</strong> generics</a></li><li class="chapter-item expanded "><a href="../hashmaps/hashmaps.html" class="active"><strong aria-hidden="true">2.8.</strong> hashmaps</a></li><li class="chapter-item "><a href="../if/if.html"><strong aria-hidden="true">2.9.</strong> if</a></li><li class="chapter-item "><a href="../iterators/iterators.html"><strong aria-hidden="true">2.10.</strong> iterators</a></li><li class="chapter-item "><a href="../lifetimes/lifetimes.html"><strong aria-hidden="true">2.11.</strong> ⭐️引用、借用、生命周期</a></li><li class="chapter-item "><a href="../macros/macros.html"><strong aria-hidden="true">2.12.</strong> macros</a></li><li class="chapter-item "><a href="../modules/modules.html"><strong aria-hidden="true">2.13.</strong> modules</a></li><li class="chapter-item "><a href="../move_semantics/move_semantics.html"><strong aria-hidden="true">2.14.</strong> move_semantics</a></li><li class="chapter-item "><a href="../options/options.html"><strong aria-hidden="true">2.15.</strong> options</a></li><li class="chapter-item "><a href="../primitive_types/primitive_types.html"><strong aria-hidden="true">2.16.</strong> primitive_types</a></li><li class="chapter-item "><a href="../smart_pointers/smart_pointer.html"><strong aria-hidden="true">2.17.</strong> smart_pointer</a></li><li class="chapter-item "><a href="../strings/strings.html"><strong aria-hidden="true">2.18.</strong> strings</a></li><li class="chapter-item "><a href="../structs/structs.html"><strong aria-hidden="true">2.19.</strong> structs</a></li><li class="chapter-item "><a href="../tests/tests.html"><strong aria-hidden="true">2.20.</strong> tests</a></li><li class="chapter-item "><a href="../threads/threads.html"><strong aria-hidden="true">2.21.</strong> threads</a></li><li class="chapter-item "><a href="../traits/traits.html"><strong aria-hidden="true">2.22.</strong> traits</a></li><li class="chapter-item "><a href="../variables/variables.html"><strong aria-hidden="true">2.23.</strong> variables</a></li><li class="chapter-item "><a href="../vecs/vecs.html"><strong aria-hidden="true">2.24.</strong> vecs</a></li></ol></li><li class="chapter-item expanded "><a href="../checklist.html">Checklist</a></li></ol>
+    </div>
+    <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+</nav>
+
+<div id="page-wrapper" class="page-wrapper">
+
+    <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+        <div id="menu-bar" class="menu-bar sticky bordered">
+            <div class="left-buttons">
+                <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                    <i class="fa fa-paint-brush"></i>
+                </button>
+                <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="light">Light</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="rust">Rust</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="coal">Coal</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="navy">Navy (default)</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="ayu">Ayu</button>
+                    </li>
+                </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </div>
+
+            <h1 class="menu-title">Rust错题本</h1>
+            <h4 class="menu-bar">日不见增 月有渐进 | 唯剃真我 方有成效｜ 惊涛拍案 千层雪起 | <a href="https://kuanhsiaokuo.github.io/think-tool-kit/">保持批判，有所取舍，知行合一, 方见真我</a> | 练武不练功
+                到头一场空 -- 《赛博英雄传》 </h4>
+            <div class="right-buttons">
+                    <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+                    <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <i id="git-repository-button" class="fa fa-github"></i>
+                    </a>
+            </div>
+        </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" name="search" id="searchbar" name="searchbar"
+                           placeholder="Search this book ..." aria-controls="searchresults-outer"
+                           aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+        <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+        <script type="text/javascript">
+            document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+            Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+            });
+        </script>
+
+        <div id="content" class="content">
+            <main>
+
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <h1 id="hashmaps"><a class="header" href="#hashmaps">Hashmaps</a></h1>
+<p>A <em>hash map</em> allows you to associate a value with a particular key.
+You may also know this by the names <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><em>unordered map</em> in C++</a>,
+<a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries"><em>dictionary</em> in Python</a> or an <em>associative array</em> in other languages.</p>
+<p>This is the other data structure that we’ve been talking about before, when
+talking about Vecs.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch08-03-hash-maps.html">Storing Keys with Associated Values in Hash Maps</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-hashmaps1" class="admonition note">
+<summary class="admonition-title">
+<p>hashmaps1</p>
+<p><a class="admonition-anchor-link" href="#admonition-hashmaps1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// hashmaps1.rs
+// A basket of fruits in the form of a hash map needs to be defined.
+// The key represents the name of the fruit and the value represents
+// how many of that particular fruit is in the basket. You have to put
+// at least three different types of fruits (e.g apple, banana, mango)
+// in the basket and the total count of all the fruits should be at
+// least five.
+//
+// Make me compile and pass the tests!
+//
+// Execute `rustlings hint hashmaps1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::collections::HashMap;
+
+fn fruit_basket() -&gt; HashMap&lt;String, u32&gt; {
+    let mut basket = // TODO: declare your hash map here.
+
+    // Two bananas are already given for you :)
+    basket.insert(String::from(&quot;banana&quot;), 2);
+
+    // TODO: Put more fruits in your basket here.
+
+    basket
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn at_least_three_types_of_fruits() {
+        let basket = fruit_basket();
+        assert!(basket.len() &gt;= 3);
+    }
+
+    #[test]
+    fn at_least_five_fruits() {
+        let basket = fruit_basket();
+        assert!(basket.values().sum::&lt;u32&gt;() &gt;= 5);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hashmaps2" class="admonition note">
+<summary class="admonition-title">
+<p>hashmaps2</p>
+<p><a class="admonition-anchor-link" href="#admonition-hashmaps2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// hashmaps2.rs
+
+// A basket of fruits in the form of a hash map is given. The key
+// represents the name of the fruit and the value represents how many
+// of that particular fruit is in the basket. You have to put *MORE
+// THAN 11* fruits in the basket. Three types of fruits - Apple (4),
+// Mango (2) and Lychee (5) are already given in the basket. You are
+// not allowed to insert any more of these fruits!
+//
+// Make me pass the tests!
+//
+// Execute `rustlings hint hashmaps2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::collections::HashMap;
+
+#[derive(Hash, PartialEq, Eq)]
+enum Fruit {
+    Apple,
+    Banana,
+    Mango,
+    Lychee,
+    Pineapple,
+}
+
+fn fruit_basket(basket: &amp;mut HashMap&lt;Fruit, u32&gt;) {
+    let fruit_kinds = vec![
+        Fruit::Apple,
+        Fruit::Banana,
+        Fruit::Mango,
+        Fruit::Lychee,
+        Fruit::Pineapple,
+    ];
+
+    for fruit in fruit_kinds {
+        // TODO: Put new fruits if not already present. Note that you
+        // are not allowed to put any type of fruit that's already
+        // present!
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn get_fruit_basket() -&gt; HashMap&lt;Fruit, u32&gt; {
+        let mut basket = HashMap::&lt;Fruit, u32&gt;::new();
+        basket.insert(Fruit::Apple, 4);
+        basket.insert(Fruit::Mango, 2);
+        basket.insert(Fruit::Lychee, 5);
+
+        basket
+    }
+
+    #[test]
+    fn test_given_fruits_are_not_modified() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;mut basket);
+        assert_eq!(*basket.get(&amp;Fruit::Apple).unwrap(), 4);
+        assert_eq!(*basket.get(&amp;Fruit::Mango).unwrap(), 2);
+        assert_eq!(*basket.get(&amp;Fruit::Lychee).unwrap(), 5);
+    }
+
+    #[test]
+    fn at_least_five_types_of_fruits() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;mut basket);
+        let count_fruit_kinds = basket.len();
+        assert!(count_fruit_kinds &gt;= 5);
+    }
+
+    #[test]
+    fn greater_than_eleven_fruits() {
+        let mut basket = get_fruit_basket();
+        fruit_basket(&amp;mut basket);
+        let count = basket.values().sum::&lt;u32&gt;();
+        assert!(count &gt; 11);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hashmaps3" class="admonition note">
+<summary class="admonition-title">
+<p>hashmaps3</p>
+<p><a class="admonition-anchor-link" href="#admonition-hashmaps3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// hashmaps3.rs
+
+// A list of scores (one per line) of a soccer match is given. Each line
+// is of the form :
+// &lt;team_1_name&gt;,&lt;team_2_name&gt;,&lt;team_1_goals&gt;,&lt;team_2_goals&gt;
+// Example: England,France,4,2 (England scored 4 goals, France 2).
+
+// You have to build a scores table containing the name of the team, goals
+// the team scored, and goals the team conceded. One approach to build
+// the scores table is to use a Hashmap. The solution is partially
+// written to use a Hashmap, complete it to pass the test.
+
+// Make me pass the tests!
+
+// Execute `rustlings hint hashmaps3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::collections::HashMap;
+
+// A structure to store team name and its goal details.
+struct Team {
+    name: String,
+    goals_scored: u8,
+    goals_conceded: u8,
+}
+
+fn build_scores_table(results: String) -&gt; HashMap&lt;String, Team&gt; {
+    // The name of the team is the key and its associated struct is the value.
+    let mut scores: HashMap&lt;String, Team&gt; = HashMap::new();
+
+    for r in results.lines() {
+        let v: Vec&lt;&amp;str&gt; = r.split(',').collect();
+        let team_1_name = v[0].to_string();
+        let team_1_score: u8 = v[2].parse().unwrap();
+        let team_2_name = v[1].to_string();
+        let team_2_score: u8 = v[3].parse().unwrap();
+        // TODO: Populate the scores table with details extracted from the
+        // current line. Keep in mind that goals scored by team_1
+        // will be the number of goals conceded from team_2, and similarly
+        // goals scored by team_2 will be the number of goals conceded by
+        // team_1.
+    }
+    scores
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn get_results() -&gt; String {
+        let results = &quot;&quot;.to_string()
+            + &quot;England,France,4,2\n&quot;
+            + &quot;France,Italy,3,1\n&quot;
+            + &quot;Poland,Spain,2,0\n&quot;
+            + &quot;Germany,England,2,1\n&quot;;
+        results
+    }
+
+    #[test]
+    fn build_scores() {
+        let scores = build_scores_table(get_results());
+
+        let mut keys: Vec&lt;&amp;String&gt; = scores.keys().collect();
+        keys.sort();
+        assert_eq!(
+            keys,
+            vec![&quot;England&quot;, &quot;France&quot;, &quot;Germany&quot;, &quot;Italy&quot;, &quot;Poland&quot;, &quot;Spain&quot;]
+        );
+    }
+
+    #[test]
+    fn validate_team_score_1() {
+        let scores = build_scores_table(get_results());
+        let team = scores.get(&quot;England&quot;).unwrap();
+        assert_eq!(team.goals_scored, 5);
+        assert_eq!(team.goals_conceded, 4);
+    }
+
+    #[test]
+    fn validate_team_score_2() {
+        let scores = build_scores_table(get_results());
+        let team = scores.get(&quot;Spain&quot;).unwrap();
+        assert_eq!(team.goals_scored, 0);
+        assert_eq!(team.goals_conceded, 2);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+
+            </main>
+
+            <!--            <script src="https://utteranc.es/client.js"-->
+            <!--                    repo="RustMagazine/rust_magazine_2022"-->
+            <!--                    issue-term="title"-->
+            <!--                    theme="github-light"-->
+            <!--                    crossorigin="anonymous"-->
+            <!--                    async></script>-->
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+                <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../generics/generics.html" class="mobile-nav-chapters previous"
+                       title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../if/if.html" class="mobile-nav-chapters next"
+                       title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                <div style="clear: both"></div>
+            </nav>
+        </div>
+    </div>
+
+    <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../generics/generics.html" class="nav-chapters previous" title="Previous chapter"
+               aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../if/if.html" class="nav-chapters next" title="Next chapter"
+               aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+    </nav>
+
+</div>
+
+
+
+    <script type="text/javascript">
+        window.playground_line_numbers = true;
+    </script>
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+<script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JS scripts -->
+    <script type="text/javascript" src="../assets/ferris/ferris.js"></script>
+    <script type="text/javascript" src="../assets/mermaid/mermaid.min.js"></script>
+    <script type="text/javascript" src="../assets/mermaid/mermaid-init.js"></script>
+    <script type="text/javascript" src="../assets/smart-anchor.js"></script>
+    <script type="text/javascript" src="../assets/pagetoc/sidebar.js"></script>
+
+</body>
+</html>

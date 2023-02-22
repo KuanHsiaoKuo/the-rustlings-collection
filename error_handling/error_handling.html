@@ -1,0 +1,627 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>error_handling - Rust错题本</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff"/>
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../md-favicon.png">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../assets/ferris/ferris.css">
+        <link rel="stylesheet" href="../theme/2018-edition.css">
+        <link rel="stylesheet" href="../assets/pagetoc/pagetoc_style.css">
+        <link rel="stylesheet" href="../assets/css/mdbook-admonish.css">
+
+</head>
+<body>
+<!-- Provide site root to javascript -->
+<script type="text/javascript">
+    var path_to_root = "../";
+    var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+</script>
+
+<!-- Work around some values being stored in localStorage wrapped in quotes -->
+<script type="text/javascript">
+    try {
+        var theme = localStorage.getItem('mdbook-theme');
+        var sidebar = localStorage.getItem('mdbook-sidebar');
+
+        if (theme.startsWith('"') && theme.endsWith('"')) {
+            localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+        }
+
+        if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+            localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        }
+    } catch (e) {
+    }
+</script>
+
+<!-- Set the theme before any content is loaded, prevents flash -->
+<script type="text/javascript">
+    var theme;
+    try {
+        theme = localStorage.getItem('mdbook-theme');
+    } catch (e) {
+    }
+    if (theme === null || theme === undefined) {
+        theme = default_theme;
+    }
+    var html = document.querySelector('html');
+    html.classList.remove('no-js')
+    html.classList.remove('navy')
+    html.classList.add(theme);
+    html.classList.add('js');
+</script>
+
+<!-- Hide / unhide sidebar before it is displayed -->
+<script type="text/javascript">
+    var html = document.querySelector('html');
+    var sidebar = 'hidden';
+    if (document.body.clientWidth >= 1080) {
+        try {
+            sidebar = localStorage.getItem('mdbook-sidebar');
+        } catch (e) {
+        }
+        sidebar = sidebar || 'visible';
+    }
+    html.classList.remove('sidebar-visible');
+    html.classList.add("sidebar-" + sidebar);
+</script>
+
+<nav id="sidebar" class="sidebar" aria-label="Table of contents">
+    <div class="sidebar-scrollbox">
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../intro/intro.html"><strong aria-hidden="true">2.1.</strong> intro</a></li><li class="chapter-item "><a href="../clippy/clippy.html"><strong aria-hidden="true">2.2.</strong> clippy</a></li><li class="chapter-item "><a href="../conversions/conversions.html"><strong aria-hidden="true">2.3.</strong> conversions</a></li><li class="chapter-item "><a href="../enums/enums.html"><strong aria-hidden="true">2.4.</strong> enums</a></li><li class="chapter-item expanded "><a href="../error_handling/error_handling.html" class="active"><strong aria-hidden="true">2.5.</strong> error_handling</a></li><li class="chapter-item "><a href="../functions/functions.html"><strong aria-hidden="true">2.6.</strong> functions</a></li><li class="chapter-item "><a href="../generics/generics.html"><strong aria-hidden="true">2.7.</strong> generics</a></li><li class="chapter-item "><a href="../hashmaps/hashmaps.html"><strong aria-hidden="true">2.8.</strong> hashmaps</a></li><li class="chapter-item "><a href="../if/if.html"><strong aria-hidden="true">2.9.</strong> if</a></li><li class="chapter-item "><a href="../iterators/iterators.html"><strong aria-hidden="true">2.10.</strong> iterators</a></li><li class="chapter-item "><a href="../lifetimes/lifetimes.html"><strong aria-hidden="true">2.11.</strong> ⭐️引用、借用、生命周期</a></li><li class="chapter-item "><a href="../macros/macros.html"><strong aria-hidden="true">2.12.</strong> macros</a></li><li class="chapter-item "><a href="../modules/modules.html"><strong aria-hidden="true">2.13.</strong> modules</a></li><li class="chapter-item "><a href="../move_semantics/move_semantics.html"><strong aria-hidden="true">2.14.</strong> move_semantics</a></li><li class="chapter-item "><a href="../options/options.html"><strong aria-hidden="true">2.15.</strong> options</a></li><li class="chapter-item "><a href="../primitive_types/primitive_types.html"><strong aria-hidden="true">2.16.</strong> primitive_types</a></li><li class="chapter-item "><a href="../smart_pointers/smart_pointer.html"><strong aria-hidden="true">2.17.</strong> smart_pointer</a></li><li class="chapter-item "><a href="../strings/strings.html"><strong aria-hidden="true">2.18.</strong> strings</a></li><li class="chapter-item "><a href="../structs/structs.html"><strong aria-hidden="true">2.19.</strong> structs</a></li><li class="chapter-item "><a href="../tests/tests.html"><strong aria-hidden="true">2.20.</strong> tests</a></li><li class="chapter-item "><a href="../threads/threads.html"><strong aria-hidden="true">2.21.</strong> threads</a></li><li class="chapter-item "><a href="../traits/traits.html"><strong aria-hidden="true">2.22.</strong> traits</a></li><li class="chapter-item "><a href="../variables/variables.html"><strong aria-hidden="true">2.23.</strong> variables</a></li><li class="chapter-item "><a href="../vecs/vecs.html"><strong aria-hidden="true">2.24.</strong> vecs</a></li></ol></li><li class="chapter-item expanded "><a href="../checklist.html">Checklist</a></li></ol>
+    </div>
+    <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+</nav>
+
+<div id="page-wrapper" class="page-wrapper">
+
+    <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+        <div id="menu-bar" class="menu-bar sticky bordered">
+            <div class="left-buttons">
+                <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                    <i class="fa fa-paint-brush"></i>
+                </button>
+                <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="light">Light</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="rust">Rust</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="coal">Coal</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="navy">Navy (default)</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="ayu">Ayu</button>
+                    </li>
+                </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </div>
+
+            <h1 class="menu-title">Rust错题本</h1>
+            <h4 class="menu-bar">日不见增 月有渐进 | 唯剃真我 方有成效｜ 惊涛拍案 千层雪起 | <a href="https://kuanhsiaokuo.github.io/think-tool-kit/">保持批判，有所取舍，知行合一, 方见真我</a> | 练武不练功
+                到头一场空 -- 《赛博英雄传》 </h4>
+            <div class="right-buttons">
+                    <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+                    <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <i id="git-repository-button" class="fa fa-github"></i>
+                    </a>
+            </div>
+        </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" name="search" id="searchbar" name="searchbar"
+                           placeholder="Search this book ..." aria-controls="searchresults-outer"
+                           aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+        <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+        <script type="text/javascript">
+            document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+            Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+            });
+        </script>
+
+        <div id="content" class="content">
+            <main>
+
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <h1 id="error-handling"><a class="header" href="#error-handling">Error handling</a></h1>
+<p>Most errors aren’t serious enough to require the program to stop entirely.
+Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.
+For example, if you try to open a file and that operation fails because the file doesn’t exist, you might want to create the file instead of terminating the process.</p>
+<h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html">Error Handling</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch10-01-syntax.html">Generics</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/error/result.html">Result</a></li>
+<li><a href="https://doc.rust-lang.org/rust-by-example/error/multiple_error_types/boxing_errors.html">Boxing errors</a></li>
+</ul>
+<h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
+<details id="admonition-errors1" class="admonition note">
+<summary class="admonition-title">
+<p>errors1</p>
+<p><a class="admonition-anchor-link" href="#admonition-errors1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// errors1.rs
+// This function refuses to generate text to be printed on a nametag if
+// you pass it an empty string. It'd be nicer if it explained what the problem
+// was, instead of just sometimes returning `None`. Thankfully, Rust has a similar
+// construct to `Option` that can be used to express error conditions. Let's use it!
+// Execute `rustlings hint errors1` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+pub fn generate_nametag_text(name: String) -&gt; Option&lt;String&gt; {
+    if name.is_empty() {
+        // Empty names aren't allowed.
+        None
+    } else {
+        Some(format!(&quot;Hi! My name is {}&quot;, name))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generates_nametag_text_for_a_nonempty_name() {
+        assert_eq!(
+            generate_nametag_text(&quot;Beyoncé&quot;.into()),
+            Ok(&quot;Hi! My name is Beyoncé&quot;.into())
+        );
+    }
+
+    #[test]
+    fn explains_why_generating_nametag_text_fails() {
+        assert_eq!(
+            generate_nametag_text(&quot;&quot;.into()),
+            // Don't change this line
+            Err(&quot;`name` was empty; it must be nonempty.&quot;.into())
+        );
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-errors2" class="admonition note">
+<summary class="admonition-title">
+<p>errors2</p>
+<p><a class="admonition-anchor-link" href="#admonition-errors2"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// errors2.rs
+// Say we're writing a game where you can buy items with tokens. All items cost
+// 5 tokens, and whenever you purchase items there is a processing fee of 1
+// token. A player of the game will type in how many items they want to buy,
+// and the `total_cost` function will calculate the total number of tokens.
+// Since the player typed in the quantity, though, we get it as a string-- and
+// they might have typed anything, not just numbers!
+
+// Right now, this function isn't handling the error case at all (and isn't
+// handling the success case properly either). What we want to do is:
+// if we call the `parse` function on a string that is not a number, that
+// function will return a `ParseIntError`, and in that case, we want to
+// immediately return that error from our function and not try to multiply
+// and add.
+
+// There are at least two ways to implement this that are both correct-- but
+// one is a lot shorter!
+// Execute `rustlings hint errors2` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::num::ParseIntError;
+
+pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&lt;i32&gt;();
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn item_quantity_is_a_valid_number() {
+        assert_eq!(total_cost(&quot;34&quot;), Ok(171));
+    }
+
+    #[test]
+    fn item_quantity_is_an_invalid_number() {
+        assert_eq!(
+            total_cost(&quot;beep boop&quot;).unwrap_err().to_string(),
+            &quot;invalid digit found in string&quot;
+        );
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-errors3" class="admonition note">
+<summary class="admonition-title">
+<p>errors3</p>
+<p><a class="admonition-anchor-link" href="#admonition-errors3"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// errors3.rs
+// This is a program that is trying to use a completed version of the
+// `total_cost` function from the previous exercise. It's not working though!
+// Why not? What should we do to fix it?
+// Execute `rustlings hint errors3` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::num::ParseIntError;
+
+fn main() {
+    let mut tokens = 100;
+    let pretend_user_input = &quot;8&quot;;
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost &gt; tokens {
+        println!(&quot;You can't afford that many!&quot;);
+    } else {
+        tokens -= cost;
+        println!(&quot;You now have {} tokens.&quot;, tokens);
+    }
+}
+
+pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::&lt;i32&gt;()?;
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-errors4" class="admonition note">
+<summary class="admonition-title">
+<p>errors4</p>
+<p><a class="admonition-anchor-link" href="#admonition-errors4"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// errors4.rs
+// Execute `rustlings hint errors4` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
+        // Hmm...? Why is this only returning an Ok value?
+        Ok(PositiveNonzeroInteger(value as u64))
+    }
+}
+
+#[test]
+fn test_creation() {
+    assert!(PositiveNonzeroInteger::new(10).is_ok());
+    assert_eq!(
+        Err(CreationError::Negative),
+        PositiveNonzeroInteger::new(-10)
+    );
+    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-errors5" class="admonition note">
+<summary class="admonition-title">
+<p>errors5</p>
+<p><a class="admonition-anchor-link" href="#admonition-errors5"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// errors5.rs
+
+// This program uses an altered version of the code from errors4.
+
+// This exercise uses some concepts that we won't get to until later in the course, like `Box` and the
+// `From` trait. It's not important to understand them in detail right now, but you can read ahead if you like.
+// For now, think of the `Box&lt;dyn ...&gt;` type as an &quot;I want anything that does ???&quot; type, which, given
+// Rust's usual standards for runtime safety, should strike you as somewhat lenient!
+
+// In short, this particular use case for boxes is for when you want to own a value and you care only that it is a
+// type which implements a particular trait. To do so, The Box is declared as of type Box&lt;dyn Trait&gt; where Trait is the trait
+// the compiler looks for on any value used in that context. For this exercise, that context is the potential errors
+// which can be returned in a Result.
+
+// What can we use to describe both errors? In other words, is there a trait which both errors implement?
+
+// Execute `rustlings hint errors5` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::error;
+use std::fmt;
+use std::num::ParseIntError;
+
+// TODO: update the return type of `main()` to make this compile.
+fn main() -&gt; Result&lt;(), Box&lt;dyn ???&gt;&gt; {
+    let pretend_user_input = &quot;42&quot;;
+    let x: i64 = pretend_user_input.parse()?;
+    println!(&quot;output={:?}&quot;, PositiveNonzeroInteger::new(x)?);
+    Ok(())
+}
+
+// Don't change anything below this line.
+
+#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
+        match value {
+            x if x &lt; 0 =&gt; Err(CreationError::Negative),
+            x if x == 0 =&gt; Err(CreationError::Zero),
+            x =&gt; Ok(PositiveNonzeroInteger(x as u64)),
+        }
+    }
+}
+
+// This is required so that `CreationError` can implement `error::Error`.
+impl fmt::Display for CreationError {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        let description = match *self {
+            CreationError::Negative =&gt; &quot;number is negative&quot;,
+            CreationError::Zero =&gt; &quot;number is zero&quot;,
+        };
+        f.write_str(description)
+    }
+}
+
+impl error::Error for CreationError {}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-errors6" class="admonition note">
+<summary class="admonition-title">
+<p>errors6</p>
+<p><a class="admonition-anchor-link" href="#admonition-errors6"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// errors6.rs
+
+// Using catch-all error types like `Box&lt;dyn error::Error&gt;` isn't recommended
+// for library code, where callers might want to make decisions based on the
+// error content, instead of printing it out or propagating it further. Here,
+// we define a custom error type to make it possible for callers to decide
+// what to do next when our function returns an error.
+
+// Execute `rustlings hint errors6` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+use std::num::ParseIntError;
+
+// This is a custom error type that we will be using in `parse_pos_nonzero()`.
+#[derive(PartialEq, Debug)]
+enum ParsePosNonzeroError {
+    Creation(CreationError),
+    ParseInt(ParseIntError),
+}
+
+impl ParsePosNonzeroError {
+    fn from_creation(err: CreationError) -&gt; ParsePosNonzeroError {
+        ParsePosNonzeroError::Creation(err)
+    }
+    // TODO: add another error conversion function here.
+    // fn from_parseint...
+}
+
+fn parse_pos_nonzero(s: &amp;str) -&gt; Result&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt; {
+    // TODO: change this to return an appropriate error instead of panicking
+    // when `parse()` returns an error.
+    let x: i64 = s.parse().unwrap();
+    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
+}
+
+// Don't change anything below this line.
+
+#[derive(PartialEq, Debug)]
+struct PositiveNonzeroInteger(u64);
+
+#[derive(PartialEq, Debug)]
+enum CreationError {
+    Negative,
+    Zero,
+}
+
+impl PositiveNonzeroInteger {
+    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
+        match value {
+            x if x &lt; 0 =&gt; Err(CreationError::Negative),
+            x if x == 0 =&gt; Err(CreationError::Zero),
+            x =&gt; Ok(PositiveNonzeroInteger(x as u64)),
+        }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_parse_error() {
+        // We can't construct a ParseIntError, so we have to pattern match.
+        assert!(matches!(
+            parse_pos_nonzero(&quot;not a number&quot;),
+            Err(ParsePosNonzeroError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn test_negative() {
+        assert_eq!(
+            parse_pos_nonzero(&quot;-555&quot;),
+            Err(ParsePosNonzeroError::Creation(CreationError::Negative))
+        );
+    }
+
+    #[test]
+    fn test_zero() {
+        assert_eq!(
+            parse_pos_nonzero(&quot;0&quot;),
+            Err(ParsePosNonzeroError::Creation(CreationError::Zero))
+        );
+    }
+
+    #[test]
+    fn test_positive() {
+        let x = PositiveNonzeroInteger::new(42);
+        assert!(x.is_ok());
+        assert_eq!(parse_pos_nonzero(&quot;42&quot;), Ok(x.unwrap()));
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+
+            </main>
+
+            <!--            <script src="https://utteranc.es/client.js"-->
+            <!--                    repo="RustMagazine/rust_magazine_2022"-->
+            <!--                    issue-term="title"-->
+            <!--                    theme="github-light"-->
+            <!--                    crossorigin="anonymous"-->
+            <!--                    async></script>-->
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+                <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../enums/enums.html" class="mobile-nav-chapters previous"
+                       title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../functions/functions.html" class="mobile-nav-chapters next"
+                       title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                <div style="clear: both"></div>
+            </nav>
+        </div>
+    </div>
+
+    <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../enums/enums.html" class="nav-chapters previous" title="Previous chapter"
+               aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../functions/functions.html" class="nav-chapters next" title="Next chapter"
+               aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+    </nav>
+
+</div>
+
+
+
+    <script type="text/javascript">
+        window.playground_line_numbers = true;
+    </script>
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+<script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JS scripts -->
+    <script type="text/javascript" src="../assets/ferris/ferris.js"></script>
+    <script type="text/javascript" src="../assets/mermaid/mermaid.min.js"></script>
+    <script type="text/javascript" src="../assets/mermaid/mermaid-init.js"></script>
+    <script type="text/javascript" src="../assets/smart-anchor.js"></script>
+    <script type="text/javascript" src="../assets/pagetoc/sidebar.js"></script>
+
+</body>
+</html>
