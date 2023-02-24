@@ -14,7 +14,7 @@
     - [iterators](iterators/iterators.md)
     - [⭐️引用、借用、生命周期](ref_borrow_lifetimes/ref_borrow_lifetimes.md)
     - [macros](macros/macros.md)
-    - [modules](modules/modules.md)
+    - [modules: mod keyword](modules/modules.md)
     - [✨move_semantics](move_semantics/move_semantics.md)
     - [options](options/options.md)
     - [primitive_types](primitive_types/primitive_types.md)
