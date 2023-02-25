@@ -26,11 +26,15 @@ Because traits indicate shared behavior between data types, they are useful when
 ```
 ~~~
 
+---
+
 ~~~admonish note title="traits2" collapsible=true
 ```rust,editable
 {{#include traits2.rs}}
 ```
 ~~~
+
+---
 
 ~~~admonish note title="traits3" collapsible=true
 ```rust,editable
@@ -38,11 +42,15 @@ Because traits indicate shared behavior between data types, they are useful when
 ```
 ~~~
 
+---
+
 ~~~admonish note title="traits4" collapsible=true
 ```rust,editable
 {{#include traits4.rs}}
 ```
 ~~~
+
+---
 
 ~~~admonish note title="traits5" collapsible=true
 ```rust,editable
