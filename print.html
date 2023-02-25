@@ -263,10 +263,10 @@ compiler. In this section, we’ll go through the most important ones.</p>
 <li><a href="https://doc.rust-lang.org/stable/book/ch04-03-slices.html">The Slice Type</a></li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
-<details id="admonition-primitive_types1" class="admonition note">
+<details id="admonition-primitive_types1-fill-in-the-rest-of-the-line-that-has-code-missing" class="admonition note">
 <summary class="admonition-title">
-<p>primitive_types1</p>
-<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types1"></a></p>
+<p>primitive_types1: Fill in the rest of the line that has code missing!</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types1-fill-in-the-rest-of-the-line-that-has-code-missing"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// primitive_types1.rs
@@ -291,10 +291,11 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-primitive_types2" class="admonition note">
+<hr />
+<details id="admonition-primitive_types2-fill-in-the-rest-of-the-line-that-has-code-missing" class="admonition note">
 <summary class="admonition-title">
-<p>primitive_types2</p>
-<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types2"></a></p>
+<p>primitive_types2: Fill in the rest of the line that has code missing!</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types2-fill-in-the-rest-of-the-line-that-has-code-missing"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// primitive_types2.rs
@@ -331,10 +332,20 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-primitive_types3" class="admonition note">
+<details id="admonition-hint-single-or-double-quotes-they-are-different" class="admonition tip">
 <summary class="admonition-title">
-<p>primitive_types3</p>
-<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types3"></a></p>
+<p>Hint: single or double quotes, they are different</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-hint-single-or-double-quotes-they-are-different"></a></p>
+</summary>
+<div>
+<p>‘C’ is str, but “C” is &amp;str</p>
+</div>
+</details>
+<hr />
+<details id="admonition-primitive_types3-create-an-array-with-at-least-100-elements-in-it-where-the--is" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types3: Create an array with at least 100 elements in it where the ??? is.</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types3-create-an-array-with-at-least-100-elements-in-it-where-the--is"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// primitive_types3.rs
@@ -355,10 +366,47 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-primitive_types4" class="admonition note">
+<details id="admonition-hint" class="admonition tip">
 <summary class="admonition-title">
-<p>primitive_types4</p>
-<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types4"></a></p>
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-hint"></a></p>
+</summary>
+<div>
+<p>There’s a shorthand to initialize Arrays with a certain size that does not
+require you to type in 100 items (but you certainly can if you want!).
+For example, you can do:
+let array = [“Are we there yet?”; 10];</p>
+<p>Bonus: what are some other things you could have that would return true
+for <code>a.len() &gt;= 100</code>?</p>
+</div>
+</details>
+<details id="admonition-solution" class="admonition success">
+<summary class="admonition-title">
+<p>solution</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-solution"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// primitive_types3.rs
+// Create an array with at least 100 elements in it where the ??? is.
+// Execute `rustlings hint primitive_types3` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let a = [&quot;a&quot;; 110];
+
+    if a.len() &gt;= 100 {
+        println!(&quot;Wow, that's a big array!&quot;);
+    } else {
+        println!(&quot;Meh, I eat arrays like that for breakfast.&quot;);
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-primitive_types4-get-a-slice-out-of-array-a" class="admonition note">
+<summary class="admonition-title">
+<p>primitive_types4: Get a slice out of Array a </p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types4-get-a-slice-out-of-array-a"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// primitive_types4.rs
@@ -367,8 +415,7 @@ fn main() {
 
 // I AM NOT DONE
 
-#[test]
-fn slice_out_of_array() {
+fn main() {
     let a = [1, 2, 3, 4, 5];
 
     let nice_slice = ???
@@ -378,10 +425,11 @@ fn slice_out_of_array() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-primitive_types5" class="admonition note">
+<hr />
+<details id="admonition-primitive_types5-destructure-the-cat-tuple" class="admonition note">
 <summary class="admonition-title">
-<p>primitive_types5</p>
-<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types5"></a></p>
+<p>primitive_types5: Destructure the <em>cat</em> tuple</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types5-destructure-the-cat-tuple"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// primitive_types5.rs
@@ -399,10 +447,11 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-primitive_types6" class="admonition note">
+<hr />
+<details id="admonition-primitive_types6-use-a-tuple-index-to-access-the-second-element-of-numbers" class="admonition note">
 <summary class="admonition-title">
-<p>primitive_types6</p>
-<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types6"></a></p>
+<p>primitive_types6: Use a tuple index to access the second element of <em>numbers</em>.</p>
+<p><a class="admonition-anchor-link" href="primitive_types/primitive_types.html#admonition-primitive_types6-use-a-tuple-index-to-access-the-second-element-of-numbers"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// primitive_types6.rs
@@ -443,7 +492,7 @@ fn indexing_tuple() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:58:49 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 12:26:22 UTC 2023 -->
 <!--te-->
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
 <p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
@@ -1939,7 +1988,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:58:51 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 12:26:25 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -4137,7 +4186,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:58:51 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 12:26:24 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -4547,7 +4596,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:58:50 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 12:26:24 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
