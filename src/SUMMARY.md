@@ -15,7 +15,7 @@
         - [structs](structs/structs.md)
         - [enums](enums/enums.md)
     - [三大支点](three_essentials.md)
-        - [generics](generics/generics.md)
+        - [一、generics](generics/generics.md)
         - [macros](macros/macros.md)
         - [traits](traits/traits.md)
     - [clippy](clippy/clippy.md)

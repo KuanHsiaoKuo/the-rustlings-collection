@@ -9,3 +9,7 @@
 ## rustlings不错，更需要自己整理
 
 rustlings使用起来确实很方便，其代码也值得研究，是常见的rust入门demo类型-命令行工具。但是它必须在电脑上运行，不适合随时练习，所以觉得mdbook在线运行会更方便。
+
+## admonish-mdbook
+
+[Reference - The mdbook-admonish book](https://tommilligan.github.io/mdbook-admonish/reference.html)
