@@ -53,7 +53,7 @@ If you are still stuck, please read:
 > [✨Generic Data Types - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-01-syntax.html#in-method-definitions)
 ~~~
 
-~~~admonish success title="solution1: convert to use generics" collapsible=true
+~~~admonish bug title="solution1: convert to use generics" collapsible=true
 ```rust,editable
 {{#include generics2_solution1.rs}}
 ```
