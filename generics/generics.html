@@ -259,6 +259,7 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<hr />
 <details id="admonition-generics2" class="admonition failure">
 <summary class="admonition-title">
 <p>generics2</p>
@@ -325,7 +326,20 @@ Maybe we could update the explicit references to this data type somehow?</p>
 <p><a class="admonition-anchor-link" href="#admonition-solution1-convert-to-use-generics"></a></p>
 </summary>
 <div>
-<pre><pre class="playground"><code class="language-rust editable">{{#include generics2_solution1.rs}}
+<pre><pre class="playground"><code class="language-rust editable">struct Wrapper {
+    value: T,
+}
+
+impl&lt;T&gt; Wrapper&lt;T&gt; {
+    pub fn new(value: T) -&gt; Self {
+        Wrapper { value }
+    }
+}
+
+fn main() {
+    assert_eq!(Wrapper::new(42).value, 42);
+    assert_eq!(Wrapper::new(&quot;Foo&quot;).value, &quot;Foo&quot;);
+}
 </code></pre></pre>
 </div>
 </details>
