@@ -192,13 +192,14 @@
 <p>Because traits indicate shared behavior between data types, they are useful when writing generics.</p>
 <h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
 <ul>
-<li><a href="https://doc.rust-lang.org/book/ch10-02-traits.html">Traits</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html#specifying-multiple-trait-bounds-with-the--syntax">Traits</a></li>
+<li><a href="https://github.com/gaveen/rustlings-solutions-5/tree/main/traits">rustlings-solutions-5/traits at main · gaveen/rustlings-solutions-5</a></li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
-<details id="admonition-traits1" class="admonition note">
+<details id="admonition-traits1-time-to-implement-some-traits" class="admonition note">
 <summary class="admonition-title">
-<p>traits1</p>
-<p><a class="admonition-anchor-link" href="#admonition-traits1"></a></p>
+<p>traits1: Time to implement some traits!</p>
+<p><a class="admonition-anchor-link" href="#admonition-traits1-time-to-implement-some-traits"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// traits1.rs
@@ -269,11 +270,30 @@ fn main() {
 <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html">🪐Traits: Defining Shared Behavior - The Rust Programming Language</a></p>
 </div>
 </details>
-<hr />
-<details id="admonition-traits2" class="admonition note">
+<details id="admonition-solution-string" class="admonition bug">
 <summary class="admonition-title">
-<p>traits2</p>
-<p><a class="admonition-anchor-link" href="#admonition-traits2"></a></p>
+<p>solution: String</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution-string"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">impl AppendBar for String {
+    //Add your code here
+    fn append_bar(self) -&gt; Self {
+        format!(&quot;{}Bar&quot;, self)
+        // or
+        // format!(&quot;{self}Bar&quot;)
+        // or
+        // self + &quot;Bar&quot;
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-traits2-implement-the-trait-for-a-vector-of-strings" class="admonition note">
+<summary class="admonition-title">
+<p>traits2: implement the trait for a vector of strings.</p>
+<p><a class="admonition-anchor-link" href="#admonition-traits2-implement-the-trait-for-a-vector-of-strings"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// traits2.rs
@@ -332,11 +352,27 @@ the documentation at:
 <a href="https://doc.rust-lang.org/std/vec/struct.Vec.html">Vec in std::vec - Rust</a></p>
 </div>
 </details>
-<hr />
-<details id="admonition-traits3" class="admonition note">
+<details id="admonition-solution-vec" class="admonition bug">
 <summary class="admonition-title">
-<p>traits3</p>
-<p><a class="admonition-anchor-link" href="#admonition-traits3"></a></p>
+<p>solution: Vec<String> </p>
+<p><a class="admonition-anchor-link" href="#admonition-solution-vec"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">// Add your code here
+impl AppendBar for Vec&lt;String&gt; {
+    fn append_bar(mut self) -&gt; Self { // Borrow self as `mut`
+        self.push(&quot;Bar&quot;.to_string());
+        self
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-traits3-implement-the-licensed-trait-for-both-structures-and-have-them-return-the-same-information-without-writing-the-same-function-twice" class="admonition note">
+<summary class="admonition-title">
+<p>traits3: implement the Licensed trait for both structures and have them return the same information without writing the same function twice.</p>
+<p><a class="admonition-anchor-link" href="#admonition-traits3-implement-the-licensed-trait-for-both-structures-and-have-them-return-the-same-information-without-writing-the-same-function-twice"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// traits3.rs
@@ -406,11 +442,25 @@ implement the function themselves.</p>
 <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html#default-implementations">🪐Traits: Defining Shared Behavior &gt;&gt; Default Implementations - The Rust Programming Language</a></p>
 </div>
 </details>
-<hr />
-<details id="admonition-traits4" class="admonition note">
+<details id="admonition-solution-default-trait-method" class="admonition bug">
 <summary class="admonition-title">
-<p>traits4</p>
-<p><a class="admonition-anchor-link" href="#admonition-traits4"></a></p>
+<p>solution: Default Trait Method</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution-default-trait-method"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">pub trait Licensed {
+    fn licensing_info(&amp;self) -&gt; String {
+        String::from(&quot;Some information&quot;)
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-traits4-trait-bounds" class="admonition note">
+<summary class="admonition-title">
+<p>traits4: trait bounds</p>
+<p><a class="admonition-anchor-link" href="#admonition-traits4-trait-bounds"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// traits4.rs
@@ -490,11 +540,23 @@ fn main() {
 <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html#traits-as-parameters">🪐Traits: Defining Shared Behavior &gt;&gt; Traits as Parameters - The Rust Programming Language</a></p>
 </div>
 </details>
-<hr />
-<details id="admonition-traits5" class="admonition note">
+<details id="admonition-solution-impl" class="admonition bug">
 <summary class="admonition-title">
-<p>traits5</p>
-<p><a class="admonition-anchor-link" href="#admonition-traits5"></a></p>
+<p>solution: impl</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution-impl"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">fn compare_license_types(software: impl Licensed, software_two: impl Licensed) -&gt; bool {
+    software.licensing_info() == software_two.licensing_info()
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-traits5-impl-multiple-traits" class="admonition note">
+<summary class="admonition-title">
+<p>traits5: impl multiple traits</p>
+<p><a class="admonition-anchor-link" href="#admonition-traits5-impl-multiple-traits"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// traits5.rs
@@ -547,6 +609,25 @@ fn main() {
 ‘??’ with ‘impl &lt;&gt; + &lt;&gt;’.</p>
 <p>See the documentation at:
 <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the + Syntax</a></p>
+</div>
+</details>
+<details id="admonition-solution-impl-or-where" class="admonition bug">
+<summary class="admonition-title">
+<p>solution: impl or where</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution-impl-or-where"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">fn some_func&lt;T&gt;(item: T) -&gt; bool
+    where T: SomeTrait + OtherTrait
+{
+    item.some_function() &amp;&amp; item.other_function()
+}
+
+fn some_func(item: impl SomeTrait + OtherTrait) -&gt; bool {
+    item.some_function() &amp;&amp; item.other_function()
+}
+
+</code></pre></pre>
 </div>
 </details>
 
