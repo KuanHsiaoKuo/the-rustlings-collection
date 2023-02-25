@@ -3,7 +3,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>generics - Rust错题本</title>
+    <title>一、generics - Rust错题本</title>
 
 
     <!-- Custom HTML head -->
@@ -94,7 +94,7 @@
 
 <nav id="sidebar" class="sidebar" aria-label="Table of contents">
     <div class="sidebar-scrollbox">
-        <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../intro/intro.html"><strong aria-hidden="true">2.1.</strong> intro</a></li><li class="chapter-item "><a href="../type_system.html"><strong aria-hidden="true">2.2.</strong> 类型系统</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../primitive_types/primitive_types.html"><strong aria-hidden="true">2.2.1.</strong> primitive_types</a></li><li class="chapter-item "><a href="../conversions/conversions.html"><strong aria-hidden="true">2.2.2.</strong> conversions</a></li><li class="chapter-item "><a href="../vecs/vecs.html"><strong aria-hidden="true">2.2.3.</strong> vecs</a></li><li class="chapter-item "><a href="../hashmaps/hashmaps.html"><strong aria-hidden="true">2.2.4.</strong> hashmaps</a></li><li class="chapter-item "><a href="../error_handling/error_handling.html"><strong aria-hidden="true">2.2.5.</strong> error_handling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/options.html"><strong aria-hidden="true">2.2.5.1.</strong> options</a></li></ol></li><li class="chapter-item "><a href="../smart_pointers/smart_pointer.html"><strong aria-hidden="true">2.2.6.</strong> smart_pointer</a></li><li class="chapter-item "><a href="../strings/strings.html"><strong aria-hidden="true">2.2.7.</strong> strings</a></li><li class="chapter-item "><a href="../structs/structs.html"><strong aria-hidden="true">2.2.8.</strong> structs</a></li><li class="chapter-item "><a href="../enums/enums.html"><strong aria-hidden="true">2.2.9.</strong> enums</a></li></ol></li><li class="chapter-item expanded "><a href="../three_essentials.html"><strong aria-hidden="true">2.3.</strong> 三大支点</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../generics/generics.html" class="active"><strong aria-hidden="true">2.3.1.</strong> generics</a></li><li class="chapter-item "><a href="../macros/macros.html"><strong aria-hidden="true">2.3.2.</strong> macros</a></li><li class="chapter-item "><a href="../traits/traits.html"><strong aria-hidden="true">2.3.3.</strong> traits</a></li></ol></li><li class="chapter-item "><a href="../clippy/clippy.html"><strong aria-hidden="true">2.4.</strong> clippy</a></li><li class="chapter-item "><a href="../functions/functions.html"><strong aria-hidden="true">2.5.</strong> functions</a></li><li class="chapter-item "><a href="../if/if.html"><strong aria-hidden="true">2.6.</strong> if</a></li><li class="chapter-item "><a href="../iterators/iterators.html"><strong aria-hidden="true">2.7.</strong> iterators</a></li><li class="chapter-item "><a href="../ref_borrow_lifetimes/ref_borrow_lifetimes.html"><strong aria-hidden="true">2.8.</strong> ⭐️引用、借用、生命周期</a></li><li class="chapter-item "><a href="../modules/modules.html"><strong aria-hidden="true">2.9.</strong> modules: mod keyword</a></li><li class="chapter-item "><a href="../move_semantics/move_semantics.html"><strong aria-hidden="true">2.10.</strong> ✨move_semantics</a></li><li class="chapter-item "><a href="../tests/tests.html"><strong aria-hidden="true">2.11.</strong> tests</a></li><li class="chapter-item "><a href="../threads/threads.html"><strong aria-hidden="true">2.12.</strong> threads</a></li><li class="chapter-item "><a href="../variables/variables.html"><strong aria-hidden="true">2.13.</strong> variables</a></li></ol></li><li class="chapter-item expanded "><a href="../checklist.html">Checklist</a></li></ol>
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded "><a href="../rustling_exercises.html"><strong aria-hidden="true">2.</strong> Rustlings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../intro/intro.html"><strong aria-hidden="true">2.1.</strong> intro</a></li><li class="chapter-item "><a href="../type_system.html"><strong aria-hidden="true">2.2.</strong> 类型系统</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../primitive_types/primitive_types.html"><strong aria-hidden="true">2.2.1.</strong> primitive_types</a></li><li class="chapter-item "><a href="../conversions/conversions.html"><strong aria-hidden="true">2.2.2.</strong> conversions</a></li><li class="chapter-item "><a href="../vecs/vecs.html"><strong aria-hidden="true">2.2.3.</strong> vecs</a></li><li class="chapter-item "><a href="../hashmaps/hashmaps.html"><strong aria-hidden="true">2.2.4.</strong> hashmaps</a></li><li class="chapter-item "><a href="../error_handling/error_handling.html"><strong aria-hidden="true">2.2.5.</strong> error_handling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../options/options.html"><strong aria-hidden="true">2.2.5.1.</strong> options</a></li></ol></li><li class="chapter-item "><a href="../smart_pointers/smart_pointer.html"><strong aria-hidden="true">2.2.6.</strong> smart_pointer</a></li><li class="chapter-item "><a href="../strings/strings.html"><strong aria-hidden="true">2.2.7.</strong> strings</a></li><li class="chapter-item "><a href="../structs/structs.html"><strong aria-hidden="true">2.2.8.</strong> structs</a></li><li class="chapter-item "><a href="../enums/enums.html"><strong aria-hidden="true">2.2.9.</strong> enums</a></li></ol></li><li class="chapter-item expanded "><a href="../three_essentials.html"><strong aria-hidden="true">2.3.</strong> 三大支点</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../generics/generics.html" class="active"><strong aria-hidden="true">2.3.1.</strong> 一、generics</a></li><li class="chapter-item "><a href="../macros/macros.html"><strong aria-hidden="true">2.3.2.</strong> macros</a></li><li class="chapter-item "><a href="../traits/traits.html"><strong aria-hidden="true">2.3.3.</strong> traits</a></li></ol></li><li class="chapter-item "><a href="../clippy/clippy.html"><strong aria-hidden="true">2.4.</strong> clippy</a></li><li class="chapter-item "><a href="../functions/functions.html"><strong aria-hidden="true">2.5.</strong> functions</a></li><li class="chapter-item "><a href="../if/if.html"><strong aria-hidden="true">2.6.</strong> if</a></li><li class="chapter-item "><a href="../iterators/iterators.html"><strong aria-hidden="true">2.7.</strong> iterators</a></li><li class="chapter-item "><a href="../ref_borrow_lifetimes/ref_borrow_lifetimes.html"><strong aria-hidden="true">2.8.</strong> ⭐️引用、借用、生命周期</a></li><li class="chapter-item "><a href="../modules/modules.html"><strong aria-hidden="true">2.9.</strong> modules: mod keyword</a></li><li class="chapter-item "><a href="../move_semantics/move_semantics.html"><strong aria-hidden="true">2.10.</strong> ✨move_semantics</a></li><li class="chapter-item "><a href="../tests/tests.html"><strong aria-hidden="true">2.11.</strong> tests</a></li><li class="chapter-item "><a href="../threads/threads.html"><strong aria-hidden="true">2.12.</strong> threads</a></li><li class="chapter-item "><a href="../variables/variables.html"><strong aria-hidden="true">2.13.</strong> variables</a></li></ol></li><li class="chapter-item expanded "><a href="../checklist.html">Checklist</a></li></ol>
     </div>
     <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
 </nav>
@@ -210,6 +210,55 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<blockquote>
+<p><a href="https://github.com/gaveen/rustlings-solutions-5/tree/main/generics">rustlings-solutions-5/generics at main · gaveen/rustlings-solutions-5</a></p>
+</blockquote>
+<details id="admonition-hint" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint"></a></p>
+</summary>
+<div>
+<p>Vectors in Rust make use of generics to create dynamically sized arrays of any type.
+You need to tell the compiler what type we are pushing onto this vector.</p>
+</div>
+</details>
+<details id="admonition-solution1-str" class="admonition note">
+<summary class="admonition-title">
+<p>solution1: &amp;str</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution1-str"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// This shopping list program isn't compiling!
+// Use your knowledge of generics to fix it.
+
+// Execute `rustlings hint generics1` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let mut shopping_list: Vec&lt;&amp;str&gt; = Vec::new();
+    shopping_list.push(&quot;milk&quot;);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution2-string" class="admonition note">
+<summary class="admonition-title">
+<p>solution2: String</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution2-string"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// This shopping list program isn't compiling!
+// Use your knowledge of generics to fix it.
+
+// Execute `rustlings hint generics1` or use the `hint` watch subcommand for a hint.
+
+fn main() {
+    let mut shopping_list: Vec&lt;String&gt; = Vec::new();
+    shopping_list.push(&quot;milk&quot;); // fix here
+}
+</code></pre></pre>
+</div>
+</details>
 <details id="admonition-generics2" class="admonition note">
 <summary class="admonition-title">
 <p>generics2</p>
@@ -248,6 +297,20 @@ mod tests {
     }
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-1" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-1"></a></p>
+</summary>
+<div>
+<p>Currently we are wrapping only values of type ‘u32’.
+Maybe we could update the explicit references to this data type somehow?</p>
+<p>If you are still stuck, please read:</p>
+<blockquote>
+<p><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-01-syntax.html#in-method-definitions">✨Generic Data Types - The Rust Programming Language</a></p>
+</blockquote>
 </div>
 </details>
 
