@@ -320,13 +320,16 @@ Maybe we could update the explicit references to this data type somehow?</p>
 </blockquote>
 </div>
 </details>
-<details id="admonition-solution1-convert-to-use-generics" class="admonition success">
+<details id="admonition-solution1-convert-to-use-generics" class="admonition bug">
 <summary class="admonition-title">
 <p>solution1: convert to use generics</p>
 <p><a class="admonition-anchor-link" href="#admonition-solution1-convert-to-use-generics"></a></p>
 </summary>
 <div>
-<pre><pre class="playground"><code class="language-rust editable">struct Wrapper {
+<pre><pre class="playground"><code class="language-rust editable">// This powerful wrapper provides the ability to store a positive integer value.
+// Rewrite it using generics so that it supports wrapping ANY type.
+
+struct Wrapper { // fix here
     value: T,
 }
 

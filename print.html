@@ -443,7 +443,7 @@ fn indexing_tuple() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:40:52 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 10:45:35 UTC 2023 -->
 <!--te-->
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
 <p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
@@ -1939,7 +1939,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:40:55 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 10:45:40 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -2911,13 +2911,16 @@ Maybe we could update the explicit references to this data type somehow?</p>
 </blockquote>
 </div>
 </details>
-<details id="admonition-solution1-convert-to-use-generics" class="admonition success">
+<details id="admonition-solution1-convert-to-use-generics" class="admonition bug">
 <summary class="admonition-title">
 <p>solution1: convert to use generics</p>
 <p><a class="admonition-anchor-link" href="generics/generics.html#admonition-solution1-convert-to-use-generics"></a></p>
 </summary>
 <div>
-<pre><pre class="playground"><code class="language-rust editable">struct Wrapper {
+<pre><pre class="playground"><code class="language-rust editable">// This powerful wrapper provides the ability to store a positive integer value.
+// Rewrite it using generics so that it supports wrapping ANY type.
+
+struct Wrapper { // fix here
     value: T,
 }
 
@@ -4025,7 +4028,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:40:54 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 10:45:39 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -4435,7 +4438,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 10:40:54 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 10:45:38 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
