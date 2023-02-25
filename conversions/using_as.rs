@@ -16,6 +16,11 @@ fn average(values: &[f64]) -> f64 {
 fn main() {
     let values = [3.5, 0.3, 13.0, 11.7];
     println!("{}", average(&values));
+    // convert unit tests to here to run in the rust playground
+    fn returns_proper_type_and_value() {
+        assert_eq!(average(&[3.5, 0.3, 13.0, 11.7]), 7.125);
+    }
+    returns_proper_type_and_value();
 }
 
 #[cfg(test)]

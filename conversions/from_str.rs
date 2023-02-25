@@ -45,13 +45,49 @@ enum ParsePersonError {
 
 impl FromStr for Person {
     type Err = ParsePersonError;
-    fn from_str(s: &str) -> Result<Person, Self::Err> {
-    }
+    fn from_str(s: &str) -> Result<Person, Self::Err> {}
 }
 
 fn main() {
     let p = "Mark,20".parse::<Person>().unwrap();
     println!("{:?}", p);
+    // convert unit tests to here to run in the rust playground
+    assert_eq!("".parse::<Person>(), Err(ParsePersonError::Empty));
+    let p = "John,32".parse::<Person>();
+    assert!(p.is_ok());
+    let p = p.unwrap();
+    assert_eq!(p.name, "John");
+    assert_eq!(p.age, 32);
+    assert!(matches!(
+            "John,".parse::<Person>(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+
+    assert!(matches!(
+            "John,twenty".parse::<Person>(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+
+    assert_eq!("John".parse::<Person>(), Err(ParsePersonError::BadLen));
+
+    assert_eq!(",1".parse::<Person>(), Err(ParsePersonError::NoName));
+
+    assert!(matches!(
+            ",".parse::<Person>(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+
+    assert!(matches!(
+            ",one".parse::<Person>(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+
+    assert_eq!("John,32,".parse::<Person>(), Err(ParsePersonError::BadLen));
+
+    assert_eq!(
+        "John,32,man".parse::<Person>(),
+        Err(ParsePersonError::BadLen)
+    );
 }
 
 #[cfg(test)]
@@ -62,6 +98,7 @@ mod tests {
     fn empty_input() {
         assert_eq!("".parse::<Person>(), Err(ParsePersonError::Empty));
     }
+
     #[test]
     fn good_input() {
         let p = "John,32".parse::<Person>();
@@ -70,6 +107,7 @@ mod tests {
         assert_eq!(p.name, "John");
         assert_eq!(p.age, 32);
     }
+
     #[test]
     fn missing_age() {
         assert!(matches!(

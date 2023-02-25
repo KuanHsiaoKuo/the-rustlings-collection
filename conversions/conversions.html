@@ -198,7 +198,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Feb 25 12:56:48 UTC 2023 -->
+<!-- Added by: runner, at: Sat Feb 25 13:13:52 UTC 2023 -->
 <!--te-->
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
 <p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
@@ -328,10 +328,13 @@ fn main() {
 <p>Add AsRef<str> as a trait bound to the functions.</p>
 </div>
 </details>
-<details id="admonition-solution-compare-to-traits4httpskuanhsiaokuogithubiothe-rustlings-collectiontraitstraitshtml" class="admonition bug">
+<blockquote>
+<p>compare to <a href="https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html">traits4</a></p>
+</blockquote>
+<details id="admonition-solution1-generic-trait-bounds" class="admonition success">
 <summary class="admonition-title">
-<p>solution: compare to <a href="https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html">traits4</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-solution-compare-to-traits4httpskuanhsiaokuogithubiothe-rustlings-collectiontraitstraitshtml"></a></p>
+<p>solution1: generic trait bounds</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution1-generic-trait-bounds"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
@@ -350,6 +353,48 @@ fn char_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
 // implement the function body.
 fn num_sq&lt;T: AsMut&lt;u32&gt;&gt;(arg: &amp;mut T) {
     *arg.as_mut() *= *arg.as_mut()
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution2-impl-trait-bounds" class="admonition success">
+<summary class="admonition-title">
+<p>solution2: impl trait bounds</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution2-impl-trait-bounds"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter(arg: impl AsRef&lt;str&gt;) -&gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn char_counterd(arg: impl AsRef&lt;str&gt;) -&gt; usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using AsMut. Add the trait bound as is appropriate and
+// implement the function body.
+fn num_sq(arg: &amp;mut impl AsRef&lt;str&gt;) {
+    *arg.as_mut() *= *arg.as_mut()
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution3-where-clause" class="admonition success">
+<summary class="admonition-title">
+<p>solution3: where clause</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution3-where-clause"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter&lt;T&gt;(arg: T) -&gt; usize
+where T: AsRef&lt;str&gt;
+{
+    arg.as_ref().as_bytes().len()
 }
 </code></pre></pre>
 </div>
@@ -401,8 +446,7 @@ impl Default for Person {
 // I AM NOT DONE
 
 impl From&lt;&amp;str&gt; for Person {
-    fn from(s: &amp;str) -&gt; Person {
-    }
+    fn from(s: &amp;str) -&gt; Person {}
 }
 
 fn main() {
@@ -412,11 +456,57 @@ fn main() {
     let p2: Person = &quot;Gerald,70&quot;.into();
     println!(&quot;{:?}&quot;, p1);
     println!(&quot;{:?}&quot;, p2);
+    // convert unit tests to here to run in the rust playground
+    // Test that the default person is 30 year old John
+    let dp = Person::default();
+    assert_eq!(dp.name, &quot;John&quot;);
+    assert_eq!(dp.age, 30);
+    // Test that John is returned when bad string is provided
+    let p = Person::from(&quot;&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+    // Test that &quot;Mark,20&quot; works
+    let p = Person::from(&quot;Mark,20&quot;);
+    assert_eq!(p.name, &quot;Mark&quot;);
+    assert_eq!(p.age, 20);
+    // Test that &quot;Mark,twenty&quot; will return the default person due to an error in parsing age
+    let p = Person::from(&quot;Mark,twenty&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+
+    let p: Person = Person::from(&quot;Mark&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+
+    let p: Person = Person::from(&quot;Mark,&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+
+    let p: Person = Person::from(&quot;,1&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+
+    let p: Person = Person::from(&quot;,&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+
+    let p: Person = Person::from(&quot;,one&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+
+    let p: Person = Person::from(&quot;Mike,32,&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
+
+    let p: Person = Person::from(&quot;Mike,32,man&quot;);
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 30);
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
     #[test]
     fn test_default() {
         // Test that the default person is 30 year old John
@@ -424,6 +514,7 @@ mod tests {
         assert_eq!(dp.name, &quot;John&quot;);
         assert_eq!(dp.age, 30);
     }
+
     #[test]
     fn test_bad_convert() {
         // Test that John is returned when bad string is provided
@@ -431,6 +522,7 @@ mod tests {
         assert_eq!(p.name, &quot;John&quot;);
         assert_eq!(p.age, 30);
     }
+
     #[test]
     fn test_good_convert() {
         // Test that &quot;Mark,20&quot; works
@@ -438,6 +530,7 @@ mod tests {
         assert_eq!(p.name, &quot;Mark&quot;);
         assert_eq!(p.age, 20);
     }
+
     #[test]
     fn test_bad_age() {
         // Test that &quot;Mark,twenty&quot; will return the default person due to an error in parsing age
@@ -552,13 +645,49 @@ enum ParsePersonError {
 
 impl FromStr for Person {
     type Err = ParsePersonError;
-    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
-    }
+    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {}
 }
 
 fn main() {
     let p = &quot;Mark,20&quot;.parse::&lt;Person&gt;().unwrap();
     println!(&quot;{:?}&quot;, p);
+    // convert unit tests to here to run in the rust playground
+    assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
+    let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
+    assert!(p.is_ok());
+    let p = p.unwrap();
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 32);
+    assert!(matches!(
+            &quot;John,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+
+    assert!(matches!(
+            &quot;John,twenty&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+
+    assert_eq!(&quot;John&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+
+    assert_eq!(&quot;,1&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::NoName));
+
+    assert!(matches!(
+            &quot;,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+
+    assert!(matches!(
+            &quot;,one&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+
+    assert_eq!(&quot;John,32,&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+
+    assert_eq!(
+        &quot;John,32,man&quot;.parse::&lt;Person&gt;(),
+        Err(ParsePersonError::BadLen)
+    );
 }
 
 #[cfg(test)]
@@ -569,6 +698,7 @@ mod tests {
     fn empty_input() {
         assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
     }
+
     #[test]
     fn good_input() {
         let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
@@ -577,6 +707,7 @@ mod tests {
         assert_eq!(p.name, &quot;John&quot;);
         assert_eq!(p.age, 32);
     }
+
     #[test]
     fn missing_age() {
         assert!(matches!(
@@ -715,6 +846,117 @@ fn main() {
     // or take slice within round brackets and use TryInto
     let c4: Result&lt;Color, _&gt; = (&amp;v[..]).try_into();
     println!(&quot;{:?}&quot;, c4);
+    // convert unit tests to here to run in the rust playground
+    fn test_tuple_out_of_range_positive() {
+        assert_eq!(
+            Color::try_from((256, 1000, 10000)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    fn test_tuple_out_of_range_negative() {
+        assert_eq!(
+            Color::try_from((-1, -10, -256)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    fn test_tuple_sum() {
+        assert_eq!(
+            Color::try_from((-1, 255, 255)),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    fn test_tuple_correct() {
+        let c: Result&lt;Color, _&gt; = (183, 65, 14).try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    fn test_array_out_of_range_positive() {
+        let c: Result&lt;Color, _&gt; = [1000, 10000, 256].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    fn test_array_out_of_range_negative() {
+        let c: Result&lt;Color, _&gt; = [-10, -256, -1].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    fn test_array_sum() {
+        let c: Result&lt;Color, _&gt; = [-1, 255, 255].try_into();
+        assert_eq!(c, Err(IntoColorError::IntConversion));
+    }
+    fn test_array_correct() {
+        let c: Result&lt;Color, _&gt; = [183, 65, 14].try_into();
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    fn test_slice_out_of_range_positive() {
+        let arr = [10000, 256, 1000];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    fn test_slice_out_of_range_negative() {
+        let arr = [-256, -1, -10];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    fn test_slice_sum() {
+        let arr = [-1, 255, 255];
+        assert_eq!(
+            Color::try_from(&amp;arr[..]),
+            Err(IntoColorError::IntConversion)
+        );
+    }
+    fn test_slice_correct() {
+        let v = vec![183, 65, 14];
+        let c: Result&lt;Color, _&gt; = Color::try_from(&amp;v[..]);
+        assert!(c.is_ok());
+        assert_eq!(
+            c.unwrap(),
+            Color {
+                red: 183,
+                green: 65,
+                blue: 14
+            }
+        );
+    }
+    fn test_slice_excess_length() {
+        let v = vec![0, 0, 0, 0];
+        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
+    }
+    fn test_slice_insufficient_length() {
+        let v = vec![0, 0];
+        assert_eq!(Color::try_from(&amp;v[..]), Err(IntoColorError::BadLen));
+    }
+    test_tuple_out_of_range_positive();
+    test_tuple_out_of_range_negative();
+    test_tuple_sum();
+    test_tuple_correct();
+    test_array_out_of_range_positive();
+    test_array_out_of_range_negative();
+    test_array_sum();
+    test_array_correct();
+    test_slice_out_of_range_positive();
+    test_slice_out_of_range_negative();
+    test_slice_sum();
+    test_slice_correct();
+    test_slice_excess_length();
+    test_slice_insufficient_length();
 }
 
 #[cfg(test)]
@@ -860,6 +1102,11 @@ fn average(values: &amp;[f64]) -&gt; f64 {
 fn main() {
     let values = [3.5, 0.3, 13.0, 11.7];
     println!(&quot;{}&quot;, average(&amp;values));
+    // convert unit tests to here to run in the rust playground
+    fn returns_proper_type_and_value() {
+        assert_eq!(average(&amp;[3.5, 0.3, 13.0, 11.7]), 7.125);
+    }
+    returns_proper_type_and_value();
 }
 
 #[cfg(test)]
