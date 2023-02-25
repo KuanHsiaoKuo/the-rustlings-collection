@@ -37,6 +37,8 @@ You need to tell the compiler what type we are pushing onto this vector.
 ```
 ~~~
 
+---
+
 ~~~admonish failure title="generics2" collapsible=true
 ```rust,editable
 {{#include generics2.rs}}
