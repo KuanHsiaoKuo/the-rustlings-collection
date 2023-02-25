@@ -15,17 +15,23 @@ impl Wrapper {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+//
+//     #[test]
+//     fn store_u32_in_wrapper() {
+//         assert_eq!(Wrapper::new(42).value, 42);
+//     }
+//
+//     #[test]
+//     fn store_str_in_wrapper() {
+//         assert_eq!(Wrapper::new("Foo").value, "Foo");
+//     }
+// }
 
-    #[test]
-    fn store_u32_in_wrapper() {
-        assert_eq!(Wrapper::new(42).value, 42);
-    }
-
-    #[test]
-    fn store_str_in_wrapper() {
-        assert_eq!(Wrapper::new("Foo").value, "Foo");
-    }
+// change to run in playground
+fn main() {
+    assert_eq!(Wrapper::new(42).value, 42);
+    assert_eq!(Wrapper::new("Foo".value, "Foo"));
 }

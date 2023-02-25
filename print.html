@@ -2781,7 +2781,7 @@ The simplest and most common use of generics is for type parameters.</p>
 <li><a href="https://doc.rust-lang.org/rust-by-example/generics/bounds.html">Bounds</a></li>
 </ul>
 <h2 id="rustlings-10"><a class="header" href="#rustlings-10">Rustlings</a></h2>
-<details id="admonition-generics1" class="admonition note">
+<details id="admonition-generics1" class="admonition failure">
 <summary class="admonition-title">
 <p>generics1</p>
 <p><a class="admonition-anchor-link" href="generics/generics.html#admonition-generics1"></a></p>
@@ -2814,7 +2814,7 @@ fn main() {
 You need to tell the compiler what type we are pushing onto this vector.</p>
 </div>
 </details>
-<details id="admonition-solution1-str" class="admonition note">
+<details id="admonition-solution1-str" class="admonition success">
 <summary class="admonition-title">
 <p>solution1: &amp;str</p>
 <p><a class="admonition-anchor-link" href="generics/generics.html#admonition-solution1-str"></a></p>
@@ -2832,7 +2832,7 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-solution2-string" class="admonition note">
+<details id="admonition-solution2-string" class="admonition bug">
 <summary class="admonition-title">
 <p>solution2: String</p>
 <p><a class="admonition-anchor-link" href="generics/generics.html#admonition-solution2-string"></a></p>
@@ -2850,7 +2850,7 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-generics2" class="admonition note">
+<details id="admonition-generics2" class="admonition failure">
 <summary class="admonition-title">
 <p>generics2</p>
 <p><a class="admonition-anchor-link" href="generics/generics.html#admonition-generics2"></a></p>
@@ -2873,19 +2873,25 @@ impl Wrapper {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+//
+//     #[test]
+//     fn store_u32_in_wrapper() {
+//         assert_eq!(Wrapper::new(42).value, 42);
+//     }
+//
+//     #[test]
+//     fn store_str_in_wrapper() {
+//         assert_eq!(Wrapper::new(&quot;Foo&quot;).value, &quot;Foo&quot;);
+//     }
+// }
 
-    #[test]
-    fn store_u32_in_wrapper() {
-        assert_eq!(Wrapper::new(42).value, 42);
-    }
-
-    #[test]
-    fn store_str_in_wrapper() {
-        assert_eq!(Wrapper::new(&quot;Foo&quot;).value, &quot;Foo&quot;);
-    }
+// change to run in playground
+fn main() {
+    assert_eq!(Wrapper::new(42).value, 42);
+    assert_eq!(Wrapper::new(&quot;Foo&quot;.value, &quot;Foo&quot;));
 }
 </code></pre></pre>
 </div>
@@ -2904,7 +2910,16 @@ Maybe we could update the explicit references to this data type somehow?</p>
 </blockquote>
 </div>
 </details>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
+<details id="admonition-solution1-convert-to-use-generics" class="admonition success">
+<summary class="admonition-title">
+<p>solution1: convert to use generics</p>
+<p><a class="admonition-anchor-link" href="generics/generics.html#admonition-solution1-convert-to-use-generics"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">{{#include generics2_solution1.rs}}
+</code></pre></pre>
+</div>
+</details><div style="break-before: page; page-break-before: always;"></div><h1 id="macros"><a class="header" href="#macros">Macros</a></h1>
 <p>Rust’s macro system is very powerful, but also kind of difficult to wrap your
 head around. We’re not going to teach you how to write your own fully-featured
 macros. Instead, we’ll show you how to use and create them.</p>
