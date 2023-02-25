@@ -10,5 +10,5 @@ impl<T> Wrapper<T> {
 
 fn main() {
     assert_eq!(Wrapper::new(42).value, 42);
-    assert_eq!(Wrapper::new("Foo".value, "Foo"));
+    assert_eq!(Wrapper::new("Foo").value, "Foo");
 }
