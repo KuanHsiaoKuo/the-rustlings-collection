@@ -259,6 +259,16 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-hint" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint"></a></p>
+</summary>
+<div>
+<p>A discussion about Traits in Rust can be found at:
+<a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html">🪐Traits: Defining Shared Behavior - The Rust Programming Language</a></p>
+</div>
+</details>
 <hr />
 <details id="admonition-traits2" class="admonition note">
 <summary class="admonition-title">
@@ -306,6 +316,20 @@ fn main() {
     assert_eq!(foo.pop().unwrap(), String::from(&quot;Foo&quot;));
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-1" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-1"></a></p>
+</summary>
+<div>
+<p>Notice how the trait takes ownership of ‘self’,and returns <code>Self</code>.
+Try mutating the incoming string vector. Have a look at the tests to see
+what the result should look like!</p>
+<p>Vectors provide suitable methods for adding an element at the end. See
+the documentation at: 
+<a href="https://doc.rust-lang.org/std/vec/struct.Vec.html">Vec in std::vec - Rust</a></p>
 </div>
 </details>
 <hr />
@@ -367,6 +391,19 @@ fn main() {
     assert_eq!(some_software.licensing_info(), licensing_info);
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-2" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-2"></a></p>
+</summary>
+<div>
+<p>Traits can have a default implementation for functions. Structs that implement
+the trait can then use the default version of these functions if they choose not
+implement the function themselves.</p>
+<p>See the documentation at: 
+<a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html#default-implementations">🪐Traits: Defining Shared Behavior &gt;&gt; Default Implementations - The Rust Programming Language</a></p>
 </div>
 </details>
 <hr />
@@ -441,6 +478,18 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-hint-3" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-3"></a></p>
+</summary>
+<div>
+<p>Instead of using concrete types as parameters you can use traits. Try replacing the
+‘??’ with ‘impl &lt;what goes here?&gt;’</p>
+<p>See the documentation at:
+<a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html#traits-as-parameters">🪐Traits: Defining Shared Behavior &gt;&gt; Traits as Parameters - The Rust Programming Language</a></p>
+</div>
+</details>
 <hr />
 <details id="admonition-traits5" class="admonition note">
 <summary class="admonition-title">
@@ -486,6 +535,18 @@ fn main() {
     some_func(OtherStruct {});
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-4" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-4"></a></p>
+</summary>
+<div>
+<p>To ensure a parameter implements multiple traits use the ‘+ syntax’. Try replacing the
+‘??’ with ‘impl &lt;&gt; + &lt;&gt;’.</p>
+<p>See the documentation at:
+<a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-02-traits.html#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the + Syntax</a></p>
 </div>
 </details>
 
