@@ -59,7 +59,9 @@ and [AsMut in std::convert - Rust](https://doc.rust-lang.org/std/convert/trait.A
 Add AsRef<str> as a trait bound to the functions.
 ~~~
 
-~~~admonish bug title="solution: compare to [traits4](https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html)" collapsible=true
+> compare to [traits4](https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html)
+
+~~~admonish success title="solution1: generic trait bounds" collapsible=true
 ```rust,editable
 // Obtain the number of bytes (not characters) in the given argument
 // Add the AsRef trait appropriately as a trait bound
@@ -77,6 +79,40 @@ fn char_counter<T: AsRef<str>>(arg: T) -> usize {
 // implement the function body.
 fn num_sq<T: AsMut<u32>>(arg: &mut T) {
     *arg.as_mut() *= *arg.as_mut()
+}
+```
+~~~
+
+~~~admonish success title="solution2: impl trait bounds" collapsible=true
+```rust,editable
+// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter(arg: impl AsRef<str>) -> usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn char_counterd(arg: impl AsRef<str>) -> usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using AsMut. Add the trait bound as is appropriate and
+// implement the function body.
+fn num_sq(arg: &mut impl AsRef<str>) {
+    *arg.as_mut() *= *arg.as_mut()
+}
+```
+~~~
+
+~~~admonish success title="solution3: where clause" collapsible=true
+```rust,editable
+// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter<T>(arg: T) -> usize
+where T: AsRef<str>
+{
+    arg.as_ref().as_bytes().len()
 }
 ```
 ~~~
