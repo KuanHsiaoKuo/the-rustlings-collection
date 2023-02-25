@@ -4,8 +4,7 @@
 
 // I AM NOT DONE
 
-#[test]
-fn slice_out_of_array() {
+fn main() {
     let a = [1, 2, 3, 4, 5];
 
     let nice_slice = ???
