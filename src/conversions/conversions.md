@@ -1,14 +1,15 @@
 # Type conversions
 
 <!--ts-->
+
 * [Type conversions](#type-conversions)
-   * [Further information](#further-information)
-   * [Rustlings](#rustlings)
-      * [as_ref_mut](#as_ref_mut)
-      * [from_into](#from_into)
-      * [from_str](#from_str)
-      * [try_from_into](#try_from_into)
-      * [using_as](#using_as)
+    * [Further information](#further-information)
+    * [Rustlings](#rustlings)
+        * [as_ref_mut](#as_ref_mut)
+        * [from_into](#from_into)
+        * [from_str](#from_str)
+        * [try_from_into](#try_from_into)
+        * [using_as](#using_as)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Sat Feb 25 12:47:10 UTC 2023 -->
@@ -31,6 +32,8 @@ then `let p: Person = "Mark,20".parse().unwrap()` should both compile and run wi
 
 These should be the main ways ***within the standard library*** to convert data into your desired types.
 
+- solutions: [rustlings-solutions-5/conversions at main · gaveen/rustlings-solutions-5](https://github.com/gaveen/rustlings-solutions-5/tree/main/conversions)
+
 ## Further information
 
 These are not directly covered in the book, but the standard library has a great documentation for it.
@@ -42,9 +45,40 @@ These are not directly covered in the book, but the standard library has a great
 
 ### as_ref_mut
 
+> `AsRef` and `AsMut` allow for cheap reference-to-reference conversions.
+
+Read more about them at [AsRef in std::convert - Rust](https://doc.rust-lang.org/std/convert/trait.AsRef.html)
+and [AsMut in std::convert - Rust](https://doc.rust-lang.org/std/convert/trait.AsMut.html), respectively.
+
 ~~~admonish note title="as_ref_mut" collapsible=true
 ```rust,editable
 {{#include as_ref_mut.rs}}
+```
+~~~
+
+~~~admonish tip title="Hint" collapsible=true
+Add AsRef<str> as a trait bound to the functions.
+~~~
+
+~~~admonish bug title="solution: compare to [traits4](https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html)" collapsible=true
+```rust,editable
+// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter<T: AsRef<str>>(arg: T) -> usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn char_counter<T: AsRef<str>>(arg: T) -> usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using AsMut. Add the trait bound as is appropriate and
+// implement the function body.
+fn num_sq<T: AsMut<u32>>(arg: &mut T) {
+    *arg.as_mut() *= *arg.as_mut()
+}
 ```
 ~~~
 
