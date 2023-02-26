@@ -19,7 +19,7 @@ the other useful data structure, hash maps, later.
 
 ## Rustlings
 
-~~~admonish note title="vecs1: [i32; 4] or Vec<i32>" collapsible=true
+~~~admonish note title="vecs1: [i32; 4] or vec!\<i32\>" collapsible=true
 ```rust,editable
 {{#include vecs1.rs}}
 ```
