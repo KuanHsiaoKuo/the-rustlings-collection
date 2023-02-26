@@ -13,6 +13,12 @@ fn array_and_vec() -> ([i32; 4], Vec<i32>) {
     (a, v)
 }
 
+// convert unit tests to main here
+fn main() {
+    let (a, v) = array_and_vec();
+    assert_eq!(a, v[..]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
