@@ -13,3 +13,7 @@ rustlings使用起来确实很方便，其代码也值得研究，是常见的ru
 ## admonish-mdbook
 
 [Reference - The mdbook-admonish book](https://tommilligan.github.io/mdbook-admonish/reference.html)
+
+## 单元测试与main函数
+
+rustlings默认代码中大都使用单元测试进行验证，这也和其本身用意相符：通过编译器的测试。但是我都手动转为main函数，这是为了方便在网页上可以在rust playground中执行。
