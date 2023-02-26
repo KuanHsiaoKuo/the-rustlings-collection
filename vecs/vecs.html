@@ -190,15 +190,16 @@ useful enough to talk about them a bit earlier. We shall be talking about
 the other useful data structure, hash maps, later.</p>
 <h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
 <ul>
-<li><a href="https://doc.rust-lang.org/stable/book/ch08-01-vectors.html">Storing Lists of Values with Vectors</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch08-01-vectors.html">Vectors: Storing Lists of The Same Type of Values - The Rust Programming Language</a></li>
 <li><a href="https://doc.rust-lang.org/std/primitive.slice.html#method.iter_mut"><code>iter_mut</code></a></li>
 <li><a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map"><code>map</code></a></li>
+<li><a href="https://github.com/gaveen/rustlings-solutions-5/tree/main/vecs">rustlings-solutions-5/vecs at main · gaveen/rustlings-solutions-5</a></li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
-<details id="admonition-vecs1" class="admonition note">
+<details id="admonition-vecs1-i32-4-or-vec" class="admonition note">
 <summary class="admonition-title">
-<p>vecs1</p>
-<p><a class="admonition-anchor-link" href="#admonition-vecs1"></a></p>
+<p>vecs1: [i32; 4] or Vec<i32></p>
+<p><a class="admonition-anchor-link" href="#admonition-vecs1-i32-4-or-vec"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// vecs1.rs
@@ -216,6 +217,12 @@ fn array_and_vec() -&gt; ([i32; 4], Vec&lt;i32&gt;) {
     (a, v)
 }
 
+// convert unit tests to main here
+fn main() {
+    let (a, v) = array_and_vec();
+    assert_eq!(a, v[..]);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -229,6 +236,34 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-hint" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint"></a></p>
+</summary>
+<div>
+<p>In Rust, there are two ways to define a Vector.</p>
+<ol>
+<li>One way is to use the <code>Vec::new()</code> function to create a new vector
+and fill it with the <code>push()</code> method.</li>
+<li>The second way, which is simpler is to use the <code>vec![]</code> macro and
+define your elements inside the square brackets.
+Check this chapter: <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch08-01-vectors.html">Vectors: Storing Lists of The Same Type of Values - The Rust Programming Language</a>
+of the Rust book to learn more.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-solution1" class="admonition success">
+<summary class="admonition-title">
+<p>solution1</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">let v = vec![10, 20, 30, 40];
+</code></pre></pre>
+</div>
+</details>
+<hr />
 <details id="admonition-vecs2" class="admonition note">
 <summary class="admonition-title">
 <p>vecs2</p>
@@ -264,6 +299,26 @@ fn vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
     }).collect()
 }
 
+// convert unit tests to main here
+fn main(){
+    fn test_vec_loop() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_loop(v.clone());
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+
+    fn test_vec_map() {
+        let v: Vec&lt;i32&gt; = (1..).filter(|x| x % 2 == 0).take(5).collect();
+        let ans = vec_map(&amp;v);
+
+        assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
+    }
+    test_vec_loop();
+    test_vec_map();
+
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -283,6 +338,44 @@ mod tests {
 
         assert_eq!(ans, v.iter().map(|x| x * 2).collect::&lt;Vec&lt;i32&gt;&gt;());
     }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-1" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-1"></a></p>
+</summary>
+<div>
+<p>Hint 1: <code>i</code> is each element from the Vec as they are being iterated. Can you try
+multiplying this?</p>
+<p>Hint 2: For the first function, there’s a way to directly access the numbers stored
+in the Vec, using the * dereference operator. You can both access and write to the
+number that way.</p>
+<p>After you’ve completed both functions, decide for yourself which approach you like
+better. What do you think is the more commonly used pattern under Rust developers?</p>
+</div>
+</details>
+<details id="admonition-solution1-1" class="admonition success">
+<summary class="admonition-title">
+<p>solution1</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution1-1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">fn vec_loop(mut v: Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    for i in v.iter_mut() {
+      *i *= 2;
+    }
+
+    // At this point, `v` should be equal to [4, 8, 12, 16, 20].
+    v
+}
+
+fn vec_map(v: &amp;Vec&lt;i32&gt;) -&gt; Vec&lt;i32&gt; {
+    v.iter().map(|num| {
+        num*2
+    }).collect()
 }
 </code></pre></pre>
 </div>
