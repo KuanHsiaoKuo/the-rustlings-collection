@@ -5,7 +5,7 @@
     - [intro](intro/intro.md)
     - [类型系统](type_system.md)
         - [primitive_types](primitive_types/primitive_types.md)
-        - [✨conversions](conversions/conversions.md)
+        - [✨conversions: as、from or into traits series](conversions/conversions.md)
         - [vecs](vecs/vecs.md)
         - [hashmaps](hashmaps/hashmaps.md)
         - [error_handling](error_handling/error_handling.md)
