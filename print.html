@@ -632,31 +632,49 @@ fn main() {
 <li><a href="conversions/conversions.html#further-information">Further information</a></li>
 <li><a href="conversions/conversions.html#rustlings">Rustlings</a>
 <ul>
-<li><a href="conversions/conversions.html#as_ref_mut">as_ref_mut</a></li>
-<li><a href="conversions/conversions.html#from_into">from_into</a></li>
-<li><a href="conversions/conversions.html#from_str">from_str</a></li>
-<li><a href="conversions/conversions.html#try_from_into">try_from_into</a></li>
-<li><a href="conversions/conversions.html#using_as">using_as</a></li>
+<li><a href="conversions/conversions.html#as_ref_mut-reference-to-reference">as_ref_mut: reference-to-reference</a></li>
+<li><a href="conversions/conversions.html#from_into-value-to-value">from_into: value-to-value</a></li>
+<li><a href="conversions/conversions.html#try_from_into-try-value-to-value">try_from_into: try value-to-value</a></li>
+<li><a href="conversions/conversions.html#from_str-convert-str-to-target-type">from_str: convert str to target type</a></li>
+<li><a href="conversions/conversions.html#using-as-type-casting">using as: type casting</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Feb 26 04:20:02 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:38:44 UTC 2023 -->
 <!--te-->
+<blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
-<p>The simplest form of type conversion is a type cast expression. It is denoted with the binary operator <code>as</code>. For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
-exercise <a href="conversions/using_as.rs"><code>using_as</code></a> tries to cover this.</p>
-<p>Rust also offers traits that facilitate type conversions upon implementation. These traits can be found under the <a href="https://doc.rust-lang.org/std/convert/index.html"><code>convert</code></a> module.
-The traits are the following:</p>
+</blockquote>
+<ol>
+<li>The simplest form of type conversion is a type cast expression.</li>
+</ol>
+<blockquote>
+<p>It is denoted with the binary operator <code>as</code>.</p>
+</blockquote>
+<p>For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
+exercise <a href="conversions/conversions.html#using_as"><code>using_as</code></a> tries to cover this.</p>
+<ol start="2">
+<li>Rust also offers traits that facilitate type conversions upon implementation.</li>
+</ol>
+<blockquote>
+<p>These traits can be found under the <a href="https://doc.rust-lang.org/std/convert/index.html"><code>convert</code></a> module.</p>
+</blockquote>
+<p>The traits are the following:</p>
 <ul>
-<li><code>From</code> and <code>Into</code> covered in <a href="conversions/from_into.rs"><code>from_into</code></a></li>
-<li><code>TryFrom</code> and <code>TryInto</code> covered in <a href="conversions/try_from_into.rs"><code>try_from_into</code></a></li>
-<li><code>AsRef</code> and <code>AsMut</code> covered in <a href="conversions/as_ref_mut.rs"><code>as_ref_mut</code></a></li>
+<li><code>From</code> and <code>Into</code> covered in <a href="conversions/conversions.html#from_into"><code>from_into</code></a></li>
+<li><code>TryFrom</code> and <code>TryInto</code> covered in <a href="conversions/conversions.html#try_from_into"><code>try_from_into</code></a></li>
+<li><code>AsRef</code> and <code>AsMut</code> covered in <a href="conversions/conversions.html#as_ref_mut"><code>as_ref_mut</code></a></li>
 </ul>
-<p>Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings. If properly implemented for a given type <code>Person</code>,
+<ol start="3">
+<li>Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings.</li>
+</ol>
+<blockquote>
+<p>If properly implemented for a given type <code>Person</code>,
 then <code>let p: Person = &quot;Mark,20&quot;.parse().unwrap()</code> should both compile and run without panicking.</p>
+</blockquote>
 <p>These should be the main ways <em><strong>within the standard library</strong></em> to convert data into your desired types.</p>
 <ul>
 <li>solutions: <a href="https://github.com/gaveen/rustlings-solutions-5/tree/main/conversions">rustlings-solutions-5/conversions at main · gaveen/rustlings-solutions-5</a></li>
@@ -668,16 +686,16 @@ then <code>let p: Person = &quot;Mark,20&quot;.parse().unwrap()</code> should bo
 <li><a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code> trait</a></li>
 </ul>
 <h2 id="rustlings-2"><a class="header" href="#rustlings-2">Rustlings</a></h2>
-<h3 id="as_ref_mut"><a class="header" href="#as_ref_mut">as_ref_mut</a></h3>
+<h3 id="as_ref_mut-reference-to-reference"><a class="header" href="#as_ref_mut-reference-to-reference">as_ref_mut: reference-to-reference</a></h3>
 <blockquote>
 <p><code>AsRef</code> and <code>AsMut</code> allow for cheap reference-to-reference conversions.</p>
 </blockquote>
 <p>Read more about them at <a href="https://doc.rust-lang.org/std/convert/trait.AsRef.html">AsRef in std::convert - Rust</a>
 and <a href="https://doc.rust-lang.org/std/convert/trait.AsMut.html">AsMut in std::convert - Rust</a>, respectively.</p>
-<details id="admonition-as_ref_mut-add-appropriate-trait-bound" class="admonition note">
+<details id="admonition-as_ref_mut-three-ways-to-add-appropriate-trait-bound" class="admonition note">
 <summary class="admonition-title">
-<p>as_ref_mut: add appropriate trait bound</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-as_ref_mut-add-appropriate-trait-bound"></a></p>
+<p>as_ref_mut: Three ways to add appropriate trait bound</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-as_ref_mut-three-ways-to-add-appropriate-trait-bound"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// AsRef and AsMut allow for cheap reference-to-reference conversions.
@@ -844,10 +862,14 @@ where T: AsRef&lt;str&gt;
 </code></pre></pre>
 </div>
 </details>
-<h3 id="from_into"><a class="header" href="#from_into">from_into</a></h3>
+<h3 id="from_into-value-to-value"><a class="header" href="#from_into-value-to-value">from_into: value-to-value</a></h3>
 <ul>
-<li>The From trait is used for value-to-value conversions.</li>
-<li>If From is implemented correctly for a type, the Into trait should work conversely.</li>
+<li>The From trait is used for <code>value-to-value</code> conversions.</li>
+</ul>
+<blockquote>
+<p>If From is implemented correctly for a type, the Into trait should work conversely.</p>
+</blockquote>
+<ul>
 <li>You can read more about it at: <a href="https://doc.rust-lang.org/std/convert/trait.From.html">From in std::convert - Rust</a></li>
 </ul>
 <blockquote>
@@ -866,13 +888,13 @@ where T: AsRef&lt;str&gt;
 <li>Split the given string on the commas present in it</li>
 <li>Extract the first element from the split operation and use it as the name</li>
 <li>If the name is empty, then return the default of Person</li>
-<li>Extract the other element from the split operation and parse it into a <code>usize</code> as the age
-If while parsing the age, something goes wrong, then return the default of Person
-Otherwise, then return an instantiated Person object with the results</li>
+<li>Extract the other element from the split operation and parse it into a <code>usize</code> as the age</li>
+<li>If while parsing the age, something goes wrong, then return the default of Person</li>
+<li>Otherwise, then return an instantiated Person object with the results</li>
 </ol>
 <details id="admonition-from_into-we-implement-the-default-trait-to-use-it-as-a-fallback-when-the-provided-string-is-not-convertible-into-a-person-object" class="admonition note">
 <summary class="admonition-title">
-<p>from_into: We implement the Default trait to use it as a fallback when the provided string is not convertible into a Person object</p>
+<p>🌟from_into: We implement the Default trait to use it as a fallback when the provided string is not convertible into a Person object</p>
 <p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-from_into-we-implement-the-default-trait-to-use-it-as-a-fallback-when-the-provided-string-is-not-convertible-into-a-person-object"></a></p>
 </summary>
 <div>
@@ -1070,327 +1092,58 @@ mod tests {
 <p>Follow the steps provided right before the <code>From</code> implementation</p>
 </div>
 </details>
-<details id="admonition-solution" class="admonition success">
+<details id="admonition-solution-match---split_once---parse---into-or-default" class="admonition success">
 <summary class="admonition-title">
-<p>solution</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution"></a></p>
+<p>solution: match -&gt; split_once -&gt; parse::<usize> -&gt; into() or default()</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution-match---split_once---parse---into-or-default"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">impl From&lt;&amp;str&gt; for Person {
-    fn from(s: &amp;str) -&gt; Person {
+    fn from(s: &amp;str) -&gt; Person { // 2. Split the given string on the commas present in it
         match s.split_once(',') {
             Some((first, second)) =&gt; {
-                if first.is_empty() {
+                if first.is_empty() { // 4. If the name is empty, then return the default of Person
                     Person::default()
-                } else if let Ok(a) = second.parse::&lt;usize&gt;() {
+                } else if let Ok(a) = second.parse::&lt;usize&gt;() { // 5. Extract the other element from the split operation and parse it into a `usize` as the age
                     Person {
-                        name: first.into(),
-                        age: a,
+                        name: first.into(), // 3. Extract the first element from the split operation and use it as the name
+                        age: a, // 6. If while parsing the age, something goes wrong, then return the default of Person 
                     }
                 } else {
-                    Person::default()
+                    Person::default() // 7. Otherwise, then return an instantiated Person object with the results
                 }
             },
-            _ =&gt; Person::default(),
+            _ =&gt; Person::default(), // 1. If the length of the provided string is 0, then return the default of Person
         }
     }
 }
 </code></pre></pre>
 </div>
 </details>
-<h3 id="from_str"><a class="header" href="#from_str">from_str</a></h3>
+<h3 id="try_from_into-try-value-to-value"><a class="header" href="#try_from_into-try-value-to-value">try_from_into: try value-to-value</a></h3>
 <ul>
-<li>This is similar to from_into.rs, but this time we’ll implement <code>FromStr</code> and return errors instead of falling back to a default value.</li>
-<li>Additionally, upon implementing FromStr, you can use the <code>parse</code> method on strings to generate an object of the implementor type.</li>
-<li>You can read more about it at <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html">FromStr in std::str - Rust</a></li>
+<li>TryFrom is a simple and safe type conversion that may fail in <code>a controlled way</code> under some circumstances.</li>
+<li>Basically, this is the same as From.</li>
 </ul>
 <blockquote>
-<p>Steps:</p>
+<p>The main difference is that this should return a Result type instead of the target type itself.</p>
 </blockquote>
-<ol>
-<li>If the length of the provided string is 0, an error should be returned</li>
-<li>Split the given string on the commas present in it</li>
-<li>Only 2 elements should be returned from the split, otherwise return an error</li>
-<li>Extract the first element from the split operation and use it as the name</li>
-<li>Extract the other element from the split operation and parse it into a <code>usize</code> as the age
-with something like <code>&quot;4&quot;.parse::&lt;usize&gt;()</code></li>
-<li>If while extracting the name and the age something goes wrong, an error should be returned
-If everything goes well, then return a Result of a Person object</li>
-</ol>
-<p>As an aside: <code>Box&lt;dyn Error&gt;</code> implements <code>From&lt;&amp;'_ str&gt;</code>. This means that if you want to return a
-string error message, you can do so via just using return <code>Err(&quot;my error message&quot;.into())</code>.</p>
-<details id="admonition-from_str" class="admonition note">
-<summary class="admonition-title">
-<p>from_str</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-from_str"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// from_str.rs
-// This is similar to from_into.rs, but this time we'll implement `FromStr`
-// and return errors instead of falling back to a default value.
-// Additionally, upon implementing FromStr, you can use the `parse` method
-// on strings to generate an object of the implementor type.
-// You can read more about it at https://doc.rust-lang.org/std/str/trait.FromStr.html
-// Execute `rustlings hint from_str` or use the `hint` watch subcommand for a hint.
-
-use std::num::ParseIntError;
-use std::str::FromStr;
-
-#[derive(Debug, PartialEq)]
-struct Person {
-    name: String,
-    age: usize,
-}
-
-// We will use this error type for the `FromStr` implementation.
-#[derive(Debug, PartialEq)]
-enum ParsePersonError {
-    // Empty input string
-    Empty,
-    // Incorrect number of fields
-    BadLen,
-    // Empty name field
-    NoName,
-    // Wrapped error from parse::&lt;usize&gt;()
-    ParseInt(ParseIntError),
-}
-
-// I AM NOT DONE
-
-// Steps:
-// 1. If the length of the provided string is 0, an error should be returned
-// 2. Split the given string on the commas present in it
-// 3. Only 2 elements should be returned from the split, otherwise return an error
-// 4. Extract the first element from the split operation and use it as the name
-// 5. Extract the other element from the split operation and parse it into a `usize` as the age
-//    with something like `&quot;4&quot;.parse::&lt;usize&gt;()`
-// 6. If while extracting the name and the age something goes wrong, an error should be returned
-// If everything goes well, then return a Result of a Person object
-//
-// As an aside: `Box&lt;dyn Error&gt;` implements `From&lt;&amp;'_ str&gt;`. This means that if you want to return a
-// string error message, you can do so via just using return `Err(&quot;my error message&quot;.into())`.
-
-impl FromStr for Person {
-    type Err = ParsePersonError;
-    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {}
-}
-
-fn main() {
-    let p = &quot;Mark,20&quot;.parse::&lt;Person&gt;().unwrap();
-    println!(&quot;{:?}&quot;, p);
-    // convert unit tests to here to run in the rust playground
-    assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
-    let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
-    assert!(p.is_ok());
-    let p = p.unwrap();
-    assert_eq!(p.name, &quot;John&quot;);
-    assert_eq!(p.age, 32);
-    assert!(matches!(
-            &quot;John,&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::ParseInt(_))
-        ));
-
-    assert!(matches!(
-            &quot;John,twenty&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::ParseInt(_))
-        ));
-
-    assert_eq!(&quot;John&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
-
-    assert_eq!(&quot;,1&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::NoName));
-
-    assert!(matches!(
-            &quot;,&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
-        ));
-
-    assert!(matches!(
-            &quot;,one&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
-        ));
-
-    assert_eq!(&quot;John,32,&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
-
-    assert_eq!(
-        &quot;John,32,man&quot;.parse::&lt;Person&gt;(),
-        Err(ParsePersonError::BadLen)
-    );
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn empty_input() {
-        assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
-    }
-
-    #[test]
-    fn good_input() {
-        let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
-        assert!(p.is_ok());
-        let p = p.unwrap();
-        assert_eq!(p.name, &quot;John&quot;);
-        assert_eq!(p.age, 32);
-    }
-
-    #[test]
-    fn missing_age() {
-        assert!(matches!(
-            &quot;John,&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn invalid_age() {
-        assert!(matches!(
-            &quot;John,twenty&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn missing_comma_and_age() {
-        assert_eq!(&quot;John&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
-    }
-
-    #[test]
-    fn missing_name() {
-        assert_eq!(&quot;,1&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::NoName));
-    }
-
-    #[test]
-    fn missing_name_and_age() {
-        assert!(matches!(
-            &quot;,&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn missing_name_and_invalid_age() {
-        assert!(matches!(
-            &quot;,one&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
-        ));
-    }
-
-    #[test]
-    fn trailing_comma() {
-        assert_eq!(&quot;John,32,&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
-    }
-
-    #[test]
-    fn trailing_comma_and_some_string() {
-        assert_eq!(
-            &quot;John,32,man&quot;.parse::&lt;Person&gt;(),
-            Err(ParsePersonError::BadLen)
-        );
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<details id="admonition-hint-2" class="admonition tip">
-<summary class="admonition-title">
-<p>Hint</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-2"></a></p>
-</summary>
-<div>
-<ol>
-<li>The implementation of FromStr should return an Ok with a Person object,
-or an Err with an error if the string is not valid.</li>
-</ol>
-<p>This is almost like the <code>from_into</code> exercise, but returning errors instead
-of falling back to a default value.</p>
-<p>Look at the test cases to see which error variants to return.</p>
-<ol start="2">
-<li>
-<p>Another hint: You can use the <code>map_err</code> method of <code>Result</code> with a function
-or a closure to wrap the error from <code>parse::&lt;usize&gt;</code>.</p>
-</li>
-<li>
-<p>Yet another hint: If you would like to propagate errors by using the <code>?</code>
-operator in your solution, you might want to look at
-<a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/multiple_error_types/reenter_question_mark.html">Other uses of ? - The Rust Programming Language</a></p>
-</li>
-</ol>
-</div>
-</details>
-<details id="admonition-solution1" class="admonition failure">
-<summary class="admonition-title">
-<p>solution1</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution1"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// Using ParsePersonError::{Empty, BadLen, NoName, ParseInt} above
-impl FromStr for Person {
-    type Err = ParsePersonError;
-    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
-        if s.is_empty() {
-            Err(Empty) // i.e., Err(ParsePersonError::Empty)
-        } else {
-            let p: Vec&lt;&amp;str&gt; = s.split(',').collect();
-            if p.len() != 2 {
-                Err(BadLen)
-            } else if p[0].len() == 0 {
-                Err(NoName)
-            } else { 
-                match p[1].parse::&lt;usize&gt;() {
-                    Ok(a) =&gt; Ok(Person { name: p[0].to_string(), age: a }),
-                    Err(a) =&gt; Err(ParseInt(a)),
-                }
-            }
-        }
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<details id="admonition-solution2-parsepersonerrorerrortype" class="admonition success">
-<summary class="admonition-title">
-<p>solution2: ParsePersonError::{ErrorType}</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution2-parsepersonerrorerrortype"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// Using ParsePersonError::{Empty, BadLen, NoName, ParseInt} above
-impl FromStr for Person {
-    type Err = ParsePersonError;
-    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
-        if s.is_empty() {
-            Err(ParsePersonError::Empty) // i.e., Err(ParsePersonError::Empty)
-        } else {
-            let p: Vec&lt;&amp;str&gt; = s.split(',').collect();
-            if p.len() != 2 {
-                Err(ParsePersonError::BadLen)
-            } else if p[0].len() == 0 {
-                Err(ParsePersonError::NoName)
-            } else { 
-                match p[1].parse::&lt;usize&gt;() {
-                    Ok(a) =&gt; Ok(Person { name: p[0].to_string(), age: a }),
-                    Err(a) =&gt; Err(ParsePersonError::ParseInt(a)),
-                }
-            }
-        }
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<h3 id="try_from_into"><a class="header" href="#try_from_into">try_from_into</a></h3>
 <ul>
-<li>TryFrom is a simple and safe type conversion that may fail in a controlled way under some circumstances.</li>
-<li>Basically, this is the same as From.</li>
-<li>The main difference is that this should return a Result type
-instead of the target type itself.</li>
 <li>You can read more about it at: <a href="https://doc.rust-lang.org/std/convert/trait.TryFrom.html">TryFrom in std::convert - Rust</a></li>
 </ul>
-<details id="admonition-try_from_into" class="admonition note">
+<blockquote>
+<p>Your task is to complete this implementation:</p>
+</blockquote>
+<ol>
+<li>return an Ok result of inner type Color.</li>
+<li>You need to create an implementation for a <code>tuple</code> of three integers, an <code>array</code> of three integers, and a <code>slice</code> of integers.</li>
+<li>Note that the implementation for tuple and array will be checked at compile time, but the slice implementation needs to check the slice length!</li>
+<li>Also note that correct RGB color values must be integers in the 0..=255 range.</li>
+</ol>
+<details id="admonition-try_from_into-with-challenge" class="admonition note">
 <summary class="admonition-title">
-<p>try_from_into</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-try_from_into"></a></p>
+<p>⚡️try_from_into: with challenge</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-try_from_into-with-challenge"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// try_from_into.rs
@@ -1697,10 +1450,10 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-hint-3" class="admonition tip">
+<details id="admonition-hint-2" class="admonition tip">
 <summary class="admonition-title">
 <p>Hint</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-3"></a></p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-2"></a></p>
 </summary>
 <div>
 <ol>
@@ -1725,10 +1478,10 @@ operator in your solution, you might want to look at:
 </ol>
 </div>
 </details>
-<details id="admonition-solution-1" class="admonition success">
+<details id="admonition-solution-essentially-return-to-run-the-implementation-of-tuple" class="admonition success">
 <summary class="admonition-title">
-<p>solution</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution-1"></a></p>
+<p>solution: essentially return to run the implementation of tuple</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution-essentially-return-to-run-the-implementation-of-tuple"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// Tuple implementation
@@ -1740,6 +1493,7 @@ impl TryFrom&lt;(i16, i16, i16)&gt; for Color {
                 return Err(IntoColorError::IntConversion)
             }
         }
+        // return an Ok result of inner type Color.
         Ok(Color { red: tuple.0 as u8, green: tuple.1 as u8, blue: tuple.2 as u8 })
     }
 }
@@ -1748,6 +1502,7 @@ impl TryFrom&lt;(i16, i16, i16)&gt; for Color {
 impl TryFrom&lt;[i16; 3]&gt; for Color {
     type Error = IntoColorError;
     fn try_from(arr: [i16; 3]) -&gt; Result&lt;Self, Self::Error&gt; {
+        // return to run the implementation of tuple above
         Self::try_from((arr[0], arr[1], arr[2]))
     }
 }
@@ -1759,6 +1514,7 @@ impl TryFrom&lt;&amp;[i16]&gt; for Color {
         if slice.len() != 3 {
             Err(IntoColorError::BadLen)
         } else {
+            // return to run the implementation of tuple above
             Self::try_from((slice[0], slice[1], slice[2]))
         }
     }
@@ -1775,7 +1531,347 @@ impl TryFrom&lt;&amp;[i16]&gt; for Color {
 <p>Challenge: Can you make the <code>TryFrom</code> implementations generic over many integer types?</p>
 </div>
 </details>
-<h3 id="using_as"><a class="header" href="#using_as">using_as</a></h3>
+<h3 id="from_str-convert-str-to-target-type"><a class="header" href="#from_str-convert-str-to-target-type">from_str: convert str to target type</a></h3>
+<ul>
+<li>This is similar to from_into.rs, but this time we’ll implement <code>FromStr</code> and return errors instead of falling back to a default value.</li>
+<li>Additionally, upon implementing FromStr, you can use the <code>parse</code> method on strings to generate an object of the implementor type.</li>
+<li>You can read more about it at <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html">FromStr in std::str - Rust</a></li>
+</ul>
+<blockquote>
+<p>Steps:</p>
+</blockquote>
+<ol>
+<li>If the length of the provided string is 0, an error should be returned</li>
+<li>Split the given string on the commas present in it</li>
+<li>Only 2 elements should be returned from the split, otherwise return an error</li>
+<li>Extract the first element from the split operation and use it as the name</li>
+<li>Extract the other element from the split operation and parse it into a <code>usize</code> as the age
+with something like <code>&quot;4&quot;.parse::&lt;usize&gt;()</code></li>
+<li>If while extracting the name and the age something goes wrong, an error should be returned</li>
+<li>If everything goes well, then return a Result of a Person object</li>
+</ol>
+<p>As an aside: <code>Box&lt;dyn Error&gt;</code> implements <code>From&lt;&amp;'_ str&gt;</code>. This means that if you want to return a
+string error message, you can do so via just using return <code>Err(&quot;my error message&quot;.into())</code>.</p>
+<details id="admonition-from_str" class="admonition note">
+<summary class="admonition-title">
+<p>from_str</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-from_str"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// from_str.rs
+// This is similar to from_into.rs, but this time we'll implement `FromStr`
+// and return errors instead of falling back to a default value.
+// Additionally, upon implementing FromStr, you can use the `parse` method
+// on strings to generate an object of the implementor type.
+// You can read more about it at https://doc.rust-lang.org/std/str/trait.FromStr.html
+// Execute `rustlings hint from_str` or use the `hint` watch subcommand for a hint.
+
+use std::num::ParseIntError;
+use std::str::FromStr;
+
+#[derive(Debug, PartialEq)]
+struct Person {
+    name: String,
+    age: usize,
+}
+
+// We will use this error type for the `FromStr` implementation.
+#[derive(Debug, PartialEq)]
+enum ParsePersonError {
+    // Empty input string
+    Empty,
+    // Incorrect number of fields
+    BadLen,
+    // Empty name field
+    NoName,
+    // Wrapped error from parse::&lt;usize&gt;()
+    ParseInt(ParseIntError),
+}
+
+// I AM NOT DONE
+
+// Steps:
+// 1. If the length of the provided string is 0, an error should be returned
+// 2. Split the given string on the commas present in it
+// 3. Only 2 elements should be returned from the split, otherwise return an error
+// 4. Extract the first element from the split operation and use it as the name
+// 5. Extract the other element from the split operation and parse it into a `usize` as the age
+//    with something like `&quot;4&quot;.parse::&lt;usize&gt;()`
+// 6. If while extracting the name and the age something goes wrong, an error should be returned
+// If everything goes well, then return a Result of a Person object
+//
+// As an aside: `Box&lt;dyn Error&gt;` implements `From&lt;&amp;'_ str&gt;`. This means that if you want to return a
+// string error message, you can do so via just using return `Err(&quot;my error message&quot;.into())`.
+
+impl FromStr for Person {
+    type Err = ParsePersonError;
+    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {}
+}
+
+fn main() {
+    let p = &quot;Mark,20&quot;.parse::&lt;Person&gt;().unwrap();
+    println!(&quot;{:?}&quot;, p);
+    // convert unit tests to here to run in the rust playground
+    assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
+    let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
+    assert!(p.is_ok());
+    let p = p.unwrap();
+    assert_eq!(p.name, &quot;John&quot;);
+    assert_eq!(p.age, 32);
+    assert!(matches!(
+            &quot;John,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+
+    assert!(matches!(
+            &quot;John,twenty&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+
+    assert_eq!(&quot;John&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+
+    assert_eq!(&quot;,1&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::NoName));
+
+    assert!(matches!(
+            &quot;,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+
+    assert!(matches!(
+            &quot;,one&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+
+    assert_eq!(&quot;John,32,&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+
+    assert_eq!(
+        &quot;John,32,man&quot;.parse::&lt;Person&gt;(),
+        Err(ParsePersonError::BadLen)
+    );
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn empty_input() {
+        assert_eq!(&quot;&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::Empty));
+    }
+
+    #[test]
+    fn good_input() {
+        let p = &quot;John,32&quot;.parse::&lt;Person&gt;();
+        assert!(p.is_ok());
+        let p = p.unwrap();
+        assert_eq!(p.name, &quot;John&quot;);
+        assert_eq!(p.age, 32);
+    }
+
+    #[test]
+    fn missing_age() {
+        assert!(matches!(
+            &quot;John,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn invalid_age() {
+        assert!(matches!(
+            &quot;John,twenty&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn missing_comma_and_age() {
+        assert_eq!(&quot;John&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+    }
+
+    #[test]
+    fn missing_name() {
+        assert_eq!(&quot;,1&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::NoName));
+    }
+
+    #[test]
+    fn missing_name_and_age() {
+        assert!(matches!(
+            &quot;,&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn missing_name_and_invalid_age() {
+        assert!(matches!(
+            &quot;,one&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::NoName | ParsePersonError::ParseInt(_))
+        ));
+    }
+
+    #[test]
+    fn trailing_comma() {
+        assert_eq!(&quot;John,32,&quot;.parse::&lt;Person&gt;(), Err(ParsePersonError::BadLen));
+    }
+
+    #[test]
+    fn trailing_comma_and_some_string() {
+        assert_eq!(
+            &quot;John,32,man&quot;.parse::&lt;Person&gt;(),
+            Err(ParsePersonError::BadLen)
+        );
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-3" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-3"></a></p>
+</summary>
+<div>
+<ol>
+<li>The implementation of FromStr should return an Ok with a Person object,
+or an Err with an error if the string is not valid.</li>
+</ol>
+<p>This is almost like the <code>from_into</code> exercise, but returning errors instead
+of falling back to a default value.</p>
+<p>Look at the test cases to see which error variants to return.</p>
+<ol start="2">
+<li>
+<p>Another hint: You can use the <code>map_err</code> method of <code>Result</code> with a function
+or a closure to wrap the error from <code>parse::&lt;usize&gt;</code>.</p>
+</li>
+<li>
+<p>Yet another hint: If you would like to propagate errors by using the <code>?</code>
+operator in your solution, you might want to look at
+<a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/multiple_error_types/reenter_question_mark.html">Other uses of ? - The Rust Programming Language</a></p>
+</li>
+</ol>
+</div>
+</details>
+<details id="admonition-solution1" class="admonition failure">
+<summary class="admonition-title">
+<p>solution1</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// Using ParsePersonError::{Empty, BadLen, NoName, ParseInt} above
+impl FromStr for Person {
+    type Err = ParsePersonError;
+    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
+        if s.is_empty() {
+            Err(Empty) // i.e., Err(ParsePersonError::Empty)
+        } else {
+            let p: Vec&lt;&amp;str&gt; = s.split(',').collect();
+            if p.len() != 2 {
+                Err(BadLen)
+            } else if p[0].len() == 0 {
+                Err(NoName)
+            } else { 
+                match p[1].parse::&lt;usize&gt;() {
+                    Ok(a) =&gt; Ok(Person { name: p[0].to_string(), age: a }),
+                    Err(a) =&gt; Err(ParseInt(a)),
+                }
+            }
+        }
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution2-errempty---err-is-a-variant-not-a-module" class="admonition failure">
+<summary class="admonition-title">
+<p>solution2: Err::Empty -&gt; <em>Err</em> is a variant, not a module</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution2-errempty---err-is-a-variant-not-a-module"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">impl FromStr for Person {
+    type Err = ParsePersonError;
+    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
+        if s.is_empty() {
+            Err::Empty // i.e., Err(ParsePersonError::Empty)
+        } else {
+            let p: Vec&lt;&amp;str&gt; = s.split(',').collect();
+            if p.len() != 2 {
+                Err::BadLen
+            } else if p[0].len() == 0 {
+                Err::NoName
+            } else { 
+                match p[1].parse::&lt;usize&gt;() {
+                    Ok(a) =&gt; Ok(Person { name: p[0].to_string(), age: a }),
+                    Err(a) =&gt; Err::ParseInt(a),
+                }
+            }
+        }
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution3-errempty" class="admonition failure">
+<summary class="admonition-title">
+<p>solution3: Err.Empty()</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution3-errempty"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">impl FromStr for Person {
+    type Err = ParsePersonError;
+    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
+        if s.is_empty() {
+            Err.Empty // i.e., Err(ParsePersonError::Empty)
+        } else {
+            let p: Vec&lt;&amp;str&gt; = s.split(',').collect();
+            if p.len() != 2 {
+                Err.BadLen
+            } else if p[0].len() == 0 {
+                Err.NoName
+            } else { 
+                match p[1].parse::&lt;usize&gt;() {
+                    Ok(a) =&gt; Ok(Person { name: p[0].to_string(), age: a }),
+                    Err(a) =&gt; Err.ParseInt(a),
+                }
+            }
+        }
+    }
+}
+
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution4-parsepersonerrorerrortype" class="admonition success">
+<summary class="admonition-title">
+<p>solution4: ParsePersonError::{ErrorType}</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution4-parsepersonerrorerrortype"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// Using ParsePersonError::{Empty, BadLen, NoName, ParseInt} above
+impl FromStr for Person {
+    type Err = ParsePersonError;
+    fn from_str(s: &amp;str) -&gt; Result&lt;Person, Self::Err&gt; {
+        if s.is_empty() { // 1. If the length of the provided string is 0, an error should be returned
+            Err(ParsePersonError::Empty) // i.e., Err(ParsePersonError::Empty)
+        } else {
+            let p: Vec&lt;&amp;str&gt; = s.split(',').collect(); // 2. Split the given string on the commas present in it
+            if p.len() != 2 { // 3. Only 2 elements should be returned from the split, otherwise return an error
+                Err(ParsePersonError::BadLen)
+            } else if p[0].len() == 0 { // 4. Extract the first element from the split operation and use it as the name
+                Err(ParsePersonError::NoName)
+            } else { 
+                match p[1].parse::&lt;usize&gt;() { //  5. Extract the other element from the split operation and parse it into a `usize` as the age with something like `&quot;4&quot;.parse::&lt;usize&gt;()`
+                    Ok(a) =&gt; Ok(Person { name: p[0].to_string(), age: a }), // 7. If everything goes well, then return a Result of a Person object
+                    Err(a) =&gt; Err(ParsePersonError::ParseInt(a)), // 6. If while extracting the name and the age something goes wrong, an error should be returned
+                }
+            }
+        }
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<h3 id="using-as-type-casting"><a class="header" href="#using-as-type-casting">using <code>as</code>: type casting</a></h3>
 <ul>
 <li>Type casting in Rust is done via the usage of the <code>as</code> operator.</li>
 <li>Please note that the <code>as</code> operator is not only used when type casting.</li>
@@ -1838,10 +1934,10 @@ mod tests {
 <code>average</code> function into the expected return type.</p>
 </div>
 </details>
-<details id="admonition-solution-2" class="admonition success">
+<details id="admonition-solution" class="admonition success">
 <summary class="admonition-title">
 <p>solution</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution-2"></a></p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust  editable">fn average(values: &amp;[f64]) -&gt; f64 {
@@ -2827,7 +2923,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Feb 26 04:20:06 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:38:48 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -4957,7 +5053,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Feb 26 04:20:05 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:38:48 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -5367,7 +5463,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Feb 26 04:20:05 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:38:47 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
