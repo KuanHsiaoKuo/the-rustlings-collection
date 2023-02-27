@@ -1,14 +1,15 @@
 # Type conversions
 
 <!--ts-->
+
 * [Type conversions](#type-conversions)
-   * [Further information](#further-information)
-   * [Rustlings](#rustlings)
-      * [as_ref_mut: reference-to-reference](#as_ref_mut-reference-to-reference)
-      * [from_into: value-to-value](#from_into-value-to-value)
-      * [try_from_into: try value-to-value](#try_from_into-try-value-to-value)
-      * [from_str: convert str to target type](#from_str-convert-str-to-target-type)
-      * [using as: type casting](#using-as-type-casting)
+    * [Further information](#further-information)
+    * [Rustlings](#rustlings)
+        * [as_ref_mut: reference-to-reference](#as_ref_mut-reference-to-reference)
+        * [from_into: value-to-value](#from_into-value-to-value)
+        * [try_from_into: try value-to-value](#try_from_into-try-value-to-value)
+        * [from_str: convert str to target type](#from_str-convert-str-to-target-type)
+        * [using as: type casting](#using-as-type-casting)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Mon Feb 27 10:38:44 UTC 2023 -->
@@ -16,24 +17,24 @@
 <!--te-->
 > Rust offers a multitude of ways to convert a value of a given type into another type.
 
-1. The simplest form of type conversion is a type cast expression.
+1. as: The simplest form of type conversion is a type cast expression.
 
 > It is denoted with the binary operator `as`.
 
 For instance, `println!("{}", 1 + 1.0);` would not compile, since `1` is an integer while `1.0` is a float. However, `println!("{}", 1 as f32 + 1.0)` should compile. The
-exercise [`using_as`](#using_as) tries to cover this.
+exercise [`using_as`](#using-as-type-casting) tries to cover this.
 
-2. Rust also offers traits that facilitate type conversions upon implementation.
+2. from/into/AsRef: Rust also offers traits that `facilitate type conversions` upon implementation.
 
 > These traits can be found under the [`convert`](https://doc.rust-lang.org/std/convert/index.html) module.
 
 The traits are the following:
 
-- `From` and `Into` covered in [`from_into`](#from_into)
-- `TryFrom` and `TryInto` covered in [`try_from_into`](#try_from_into)
-- `AsRef` and `AsMut` covered in [`as_ref_mut`](#as_ref_mut)
+- `From` and `Into` covered in [`from_into`](#from_into-value-to-value)
+- `TryFrom` and `TryInto` covered in [`try_from_into`](#try_from_into-try-value-to-value)
+- `AsRef` and `AsMut` covered in [`as_ref_mut`](#as_ref_mut-reference-to-reference)
 
-3. Furthermore, the `std::str` module offers a trait called [`FromStr`](https://doc.rust-lang.org/std/str/trait.FromStr.html) which helps with converting strings into target types via the `parse` method on strings.
+3. from_str: Furthermore, the `std::str` module offers a trait called [`FromStr`](https://doc.rust-lang.org/std/str/trait.FromStr.html) which helps with converting strings into target types via the `parse` method on strings.
 
 > If properly implemented for a given type `Person`,
 > then `let p: Person = "Mark,20".parse().unwrap()` should both compile and run without panicking.
@@ -51,77 +52,31 @@ These are not directly covered in the book, but the standard library has a great
 
 ## Rustlings
 
-### as_ref_mut: reference-to-reference
+### using `as`: type casting
 
-> `AsRef` and `AsMut` allow for cheap reference-to-reference conversions.
+- Type casting in Rust is done via the usage of the `as` operator.
+- Please note that the `as` operator is not only used when type casting.
+- It also helps with renaming imports.
 
-Read more about them at [AsRef in std::convert - Rust](https://doc.rust-lang.org/std/convert/trait.AsRef.html)
-and [AsMut in std::convert - Rust](https://doc.rust-lang.org/std/convert/trait.AsMut.html), respectively.
+> The goal is to make sure that the division does not fail to compile
+> and returns the proper type.
 
-~~~admonish note title="as_ref_mut: Three ways to add appropriate trait bound" collapsible=true
+~~~admonish note title="using_as" collapsible=true
 ```rust,editable
-{{#include as_ref_mut.rs}}
+{{#include using_as.rs}}
 ```
 ~~~
 
 ~~~admonish tip title="Hint" collapsible=true
-Add AsRef<str> as a trait bound to the functions.
+Use the `as` operator to cast one of the operands in the last line of the
+`average` function into the expected return type.
 ~~~
 
-> compare to [traits4](https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html)
-
-~~~admonish success title="solution1: generic trait bounds" collapsible=true
-```rust,editable
-// Obtain the number of bytes (not characters) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn byte_counter<T: AsRef<str>>(arg: T) -> usize {
-    arg.as_ref().as_bytes().len()
-}
-
-// Obtain the number of characters (not bytes) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn char_counter<T: AsRef<str>>(arg: T) -> usize {
-    arg.as_ref().chars().count()
-}
-
-// Squares a number using AsMut. Add the trait bound as is appropriate and
-// implement the function body.
-fn num_sq<T: AsMut<u32>>(arg: &mut T) {
-    *arg.as_mut() *= *arg.as_mut()
-}
-```
-~~~
-
-~~~admonish success title="solution2: impl trait bounds" collapsible=true
-```rust,editable
-// Obtain the number of bytes (not characters) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn byte_counter(arg: impl AsRef<str>) -> usize {
-    arg.as_ref().as_bytes().len()
-}
-
-// Obtain the number of characters (not bytes) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn char_counterd(arg: impl AsRef<str>) -> usize {
-    arg.as_ref().chars().count()
-}
-
-// Squares a number using AsMut. Add the trait bound as is appropriate and
-// implement the function body.
-fn num_sq(arg: &mut impl AsRef<str>) {
-    *arg.as_mut() *= *arg.as_mut()
-}
-```
-~~~
-
-~~~admonish success title="solution3: where clause" collapsible=true
-```rust,editable
-// Obtain the number of bytes (not characters) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn byte_counter<T>(arg: T) -> usize
-where T: AsRef<str>
-{
-    arg.as_ref().as_bytes().len()
+~~~admonish success title="solution" collapsible=true
+```rust, editable
+fn average(values: &[f64]) -> f64 {
+    let total = values.iter().sum::<f64>();
+    total / values.len() as f64
 }
 ```
 ~~~
@@ -268,6 +223,81 @@ impl TryFrom<&[i16]> for Color {
 Challenge: Can you make the `TryFrom` implementations generic over many integer types?
 ~~~
 
+### as_ref_mut: reference-to-reference
+
+> `AsRef` and `AsMut` allow for cheap reference-to-reference conversions.
+
+Read more about them at [AsRef in std::convert - Rust](https://doc.rust-lang.org/std/convert/trait.AsRef.html)
+and [AsMut in std::convert - Rust](https://doc.rust-lang.org/std/convert/trait.AsMut.html), respectively.
+
+~~~admonish note title="as_ref_mut: Three ways to add appropriate trait bound" collapsible=true
+```rust,editable
+{{#include as_ref_mut.rs}}
+```
+~~~
+
+~~~admonish tip title="Hint" collapsible=true
+Add AsRef<str> as a trait bound to the functions.
+~~~
+
+> compare to [traits4](https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html)
+
+~~~admonish success title="solution1: generic trait bounds" collapsible=true
+```rust,editable
+// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter<T: AsRef<str>>(arg: T) -> usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn char_counter<T: AsRef<str>>(arg: T) -> usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using AsMut. Add the trait bound as is appropriate and
+// implement the function body.
+fn num_sq<T: AsMut<u32>>(arg: &mut T) {
+    *arg.as_mut() *= *arg.as_mut()
+}
+```
+~~~
+
+~~~admonish success title="solution2: impl trait bounds" collapsible=true
+```rust,editable
+// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter(arg: impl AsRef<str>) -> usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn char_counterd(arg: impl AsRef<str>) -> usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using AsMut. Add the trait bound as is appropriate and
+// implement the function body.
+fn num_sq(arg: &mut impl AsRef<str>) {
+    *arg.as_mut() *= *arg.as_mut()
+}
+```
+~~~
+
+~~~admonish success title="solution3: where clause" collapsible=true
+```rust,editable
+// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter<T>(arg: T) -> usize
+where T: AsRef<str>
+{
+    arg.as_ref().as_bytes().len()
+}
+```
+~~~
+
 ### from_str: convert str to target type
 
 - This is similar to from_into.rs, but this time we'll implement `FromStr` and return errors instead of falling back to a default value.
@@ -410,35 +440,6 @@ impl FromStr for Person {
             }
         }
     }
-}
-```
-~~~
-
-### using `as`: type casting
-
-- Type casting in Rust is done via the usage of the `as` operator.
-- Please note that the `as` operator is not only used when type casting.
-- It also helps with renaming imports.
-
-> The goal is to make sure that the division does not fail to compile
-> and returns the proper type.
-
-~~~admonish note title="using_as" collapsible=true
-```rust,editable
-{{#include using_as.rs}}
-```
-~~~
-
-~~~admonish tip title="Hint" collapsible=true
-Use the `as` operator to cast one of the operands in the last line of the
-`average` function into the expected return type.
-~~~
-
-~~~admonish success title="solution" collapsible=true
-```rust, editable
-fn average(values: &[f64]) -> f64 {
-    let total = values.iter().sum::<f64>();
-    total / values.len() as f64
 }
 ```
 ~~~
