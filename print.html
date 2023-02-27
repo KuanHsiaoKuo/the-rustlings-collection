@@ -632,44 +632,44 @@ fn main() {
 <li><a href="conversions/conversions.html#further-information">Further information</a></li>
 <li><a href="conversions/conversions.html#rustlings">Rustlings</a>
 <ul>
-<li><a href="conversions/conversions.html#as_ref_mut-reference-to-reference">as_ref_mut: reference-to-reference</a></li>
+<li><a href="conversions/conversions.html#using-as-type-casting">using as: type casting</a></li>
 <li><a href="conversions/conversions.html#from_into-value-to-value">from_into: value-to-value</a></li>
 <li><a href="conversions/conversions.html#try_from_into-try-value-to-value">try_from_into: try value-to-value</a></li>
+<li><a href="conversions/conversions.html#as_ref_mut-reference-to-reference">as_ref_mut: reference-to-reference</a></li>
 <li><a href="conversions/conversions.html#from_str-convert-str-to-target-type">from_str: convert str to target type</a></li>
-<li><a href="conversions/conversions.html#using-as-type-casting">using as: type casting</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:38:44 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:53:37 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
 </blockquote>
 <ol>
-<li>The simplest form of type conversion is a type cast expression.</li>
+<li>as: The simplest form of type conversion is a type cast expression.</li>
 </ol>
 <blockquote>
 <p>It is denoted with the binary operator <code>as</code>.</p>
 </blockquote>
 <p>For instance, <code>println!(&quot;{}&quot;, 1 + 1.0);</code> would not compile, since <code>1</code> is an integer while <code>1.0</code> is a float. However, <code>println!(&quot;{}&quot;, 1 as f32 + 1.0)</code> should compile. The
-exercise <a href="conversions/conversions.html#using_as"><code>using_as</code></a> tries to cover this.</p>
+exercise <a href="conversions/conversions.html#using-as-type-casting"><code>using_as</code></a> tries to cover this.</p>
 <ol start="2">
-<li>Rust also offers traits that facilitate type conversions upon implementation.</li>
+<li>from/into/AsRef: Rust also offers traits that <code>facilitate type conversions</code> upon implementation.</li>
 </ol>
 <blockquote>
 <p>These traits can be found under the <a href="https://doc.rust-lang.org/std/convert/index.html"><code>convert</code></a> module.</p>
 </blockquote>
 <p>The traits are the following:</p>
 <ul>
-<li><code>From</code> and <code>Into</code> covered in <a href="conversions/conversions.html#from_into"><code>from_into</code></a></li>
-<li><code>TryFrom</code> and <code>TryInto</code> covered in <a href="conversions/conversions.html#try_from_into"><code>try_from_into</code></a></li>
-<li><code>AsRef</code> and <code>AsMut</code> covered in <a href="conversions/conversions.html#as_ref_mut"><code>as_ref_mut</code></a></li>
+<li><code>From</code> and <code>Into</code> covered in <a href="conversions/conversions.html#from_into-value-to-value"><code>from_into</code></a></li>
+<li><code>TryFrom</code> and <code>TryInto</code> covered in <a href="conversions/conversions.html#try_from_into-try-value-to-value"><code>try_from_into</code></a></li>
+<li><code>AsRef</code> and <code>AsMut</code> covered in <a href="conversions/conversions.html#as_ref_mut-reference-to-reference"><code>as_ref_mut</code></a></li>
 </ul>
 <ol start="3">
-<li>Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings.</li>
+<li>from_str: Furthermore, the <code>std::str</code> module offers a trait called <a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code></a> which helps with converting strings into target types via the <code>parse</code> method on strings.</li>
 </ol>
 <blockquote>
 <p>If properly implemented for a given type <code>Person</code>,
@@ -686,42 +686,45 @@ then <code>let p: Person = &quot;Mark,20&quot;.parse().unwrap()</code> should bo
 <li><a href="https://doc.rust-lang.org/std/str/trait.FromStr.html"><code>FromStr</code> trait</a></li>
 </ul>
 <h2 id="rustlings-2"><a class="header" href="#rustlings-2">Rustlings</a></h2>
-<h3 id="as_ref_mut-reference-to-reference"><a class="header" href="#as_ref_mut-reference-to-reference">as_ref_mut: reference-to-reference</a></h3>
+<h3 id="using-as-type-casting"><a class="header" href="#using-as-type-casting">using <code>as</code>: type casting</a></h3>
+<ul>
+<li>Type casting in Rust is done via the usage of the <code>as</code> operator.</li>
+<li>Please note that the <code>as</code> operator is not only used when type casting.</li>
+<li>It also helps with renaming imports.</li>
+</ul>
 <blockquote>
-<p><code>AsRef</code> and <code>AsMut</code> allow for cheap reference-to-reference conversions.</p>
+<p>The goal is to make sure that the division does not fail to compile
+and returns the proper type.</p>
 </blockquote>
-<p>Read more about them at <a href="https://doc.rust-lang.org/std/convert/trait.AsRef.html">AsRef in std::convert - Rust</a>
-and <a href="https://doc.rust-lang.org/std/convert/trait.AsMut.html">AsMut in std::convert - Rust</a>, respectively.</p>
-<details id="admonition-as_ref_mut-three-ways-to-add-appropriate-trait-bound" class="admonition note">
+<details id="admonition-using_as" class="admonition note">
 <summary class="admonition-title">
-<p>as_ref_mut: Three ways to add appropriate trait bound</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-as_ref_mut-three-ways-to-add-appropriate-trait-bound"></a></p>
+<p>using_as</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-using_as"></a></p>
 </summary>
 <div>
-<pre><pre class="playground"><code class="language-rust editable">// AsRef and AsMut allow for cheap reference-to-reference conversions.
-// Read more about them at https://doc.rust-lang.org/std/convert/trait.AsRef.html
-// and https://doc.rust-lang.org/std/convert/trait.AsMut.html, respectively.
-// Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a hint.
+<pre><pre class="playground"><code class="language-rust editable">// Type casting in Rust is done via the usage of the `as` operator.
+// Please note that the `as` operator is not only used when type casting.
+// It also helps with renaming imports.
+//
+// The goal is to make sure that the division does not fail to compile
+// and returns the proper type.
+// Execute `rustlings hint using_as` or use the `hint` watch subcommand for a hint.
 
 // I AM NOT DONE
 
-// Obtain the number of bytes (not characters) in the given argument.
-// TODO: Add the AsRef trait appropriately as a trait bound.
-fn byte_counter&lt;T&gt;(arg: T) -&gt; usize {
-    arg.as_ref().as_bytes().len()
+fn average(values: &amp;[f64]) -&gt; f64 {
+    let total = values.iter().sum::&lt;f64&gt;();
+    total / values.len()
 }
 
-// Obtain the number of characters (not bytes) in the given argument.
-// TODO: Add the AsRef trait appropriately as a trait bound.
-fn char_counter&lt;T&gt;(arg: T) -&gt; usize {
-    arg.as_ref().chars().count()
-}
-
-// Squares a number using as_mut().
-// TODO: Add the appropriate trait bound.
-fn num_sq&lt;T&gt;(arg: &amp;mut T) {
-    // TODO: Implement the function body.
-    ? ? ?
+fn main() {
+    let values = [3.5, 0.3, 13.0, 11.7];
+    println!(&quot;{}&quot;, average(&amp;values));
+    // convert unit tests to here to run in the rust playground
+    fn returns_proper_type_and_value() {
+        assert_eq!(average(&amp;[3.5, 0.3, 13.0, 11.7]), 7.125);
+    }
+    returns_proper_type_and_value();
 }
 
 #[cfg(test)]
@@ -729,55 +732,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn different_counts() {
-        let s = &quot;Café au lait&quot;;
-        assert_ne!(char_counter(s), byte_counter(s));
+    fn returns_proper_type_and_value() {
+        assert_eq!(average(&amp;[3.5, 0.3, 13.0, 11.7]), 7.125);
     }
-
-    #[test]
-    fn same_counts() {
-        let s = &quot;Cafe au lait&quot;;
-        assert_eq!(char_counter(s), byte_counter(s));
-    }
-
-    #[test]
-    fn different_counts_using_string() {
-        let s = String::from(&quot;Café au lait&quot;);
-        assert_ne!(char_counter(s.clone()), byte_counter(s));
-    }
-
-    #[test]
-    fn same_counts_using_string() {
-        let s = String::from(&quot;Cafe au lait&quot;);
-        assert_eq!(char_counter(s.clone()), byte_counter(s));
-    }
-
-    #[test]
-    fn mult_box() {
-        let mut num: Box&lt;u32&gt; = Box::new(3);
-        num_sq(&amp;mut num);
-        assert_eq!(*num, 9);
-    }
-}
-
-// convert the unit test to main
-fn main() {
-    // different_counts()
-    let s = &quot;Café au lait&quot;;
-    assert_ne!(char_counter(s), byte_counter(s));
-    // same_counts
-    let s = &quot;Cafe au lait&quot;;
-    assert_eq!(char_counter(s), byte_counter(s));
-    // different_counts_using_string
-    let s = String::from(&quot;Café au lait&quot;);
-    assert_ne!(char_counter(s.clone()), byte_counter(s));
-    // same_counts_using_string
-    let s = String::from(&quot;Cafe au lait&quot;);
-    assert_eq!(char_counter(s.clone()), byte_counter(s));
-    // mult_box
-    let mut num: Box&lt;u32&gt; = Box::new(3);
-    num_sq(&amp;mut num);
-    assert_eq!(*num, 9);
 }
 </code></pre></pre>
 </div>
@@ -788,76 +745,19 @@ fn main() {
 <p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint"></a></p>
 </summary>
 <div>
-<p>Add AsRef<str> as a trait bound to the functions.</p>
+<p>Use the <code>as</code> operator to cast one of the operands in the last line of the
+<code>average</code> function into the expected return type.</p>
 </div>
 </details>
-<blockquote>
-<p>compare to <a href="https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html">traits4</a></p>
-</blockquote>
-<details id="admonition-solution1-generic-trait-bounds" class="admonition success">
+<details id="admonition-solution" class="admonition success">
 <summary class="admonition-title">
-<p>solution1: generic trait bounds</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution1-generic-trait-bounds"></a></p>
+<p>solution</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution"></a></p>
 </summary>
 <div>
-<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn byte_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
-    arg.as_ref().as_bytes().len()
-}
-
-// Obtain the number of characters (not bytes) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn char_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
-    arg.as_ref().chars().count()
-}
-
-// Squares a number using AsMut. Add the trait bound as is appropriate and
-// implement the function body.
-fn num_sq&lt;T: AsMut&lt;u32&gt;&gt;(arg: &amp;mut T) {
-    *arg.as_mut() *= *arg.as_mut()
-}
-</code></pre></pre>
-</div>
-</details>
-<details id="admonition-solution2-impl-trait-bounds" class="admonition success">
-<summary class="admonition-title">
-<p>solution2: impl trait bounds</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution2-impl-trait-bounds"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn byte_counter(arg: impl AsRef&lt;str&gt;) -&gt; usize {
-    arg.as_ref().as_bytes().len()
-}
-
-// Obtain the number of characters (not bytes) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn char_counterd(arg: impl AsRef&lt;str&gt;) -&gt; usize {
-    arg.as_ref().chars().count()
-}
-
-// Squares a number using AsMut. Add the trait bound as is appropriate and
-// implement the function body.
-fn num_sq(arg: &amp;mut impl AsRef&lt;str&gt;) {
-    *arg.as_mut() *= *arg.as_mut()
-}
-</code></pre></pre>
-</div>
-</details>
-<details id="admonition-solution3-where-clause" class="admonition success">
-<summary class="admonition-title">
-<p>solution3: where clause</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution3-where-clause"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
-// Add the AsRef trait appropriately as a trait bound
-fn byte_counter&lt;T&gt;(arg: T) -&gt; usize
-where T: AsRef&lt;str&gt;
-{
-    arg.as_ref().as_bytes().len()
+<pre><pre class="playground"><code class="language-rust  editable">fn average(values: &amp;[f64]) -&gt; f64 {
+    let total = values.iter().sum::&lt;f64&gt;();
+    total / values.len() as f64
 }
 </code></pre></pre>
 </div>
@@ -1531,6 +1431,182 @@ impl TryFrom&lt;&amp;[i16]&gt; for Color {
 <p>Challenge: Can you make the <code>TryFrom</code> implementations generic over many integer types?</p>
 </div>
 </details>
+<h3 id="as_ref_mut-reference-to-reference"><a class="header" href="#as_ref_mut-reference-to-reference">as_ref_mut: reference-to-reference</a></h3>
+<blockquote>
+<p><code>AsRef</code> and <code>AsMut</code> allow for cheap reference-to-reference conversions.</p>
+</blockquote>
+<p>Read more about them at <a href="https://doc.rust-lang.org/std/convert/trait.AsRef.html">AsRef in std::convert - Rust</a>
+and <a href="https://doc.rust-lang.org/std/convert/trait.AsMut.html">AsMut in std::convert - Rust</a>, respectively.</p>
+<details id="admonition-as_ref_mut-three-ways-to-add-appropriate-trait-bound" class="admonition note">
+<summary class="admonition-title">
+<p>as_ref_mut: Three ways to add appropriate trait bound</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-as_ref_mut-three-ways-to-add-appropriate-trait-bound"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// AsRef and AsMut allow for cheap reference-to-reference conversions.
+// Read more about them at https://doc.rust-lang.org/std/convert/trait.AsRef.html
+// and https://doc.rust-lang.org/std/convert/trait.AsMut.html, respectively.
+// Execute `rustlings hint as_ref_mut` or use the `hint` watch subcommand for a hint.
+
+// I AM NOT DONE
+
+// Obtain the number of bytes (not characters) in the given argument.
+// TODO: Add the AsRef trait appropriately as a trait bound.
+fn byte_counter&lt;T&gt;(arg: T) -&gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument.
+// TODO: Add the AsRef trait appropriately as a trait bound.
+fn char_counter&lt;T&gt;(arg: T) -&gt; usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using as_mut().
+// TODO: Add the appropriate trait bound.
+fn num_sq&lt;T&gt;(arg: &amp;mut T) {
+    // TODO: Implement the function body.
+    ? ? ?
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn different_counts() {
+        let s = &quot;Café au lait&quot;;
+        assert_ne!(char_counter(s), byte_counter(s));
+    }
+
+    #[test]
+    fn same_counts() {
+        let s = &quot;Cafe au lait&quot;;
+        assert_eq!(char_counter(s), byte_counter(s));
+    }
+
+    #[test]
+    fn different_counts_using_string() {
+        let s = String::from(&quot;Café au lait&quot;);
+        assert_ne!(char_counter(s.clone()), byte_counter(s));
+    }
+
+    #[test]
+    fn same_counts_using_string() {
+        let s = String::from(&quot;Cafe au lait&quot;);
+        assert_eq!(char_counter(s.clone()), byte_counter(s));
+    }
+
+    #[test]
+    fn mult_box() {
+        let mut num: Box&lt;u32&gt; = Box::new(3);
+        num_sq(&amp;mut num);
+        assert_eq!(*num, 9);
+    }
+}
+
+// convert the unit test to main
+fn main() {
+    // different_counts()
+    let s = &quot;Café au lait&quot;;
+    assert_ne!(char_counter(s), byte_counter(s));
+    // same_counts
+    let s = &quot;Cafe au lait&quot;;
+    assert_eq!(char_counter(s), byte_counter(s));
+    // different_counts_using_string
+    let s = String::from(&quot;Café au lait&quot;);
+    assert_ne!(char_counter(s.clone()), byte_counter(s));
+    // same_counts_using_string
+    let s = String::from(&quot;Cafe au lait&quot;);
+    assert_eq!(char_counter(s.clone()), byte_counter(s));
+    // mult_box
+    let mut num: Box&lt;u32&gt; = Box::new(3);
+    num_sq(&amp;mut num);
+    assert_eq!(*num, 9);
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-3" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-3"></a></p>
+</summary>
+<div>
+<p>Add AsRef<str> as a trait bound to the functions.</p>
+</div>
+</details>
+<blockquote>
+<p>compare to <a href="https://kuanhsiaokuo.github.io/the-rustlings-collection/traits/traits.html">traits4</a></p>
+</blockquote>
+<details id="admonition-solution1-generic-trait-bounds" class="admonition success">
+<summary class="admonition-title">
+<p>solution1: generic trait bounds</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution1-generic-trait-bounds"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn char_counter&lt;T: AsRef&lt;str&gt;&gt;(arg: T) -&gt; usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using AsMut. Add the trait bound as is appropriate and
+// implement the function body.
+fn num_sq&lt;T: AsMut&lt;u32&gt;&gt;(arg: &amp;mut T) {
+    *arg.as_mut() *= *arg.as_mut()
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution2-impl-trait-bounds" class="admonition success">
+<summary class="admonition-title">
+<p>solution2: impl trait bounds</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution2-impl-trait-bounds"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter(arg: impl AsRef&lt;str&gt;) -&gt; usize {
+    arg.as_ref().as_bytes().len()
+}
+
+// Obtain the number of characters (not bytes) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn char_counterd(arg: impl AsRef&lt;str&gt;) -&gt; usize {
+    arg.as_ref().chars().count()
+}
+
+// Squares a number using AsMut. Add the trait bound as is appropriate and
+// implement the function body.
+fn num_sq(arg: &amp;mut impl AsRef&lt;str&gt;) {
+    *arg.as_mut() *= *arg.as_mut()
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution3-where-clause" class="admonition success">
+<summary class="admonition-title">
+<p>solution3: where clause</p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution3-where-clause"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">// Obtain the number of bytes (not characters) in the given argument
+// Add the AsRef trait appropriately as a trait bound
+fn byte_counter&lt;T&gt;(arg: T) -&gt; usize
+where T: AsRef&lt;str&gt;
+{
+    arg.as_ref().as_bytes().len()
+}
+</code></pre></pre>
+</div>
+</details>
 <h3 id="from_str-convert-str-to-target-type"><a class="header" href="#from_str-convert-str-to-target-type">from_str: convert str to target type</a></h3>
 <ul>
 <li>This is similar to from_into.rs, but this time we’ll implement <code>FromStr</code> and return errors instead of falling back to a default value.</li>
@@ -1726,10 +1802,10 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-hint-3" class="admonition tip">
+<details id="admonition-hint-4" class="admonition tip">
 <summary class="admonition-title">
 <p>Hint</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-3"></a></p>
+<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-4"></a></p>
 </summary>
 <div>
 <ol>
@@ -1867,82 +1943,6 @@ impl FromStr for Person {
             }
         }
     }
-}
-</code></pre></pre>
-</div>
-</details>
-<h3 id="using-as-type-casting"><a class="header" href="#using-as-type-casting">using <code>as</code>: type casting</a></h3>
-<ul>
-<li>Type casting in Rust is done via the usage of the <code>as</code> operator.</li>
-<li>Please note that the <code>as</code> operator is not only used when type casting.</li>
-<li>It also helps with renaming imports.</li>
-</ul>
-<blockquote>
-<p>The goal is to make sure that the division does not fail to compile
-and returns the proper type.</p>
-</blockquote>
-<details id="admonition-using_as" class="admonition note">
-<summary class="admonition-title">
-<p>using_as</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-using_as"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust editable">// Type casting in Rust is done via the usage of the `as` operator.
-// Please note that the `as` operator is not only used when type casting.
-// It also helps with renaming imports.
-//
-// The goal is to make sure that the division does not fail to compile
-// and returns the proper type.
-// Execute `rustlings hint using_as` or use the `hint` watch subcommand for a hint.
-
-// I AM NOT DONE
-
-fn average(values: &amp;[f64]) -&gt; f64 {
-    let total = values.iter().sum::&lt;f64&gt;();
-    total / values.len()
-}
-
-fn main() {
-    let values = [3.5, 0.3, 13.0, 11.7];
-    println!(&quot;{}&quot;, average(&amp;values));
-    // convert unit tests to here to run in the rust playground
-    fn returns_proper_type_and_value() {
-        assert_eq!(average(&amp;[3.5, 0.3, 13.0, 11.7]), 7.125);
-    }
-    returns_proper_type_and_value();
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn returns_proper_type_and_value() {
-        assert_eq!(average(&amp;[3.5, 0.3, 13.0, 11.7]), 7.125);
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<details id="admonition-hint-4" class="admonition tip">
-<summary class="admonition-title">
-<p>Hint</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-hint-4"></a></p>
-</summary>
-<div>
-<p>Use the <code>as</code> operator to cast one of the operands in the last line of the
-<code>average</code> function into the expected return type.</p>
-</div>
-</details>
-<details id="admonition-solution" class="admonition success">
-<summary class="admonition-title">
-<p>solution</p>
-<p><a class="admonition-anchor-link" href="conversions/conversions.html#admonition-solution"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust  editable">fn average(values: &amp;[f64]) -&gt; f64 {
-    let total = values.iter().sum::&lt;f64&gt;();
-    total / values.len() as f64
 }
 </code></pre></pre>
 </div>
@@ -2923,7 +2923,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:38:48 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:53:42 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -5053,7 +5053,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:38:48 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:53:41 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -5463,7 +5463,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:38:47 UTC 2023 -->
+<!-- Added by: runner, at: Mon Feb 27 10:53:41 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
