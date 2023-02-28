@@ -7,7 +7,7 @@
         - [primitive_types](primitive_types/primitive_types.md)
         - [🌟strings](strings/strings.md)
         - [✨conversions: as、from or into traits series](conversions/conversions.md)
-        - [vecs](vecs/vecs.md)
+        - [vecs: [type, n] or vec!<T>](vecs/vecs.md)
         - [hashmaps](hashmaps/hashmaps.md)
         - [error_handling](error_handling/error_handling.md)
             - [options](options/options.md)
