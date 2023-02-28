@@ -475,19 +475,20 @@ fn indexing_tuple() {
 </code></pre></pre>
 </div>
 </details>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="strings"><a class="header" href="#strings">Strings</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="strings-str-for-string-slice-and-string-for-owned-string"><a class="header" href="#strings-str-for-string-slice-and-string-for-owned-string">Strings: <code>&amp;str</code> for string slice and <code>String</code> for owned string</a></h1>
 <p>Rust has two string types, a string slice (<code>&amp;str</code>) and an owned string (<code>String</code>).
 We’re not going to dictate when you should use which one, but we’ll show you how
 to identify and create them, as well as use them.</p>
 <h2 id="further-information-2"><a class="header" href="#further-information-2">Further information</a></h2>
 <ul>
-<li><a href="https://doc.rust-lang.org/book/ch08-02-strings.html">Strings</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch08-02-strings.html">Strings: Storing UTF-8 Encoded Text - The Rust Programming Language</a></li>
+<li><a href="https://github.com/gaveen/rustlings-solutions-5/tree/main/strings">rustlings-solutions-5/strings at main · gaveen/rustlings-solutions-5</a></li>
 </ul>
 <h2 id="rustlings-1"><a class="header" href="#rustlings-1">Rustlings</a></h2>
-<details id="admonition-strings1" class="admonition note">
+<details id="admonition-strings1-string---to_string" class="admonition note">
 <summary class="admonition-title">
-<p>strings1</p>
-<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-strings1"></a></p>
+<p>strings1: String -&gt; to_string()</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-strings1-string---to_string"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// strings1.rs
@@ -507,10 +508,51 @@ fn current_favorite_color() -&gt; String {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-strings2" class="admonition note">
+<details id="admonition-hint" class="admonition tip">
 <summary class="admonition-title">
-<p>strings2</p>
-<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-strings2"></a></p>
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-hint"></a></p>
+</summary>
+<div>
+<p>The <code>current_favorite_color</code> function is currently returning a string slice with the <code>'static</code>
+lifetime. </p>
+<p>We know this because the data of the string lives in our code itself – it doesn’t
+come from a file or user input or another program – so it will live as long as our program
+lives. </p>
+<p>But it is still a <code>string slice</code>. There’s one way to create a <code>String</code> by converting a
+string slice covered in the Strings chapter of the book, and another way that uses the <code>From</code>
+trait.</p>
+</div>
+</details>
+<details id="admonition-solution1-to_string" class="admonition success">
+<summary class="admonition-title">
+<p>solution1: to_string</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-solution1-to_string"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">fn current_favorite_color() -&gt; String {
+    &quot;blue&quot;.to_string()
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution2-from-trait" class="admonition success">
+<summary class="admonition-title">
+<p>solution2: From trait</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-solution2-from-trait"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">fn current_favorite_color() -&gt; String {
+    String::from(&quot;blue&quot;)
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-strings2-str---as_str" class="admonition note">
+<summary class="admonition-title">
+<p>strings2: &amp;str -&gt; as_str()</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-strings2-str---as_str"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// strings2.rs
@@ -534,6 +576,27 @@ fn is_a_color_word(attempt: &amp;str) -&gt; bool {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-hint-1" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-hint-1"></a></p>
+</summary>
+<div>
+<p>Yes, it would be really easy to fix this by just changing the value bound to <code>word</code> to be a
+string slice instead of a <code>String</code>, wouldn’t it?? There is a way to add one character to line
+9, though, that will coerce the <code>String</code> into a string slice.</p>
+</div>
+</details>
+<details id="admonition-solution-as_str" class="admonition success">
+<summary class="admonition-title">
+<p>solution: as_str()</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-solution-as_str"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">is_a_color_word(word.as_str())
+</code></pre></pre>
+</div>
+</details>
 <details id="admonition-strings3" class="admonition note">
 <summary class="admonition-title">
 <p>strings3</p>
@@ -547,17 +610,39 @@ fn is_a_color_word(attempt: &amp;str) -&gt; bool {
 
 fn trim_me(input: &amp;str) -&gt; String {
     // TODO: Remove whitespace from both ends of a string!
-    ???
+    ? ? ?
 }
 
 fn compose_me(input: &amp;str) -&gt; String {
     // TODO: Add &quot; world!&quot; to the string! There's multiple ways to do this!
-    ???
+    ? ? ?
 }
 
 fn replace_me(input: &amp;str) -&gt; String {
     // TODO: Replace &quot;cars&quot; in the string with &quot;balloons&quot;!
-    ???
+    ? ? ?
+}
+
+// convert unit tests to main
+fn main() {
+    fn trim_a_string() {
+        assert_eq!(trim_me(&quot;Hello!     &quot;), &quot;Hello!&quot;);
+        assert_eq!(trim_me(&quot;  What's up!&quot;), &quot;What's up!&quot;);
+        assert_eq!(trim_me(&quot;   Hola!  &quot;), &quot;Hola!&quot;);
+    }
+
+    fn compose_a_string() {
+        assert_eq!(compose_me(&quot;Hello&quot;), &quot;Hello world!&quot;);
+        assert_eq!(compose_me(&quot;Goodbye&quot;), &quot;Goodbye world!&quot;);
+    }
+
+    fn replace_a_string() {
+        assert_eq!(replace_me(&quot;I think cars are cool&quot;), &quot;I think balloons are cool&quot;);
+        assert_eq!(replace_me(&quot;I love to look at cars&quot;), &quot;I love to look at balloons&quot;);
+    }
+    trim_a_string();
+    compose_a_string();
+    replace_a_string();
 }
 
 #[cfg(test)]
@@ -582,6 +667,41 @@ mod tests {
         assert_eq!(replace_me(&quot;I think cars are cool&quot;), &quot;I think balloons are cool&quot;);
         assert_eq!(replace_me(&quot;I love to look at cars&quot;), &quot;I love to look at balloons&quot;);
     }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-2" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-hint-2"></a></p>
+</summary>
+<div>
+<p>There’s tons of useful standard library functions for strings. Let’s try and use some of
+them: <a href="https://doc.rust-lang.org/std/string/struct.String.html#method.trim">String in std::string - Rust</a>!</p>
+<p>For the compose_me method: You can either use the <code>format!</code> macro, or convert the string
+slice into an owned string, which you can then freely extend.</p>
+</div>
+</details>
+<details id="admonition-solution" class="admonition success">
+<summary class="admonition-title">
+<p>solution</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-solution"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">fn trim_me(input: &amp;str) -&gt; String {
+    // Remove whitespace from the beginning and the end of a string!
+    input.trim().to_string()
+}
+
+fn compose_me(input: &amp;str) -&gt; String {
+    // Add  to the string! There's multiple ways to do this!
+    input.to_owned() + &quot; world!&quot;
+}
+
+fn replace_me(input: &amp;str) -&gt; String {
+    // Replace &quot;cars&quot; in the string with &quot;balloons&quot;!
+    input.replace(&quot;cars&quot;, &quot;balloons&quot;)
 }
 </code></pre></pre>
 </div>
@@ -624,6 +744,35 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-no-hint" class="admonition tip">
+<summary class="admonition-title">
+<p>No Hint</p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-no-hint"></a></p>
+</summary>
+<div>
+</div>
+</details>
+<details id="admonition-solution-distinguish-string-and-str" class="admonition success">
+<summary class="admonition-title">
+<p>solution: distinguish <em>String</em> and <em>&amp;str</em></p>
+<p><a class="admonition-anchor-link" href="strings/strings.html#admonition-solution-distinguish-string-and-str"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">fn main() {
+    string_slice(&quot;blue&quot;);
+    string(&quot;red&quot;.to_string());
+    string(String::from(&quot;hi&quot;));
+    string(&quot;rust is fun!&quot;.to_owned());
+    string(&quot;nice weather&quot;.into());
+    string(format!(&quot;Interpolation {}&quot;, &quot;Station&quot;));
+    string_slice(&amp;String::from(&quot;abc&quot;)[0..1]);
+    string_slice(&quot;  hello there &quot;.trim());
+    string(&quot;Happy Monday!&quot;.to_string().replace(&quot;Mon&quot;, &quot;Tues&quot;));
+    string(&quot;mY sHiFt KeY iS sTiCkY&quot;.to_lowercase());
+}
+</code></pre></pre>
+</div>
+</details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="type-conversions"><a class="header" href="#type-conversions">Type conversions</a></h1>
 <!--ts-->
 <ul>
@@ -643,7 +792,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:53:37 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 28 12:27:58 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
@@ -2923,7 +3072,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:53:42 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 28 12:28:02 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -5053,7 +5202,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:53:41 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 28 12:28:02 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -5463,7 +5612,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Feb 27 10:53:41 UTC 2023 -->
+<!-- Added by: runner, at: Tue Feb 28 12:28:01 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
