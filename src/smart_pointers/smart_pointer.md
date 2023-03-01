@@ -1,13 +1,14 @@
 # Smart Pointers
 
 <!--ts-->
+
 * [Smart Pointers](#smart-pointers)
-   * [Further Information](#further-information)
-   * [Rustlings](#rustlings)
-      * [Arc](#arc)
-      * [Box](#box)
-      * [Cow](#cow)
-      * [Rc](#rc)
+    * [Further Information](#further-information)
+    * [Rustlings](#rustlings)
+        * [Arc](#arc)
+        * [Box](#box)
+        * [Cow](#cow)
+        * [Rc](#rc)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Wed Mar  1 11:51:26 UTC 2023 -->
@@ -69,7 +70,7 @@ is too much of a struggle, consider reading through all of Concurrency Chapter i
 [Fearless Concurrency - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch16-00-concurrency.html)
 ~~~
 
-~~~admonish success title="solution1: to_string" collapsible=true
+~~~admonish success title="solution: Arc::new()" collapsible=true
 ```rust,editable
 #![forbid(unused_imports)] // Do not change this, (or the next) line.
 use std::sync::Arc;
@@ -96,10 +97,38 @@ fn main() {
 
 ### Box
 
+> At compile time, Rust needs to know `how much space a type takes up`. This becomes problematic
+> for `recursive types`, where a value can have as part of itself another value of the same type.
+
+To get around the issue, we can use a `Box` - a smart pointer used to store data on the heap,
+which also allows us to wrap a recursive type.
+
+The recursive type we're implementing in this exercise is the `cons list` - a data structure
+frequently found in functional programming languages. Each item in a cons list contains two
+elements: the value of the current item and the next item. The last item is a value called `Nil`.
+
+- Step 1: use a `Box` in the enum definition to make the code compile
+- Step 2: create both empty and non-empty cons lists by replacing `todo!()`
+
 ~~~admonish note title="box1" collapsible=true
 ```rust,editable
 {{#include box1.rs}}
 ```
+~~~
+
+~~~admonish tip title="Hint" collapsible=true
+### Step 1
+The compiler's message should help: since we cannot store the value of the actual type
+when working with recursive types, we need to store a reference (pointer) to its value.
+We should, therefore, place our `List` inside a `Box`. 
+
+> More details in the book here: [Heap: Using Box<T> to Point to Data on the Heap - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-01-box.html#enabling-recursive-types-with-boxes)
+
+### Step 2
+Creating an empty list should be fairly straightforward (hint: peek at the assertions).
+For a non-empty list keep in mind that we want to use our Cons "list builder".
+Although the current list is one of integers (i32), feel free to change the definition
+and try other types!
 ~~~
 
 ### Cow
