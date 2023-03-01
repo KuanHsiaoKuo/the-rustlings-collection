@@ -1980,7 +1980,7 @@ mod tests {
 <ul>
 <li><a href="smart_pointers/smart_pointer.html#arc">Arc</a></li>
 <li><a href="smart_pointers/smart_pointer.html#box">Box</a></li>
-<li><a href="smart_pointers/smart_pointer.html#cow">Cow</a></li>
+<li><a href="smart_pointers/smart_pointer.html#cow-clone-on-write">Cow: Clone-On-Write</a></li>
 <li><a href="smart_pointers/smart_pointer.html#rc">Rc</a></li>
 </ul>
 </li>
@@ -1988,7 +1988,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Mar  1 12:00:45 UTC 2023 -->
+<!-- Added by: runner, at: Wed Mar  1 12:12:53 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -2241,7 +2241,40 @@ Although the current list is one of integers (i32), feel free to change the defi
 and try other types!</p>
 </div>
 </details>
-<h3 id="cow"><a class="header" href="#cow">Cow</a></h3>
+<details id="admonition-solution-boxnew" class="admonition success">
+<summary class="admonition-title">
+<p>solution: Box::new()</p>
+<p><a class="admonition-anchor-link" href="smart_pointers/smart_pointer.html#admonition-solution-boxnew"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">#[derive(PartialEq, Debug)]
+pub enum List {
+    Cons(i32, Box&lt;List&gt;),
+    Nil,
+}
+
+pub fn create_empty_list() -&gt; List {
+    List::Nil
+}
+
+pub fn create_non_empty_list() -&gt; List {
+    List::Cons(1, Box::new(List::Cons(2, Box::new(List::Cons(3, Box::new(List::Nil))))))
+}
+</code></pre></pre>
+</div>
+</details>
+<h3 id="cow-clone-on-write"><a class="header" href="#cow-clone-on-write">Cow: Clone-On-Write</a></h3>
+<blockquote>
+<p>This exercise explores the Cow, or Clone-On-Write type.</p>
+</blockquote>
+<ul>
+<li>Cow is a clone-on-write smart pointer.</li>
+<li>It can enclose and provide immutable access to borrowed data, and clone the data lazily when mutation or ownership is required.</li>
+<li>The type is designed to work with general borrowed data via the Borrow trait.</li>
+</ul>
+<blockquote>
+<p>This exercise is meant to show you what to expect when passing data to Cow.</p>
+</blockquote>
 <details id="admonition-cow1" class="admonition note">
 <summary class="admonition-title">
 <p>cow1</p>
@@ -2374,7 +2407,82 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-hint-2" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="smart_pointers/smart_pointer.html#admonition-hint-2"></a></p>
+</summary>
+<div>
+<p>Since the vector is already owned, the <code>Cow</code> type doesn’t need to clone it.</p>
+<p>Checkout <a href="https://doc.rust-lang.org/std/borrow/enum.Cow.html">Cow in std::borrow - Rust</a> for documentation
+on the <code>Cow</code> type.</p>
+</div>
+</details>
+<details id="admonition-solution-cowborrowed_cowowned_" class="admonition success">
+<summary class="admonition-title">
+<p>solution: Cow::Borrowed(<em>)/Cow::Owned(</em>)</p>
+<p><a class="admonition-anchor-link" href="smart_pointers/smart_pointer.html#admonition-solution-cowborrowed_cowowned_"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">// cow1.rs
+
+// This exercise explores the Cow, or Clone-On-Write type.
+// Cow is a clone-on-write smart pointer.
+// It can enclose and provide immutable access to borrowed data, and clone the data lazily when mutation or ownership is required.
+// The type is designed to work with general borrowed data via the Borrow trait.
+
+use std::borrow::Cow;
+
+fn abs_all&lt;'a, 'b&gt;(input: &amp;'a mut Cow&lt;'b, [i32]&gt;) -&gt; &amp;'a mut Cow&lt;'b, [i32]&gt; {
+    for i in 0..input.len() {
+        let v = input[i];
+        if v &lt; 0 {
+            // Clones into a vector if not already owned.
+            input.to_mut()[i] = -v;
+        }
+    }
+    input
+}
+
+fn main() {
+    // No clone occurs because `input` doesn't need to be mutated.
+    let slice = [0, 1, 2];
+    let mut input = Cow::from(&amp;slice[..]);
+    match abs_all(&amp;mut input) {
+        Cow::Borrowed(_) =&gt; println!(&quot;I borrowed the slice!&quot;),
+        _ =&gt; panic!(&quot;expected borrowed value&quot;),
+    }
+
+    // Clone occurs because `input` needs to be mutated.
+    let slice = [-1, 0, 1];
+    let mut input = Cow::from(&amp;slice[..]);
+    match abs_all(&amp;mut input) {
+        Cow::Owned(_) =&gt; println!(&quot;I modified the slice and now own it!&quot;),
+        _ =&gt; panic!(&quot;expected owned value&quot;),
+    }
+
+    // No clone occurs because `input` is already owned.
+    let slice = vec![-1, 0, 1];
+    let mut input = Cow::from(slice);
+    match abs_all(&amp;mut input) {
+        Cow::Owned(_) =&gt; println!(&quot;I own this slice!&quot;),
+        _ =&gt; panic!(&quot;expected borrowed value&quot;),
+    }
+}
+</code></pre></pre>
+</div>
+</details>
 <h3 id="rc"><a class="header" href="#rc">Rc</a></h3>
+<blockquote>
+<p>In this exercise, we want to express the concept of multiple owners via the Rc<T> type.</p>
+</blockquote>
+<ul>
+<li>This is a model of our solar system - there is a Sun type and multiple Planets.</li>
+<li>The Planets take ownership of the sun, indicating that they revolve around the sun.</li>
+</ul>
+<blockquote>
+<p>Make this code compile by using the proper Rc primitives to express that the sun has multiple owners.</p>
+</blockquote>
 <details id="admonition-rc1" class="admonition note">
 <summary class="admonition-title">
 <p>rc1</p>
@@ -2482,7 +2590,125 @@ fn main() {
 }
 </code></pre></pre>
 </div>
-</details><div style="break-before: page; page-break-before: always;"></div><h1 id="type-conversions"><a class="header" href="#type-conversions">Type conversions</a></h1>
+</details>
+<details id="admonition-hint-3" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="smart_pointers/smart_pointer.html#admonition-hint-3"></a></p>
+</summary>
+<div>
+<p>This is a straightforward exercise to use the Rc<T> type:</p>
+<ul>
+<li>Each Planet has ownership of the Sun, and uses Rc::clone() to increment the reference count of the Sun.</li>
+<li>After using drop() to move the Planets out of scope individually, the reference count goes down.</li>
+<li>In the end the sun only has one reference again, to itself. </li>
+</ul>
+<blockquote>
+<p>See more at:
+<a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-04-rc.html">Rc<T>(Reference Counting): single-threaded scenarios, immutable references of multiple owners, the Reference Counted Smart Pointer - The Rust Programming Language</a></p>
+</blockquote>
+<ul>
+<li>Unfortunately Pluto is no longer considered a planet :(</li>
+</ul>
+</div>
+</details>
+<details id="admonition-solution-arcnew-1" class="admonition success">
+<summary class="admonition-title">
+<p>solution: Arc::new()</p>
+<p><a class="admonition-anchor-link" href="smart_pointers/smart_pointer.html#admonition-solution-arcnew-1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">use std::rc::Rc;
+
+#[derive(Debug)]
+struct Sun {}
+
+#[derive(Debug)]
+enum Planet {
+    Mercury(Rc&lt;Sun&gt;),
+    Venus(Rc&lt;Sun&gt;),
+    Earth(Rc&lt;Sun&gt;),
+    Mars(Rc&lt;Sun&gt;),
+    Jupiter(Rc&lt;Sun&gt;),
+    Saturn(Rc&lt;Sun&gt;),
+    Uranus(Rc&lt;Sun&gt;),
+    Neptune(Rc&lt;Sun&gt;),
+}
+
+impl Planet {
+    fn details(&amp;self) {
+        println!(&quot;Hi from {:?}!&quot;, self)
+    }
+}
+
+fn main() {
+    let sun = Rc::new(Sun {});
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 1 reference
+
+    let mercury = Planet::Mercury(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 2 references
+    mercury.details();
+
+    let venus = Planet::Venus(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 3 references
+    venus.details();
+
+    let earth = Planet::Earth(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 4 references
+    earth.details();
+
+    let mars = Planet::Mars(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 5 references
+    mars.details();
+
+    let jupiter = Planet::Jupiter(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 6 references
+    jupiter.details();
+
+    let saturn = Planet::Saturn(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 7 references
+    saturn.details();
+
+    let uranus = Planet::Uranus(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 8 references
+    uranus.details();
+
+    let neptune = Planet::Neptune(Rc::clone(&amp;sun));
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 9 references
+    neptune.details();
+
+    assert_eq!(Rc::strong_count(&amp;sun), 9);
+
+    drop(neptune);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 8 references
+
+    drop(uranus);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 7 references
+
+    drop(saturn);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 6 references
+
+    drop(jupiter);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 5 references
+
+    drop(mars);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 4 references
+
+    drop(earth);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 3 references
+
+    drop(venus);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 2 references
+
+    drop(mercury);
+    println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 1 reference
+
+    assert_eq!(Rc::strong_count(&amp;sun), 1);
+}
+</code></pre></pre>
+</div>
+</details>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="type-conversions"><a class="header" href="#type-conversions">Type conversions</a></h1>
 <!--ts-->
 <ul>
 <li><a href="conversions/conversions.html#type-conversions">Type conversions</a>
@@ -2501,7 +2727,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Mar  1 12:00:41 UTC 2023 -->
+<!-- Added by: runner, at: Wed Mar  1 12:12:50 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
@@ -5376,7 +5602,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Mar  1 12:00:45 UTC 2023 -->
+<!-- Added by: runner, at: Wed Mar  1 12:12:52 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -5786,7 +6012,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Mar  1 12:00:44 UTC 2023 -->
+<!-- Added by: runner, at: Wed Mar  1 12:12:52 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
