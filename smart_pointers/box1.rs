@@ -30,6 +30,16 @@ fn main() {
         "This is a non-empty cons list: {:?}",
         create_non_empty_list()
     );
+    // convert unit tests to main
+    fn test_create_empty_list() {
+        assert_eq!(List::Nil, create_empty_list())
+    }
+
+    fn test_create_non_empty_list() {
+        assert_ne!(create_empty_list(), create_non_empty_list())
+    }
+    test_create_empty_list();
+    test_create_non_empty_list();
 }
 
 pub fn create_empty_list() -> List {
@@ -39,6 +49,7 @@ pub fn create_empty_list() -> List {
 pub fn create_non_empty_list() -> List {
     todo!()
 }
+
 
 #[cfg(test)]
 mod tests {
