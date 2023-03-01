@@ -1,17 +1,16 @@
 # Smart Pointers
 
 <!--ts-->
-
 * [Smart Pointers](#smart-pointers)
-    * [Further Information](#further-information)
-    * [Rustlings](#rustlings)
-        * [Arc](#arc)
-        * [Box](#box)
-        * [Cow](#cow)
-        * [Rc](#rc)
+   * [Further Information](#further-information)
+   * [Rustlings](#rustlings)
+      * [Arc](#arc)
+      * [Box](#box)
+      * [Cow](#cow)
+      * [Rc](#rc)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Feb 28 12:31:11 UTC 2023 -->
+<!-- Added by: runner, at: Wed Mar  1 11:51:26 UTC 2023 -->
 
 <!--te-->
 In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
