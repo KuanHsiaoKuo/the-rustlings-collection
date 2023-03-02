@@ -1,17 +1,17 @@
 # Smart Pointers
 
 <!--ts-->
-
 * [Smart Pointers](#smart-pointers)
-    * [Further Information](#further-information)
-    * [Rustlings](#rustlings)
-        * [Arc](#arc)
-        * [Box](#box)
-        * [Cow: Clone-On-Write](#cow-clone-on-write)
-        * [Rc](#rc)
+   * [Further Information](#further-information)
+   * [Rustlings](#rustlings)
+      * [Arc](#arc)
+      * [Box](#box)
+      * [Cow: Clone-On-Write](#cow-clone-on-write)
+      * [Rc](#rc)
+      * [Memory Leak](#memory-leak)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Mar  1 12:12:53 UTC 2023 -->
+<!-- Added by: runner, at: Thu Mar  2 03:44:24 UTC 2023 -->
 
 <!--te-->
 In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
