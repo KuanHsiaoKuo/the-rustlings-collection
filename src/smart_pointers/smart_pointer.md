@@ -1,13 +1,14 @@
 # Smart Pointers
 
 <!--ts-->
+
 * [Smart Pointers](#smart-pointers)
-   * [Further Information](#further-information)
-   * [Rustlings](#rustlings)
-      * [Arc](#arc)
-      * [Box](#box)
-      * [Cow: Clone-On-Write](#cow-clone-on-write)
-      * [Rc](#rc)
+    * [Further Information](#further-information)
+    * [Rustlings](#rustlings)
+        * [Arc](#arc)
+        * [Box](#box)
+        * [Cow: Clone-On-Write](#cow-clone-on-write)
+        * [Rc](#rc)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Wed Mar  1 12:12:53 UTC 2023 -->
@@ -337,5 +338,13 @@ fn main() {
 
     assert_eq!(Rc::strong_count(&sun), 1);
 }
+```
+~~~
+
+### Memory Leak
+
+~~~admonish note title="memory_leak1" collapsible=true
+```rust,editable
+{{#include memory_leak1.rs}}
 ```
 ~~~
