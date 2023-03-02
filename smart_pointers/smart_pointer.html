@@ -191,13 +191,14 @@
 <li><a href="#box">Box</a></li>
 <li><a href="#cow-clone-on-write">Cow: Clone-On-Write</a></li>
 <li><a href="#rc">Rc</a></li>
+<li><a href="#memory-leak">Memory Leak</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Mar  1 12:12:53 UTC 2023 -->
+<!-- Added by: runner, at: Thu Mar  2 03:44:24 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -913,6 +914,49 @@ fn main() {
     println!(&quot;reference count = {}&quot;, Rc::strong_count(&amp;sun)); // 1 reference
 
     assert_eq!(Rc::strong_count(&amp;sun), 1);
+}
+</code></pre></pre>
+</div>
+</details>
+<h3 id="memory-leak"><a class="header" href="#memory-leak">Memory Leak</a></h3>
+<details id="admonition-memory_leak1" class="admonition note">
+<summary class="admonition-title">
+<p>memory_leak1</p>
+<p><a class="admonition-anchor-link" href="#admonition-memory_leak1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">use std::rc::Rc;
+
+struct Node {
+    value: i32,
+    parent: Option&lt;Rc&lt;Node&gt;&gt;,
+    children: Vec&lt;Rc&lt;Node&gt;&gt;,
+}
+
+impl Node {
+    fn new(value: i32) -&gt; Rc&lt;Self&gt; {
+        Rc::new(Self {
+            value,
+            parent: None,
+            children: Vec::new(),
+        })
+    }
+
+    fn add_child(&amp;mut self, child: Rc&lt;Self&gt;) {
+        self.children.push(child);
+        child.parent = Some(Rc::clone(&amp;self));
+    }
+}
+
+fn main() {
+    let root = Node::new(0);
+    let child1 = Node::new(1);
+    let child2 = Node::new(2);
+    child1.add_child(Rc::clone(&amp;child2));
+    child2.add_child(Rc::clone(&amp;child1));
+    root.add_child(child1);
+    root.add_child(child2);
+    println!(&quot;{}&quot;, root.value);
 }
 </code></pre></pre>
 </div>
