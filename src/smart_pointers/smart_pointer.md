@@ -1,14 +1,15 @@
 # Smart Pointers
 
 <!--ts-->
+
 * [Smart Pointers](#smart-pointers)
-   * [Further Information](#further-information)
-   * [Rustlings](#rustlings)
-      * [Arc](#arc)
-      * [Box](#box)
-      * [Cow: Clone-On-Write](#cow-clone-on-write)
-      * [Rc](#rc)
-      * [Memory Leak](#memory-leak)
+    * [Further Information](#further-information)
+    * [Rustlings](#rustlings)
+        * [Arc](#arc)
+        * [Box](#box)
+        * [Cow: Clone-On-Write](#cow-clone-on-write)
+        * [Rc](#rc)
+        * [Memory Leak](#memory-leak)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Thu Mar  2 03:44:24 UTC 2023 -->
@@ -19,6 +20,7 @@ Smart pointers in Rust often own the data they point to, while references only b
 
 ## Further Information
 
+- [智能指针 - Anatomy In First Rust Programming Class 🦀](https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_1_smart_pointer.html)
 - [✨Smart Pointers: Heap、Deref、Drop、Rc、RefCell、Reference Cycle - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-00-smart-pointers.html)
 - [Heap: Using Box<T> to Point to Data on the Heap - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-01-box.html)
 - [Rc<T>(Reference Counting): single-threaded scenarios, immutable references of multiple owners, the Reference Counted Smart Pointer - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-04-rc.html)
@@ -97,6 +99,8 @@ fn main() {
 
 ### Box
 
+- [Box - Anatomy In First Rust Programming Class 🦀](https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_1_1_box.html)
+
 > At compile time, Rust needs to know `how much space a type takes up`. This becomes problematic
 > for `recursive types`, where a value can have as part of itself another value of the same type.
 
@@ -150,6 +154,8 @@ pub fn create_non_empty_list() -> List {
 ~~~
 
 ### Cow: Clone-On-Write
+
+- [Cow<'a, B> - Anatomy In First Rust Programming Class 🦀](https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_1_2_cow.html)
 
 > This exercise explores the Cow, or Clone-On-Write type.
 
