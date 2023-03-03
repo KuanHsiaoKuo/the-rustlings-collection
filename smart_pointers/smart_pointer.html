@@ -198,12 +198,13 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Mar  2 03:44:24 UTC 2023 -->
+<!-- Added by: runner, at: Fri Mar  3 14:24:26 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
 <h2 id="further-information"><a class="header" href="#further-information">Further Information</a></h2>
 <ul>
+<li><a href="https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_1_smart_pointer.html">智能指针 - Anatomy In First Rust Programming Class 🦀</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-00-smart-pointers.html">✨Smart Pointers: Heap、Deref、Drop、Rc、RefCell、Reference Cycle - The Rust Programming Language</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-01-box.html">Heap: Using Box<T> to Point to Data on the Heap - The Rust Programming Language</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch15-04-rc.html">Rc<T>(Reference Counting): single-threaded scenarios, immutable references of multiple owners, the Reference Counted Smart Pointer - The Rust Programming Language</a></li>
@@ -342,6 +343,9 @@ fn main() {
 </div>
 </details>
 <h3 id="box"><a class="header" href="#box">Box</a></h3>
+<ul>
+<li><a href="https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_1_1_box.html">Box - Anatomy In First Rust Programming Class 🦀</a></li>
+</ul>
 <blockquote>
 <p>At compile time, Rust needs to know <code>how much space a type takes up</code>. This becomes problematic
 for <code>recursive types</code>, where a value can have as part of itself another value of the same type.</p>
@@ -474,6 +478,9 @@ pub fn create_non_empty_list() -&gt; List {
 </div>
 </details>
 <h3 id="cow-clone-on-write"><a class="header" href="#cow-clone-on-write">Cow: Clone-On-Write</a></h3>
+<ul>
+<li><a href="https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_1_2_cow.html">Cow&lt;’a, B&gt; - Anatomy In First Rust Programming Class 🦀</a></li>
+</ul>
 <blockquote>
 <p>This exercise explores the Cow, or Clone-On-Write type.</p>
 </blockquote>
