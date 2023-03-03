@@ -11,7 +11,7 @@
       * [from_str: convert str to target type](#from_str-convert-str-to-target-type)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:24:21 UTC 2023 -->
+<!-- Added by: runner, at: Fri Mar  3 14:33:50 UTC 2023 -->
 
 <!--te-->
 > Rust offers a multitude of ways to convert a value of a given type into another type.
