@@ -1992,7 +1992,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:33:55 UTC 2023 -->
+<!-- Added by: runner, at: Fri Mar  3 14:38:31 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -2781,7 +2781,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:33:50 UTC 2023 -->
+<!-- Added by: runner, at: Fri Mar  3 14:38:29 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
@@ -4565,11 +4565,11 @@ Option types are very common in Rust code, as they have a number of uses:</p>
 </ul>
 <h2 id="further-information-11"><a class="header" href="#further-information-11">Further Information</a></h2>
 <ul>
-<li><a href="https://doc.rust-lang.org/stable/book/ch10-01-syntax.html#in-enum-definitions">Option Enum Format</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-01-syntax.html#in-enum-definitions">✨Generic Data Types-&gt;Option Enum Format - The Rust Programming Language</a></li>
 <li><a href="https://doc.rust-lang.org/std/option/">Option Module Documentation</a></li>
 <li><a href="https://doc.rust-lang.org/std/option/enum.Option.html">Option Enum Documentation</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html">if let</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/flow_control/while_let.html">while let</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/if_let.html">if let - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/while_let.html">while let - The Rust Programming Language</a></li>
 </ul>
 <h2 id="rustlings-10"><a class="header" href="#rustlings-10">Rustlings</a></h2>
 <details id="admonition-options1" class="admonition note">
@@ -4590,7 +4590,26 @@ fn maybe_icecream(time_of_day: u16) -&gt; Option&lt;u16&gt; {
     // We use the 24-hour system here, so 10PM is a value of 22 and 12AM is a value of 0
     // The Option output should gracefully handle cases where time_of_day &gt; 23.
     // TODO: Complete the function body - remember to return an Option!
-    ???
+    ? ? ?
+}
+
+// convert unit tests to main
+fn main() {
+    fn check_icecream() {
+        assert_eq!(maybe_icecream(9), Some(5));
+        assert_eq!(maybe_icecream(10), Some(5));
+        assert_eq!(maybe_icecream(23), Some(0));
+        assert_eq!(maybe_icecream(22), Some(0));
+        assert_eq!(maybe_icecream(25), None);
+    }
+
+    fn raw_value() {
+        // TODO: Fix this test. How do you get at the value contained in the Option?
+        let icecreams = maybe_icecream(12);
+        assert_eq!(icecreams, 5);
+    }
+    check_icecream();
+    raw_value();
 }
 
 #[cfg(test)]
@@ -4626,6 +4645,37 @@ mod tests {
 // Execute `rustlings hint options2` or use the `hint` watch subcommand for a hint.
 
 // I AM NOT DONE
+// convert unit tests to main
+fn main() {
+    fn simple_option() {
+        let target = &quot;rustlings&quot;;
+        let optional_target = Some(target);
+
+        // TODO: Make this an if let statement whose value is &quot;Some&quot; type
+        word = optional_target {
+            assert_eq!(word,
+            target);
+        }
+    }
+
+    fn layered_option() {
+        let mut range = 10;
+        let mut optional_integers: Vec&lt;Option&lt;i8&gt;&gt; = Vec::new();
+        for i in 0..(range + 1) {
+            optional_integers.push(Some(i));
+        }
+
+        // TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&lt;T&gt;
+        // You can stack `Option&lt;T&gt;`'s into while let and if let
+        integer = optional_integers.pop()
+        {
+            assert_eq!(integer, range);
+            range -= 1;
+        }
+    }
+    simple_option();
+    layered_option();
+}
 
 #[cfg(test)]
 mod tests {
@@ -4636,7 +4686,8 @@ mod tests {
 
         // TODO: Make this an if let statement whose value is &quot;Some&quot; type
         word = optional_target {
-            assert_eq!(word, target);
+            assert_eq!(word,
+            target);
         }
     }
 
@@ -4650,7 +4701,8 @@ mod tests {
 
         // TODO: make this a while let statement - remember that vector.pop also adds another layer of Option&lt;T&gt;
         // You can stack `Option&lt;T&gt;`'s into while let and if let
-        integer = optional_integers.pop() {
+        integer = optional_integers.pop()
+        {
             assert_eq!(integer, range);
             range -= 1;
         }
@@ -5749,7 +5801,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:33:55 UTC 2023 -->
+<!-- Added by: runner, at: Fri Mar  3 14:38:31 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -6159,7 +6211,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:33:54 UTC 2023 -->
+<!-- Added by: runner, at: Fri Mar  3 14:38:30 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
