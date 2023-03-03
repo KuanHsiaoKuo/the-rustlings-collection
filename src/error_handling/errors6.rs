@@ -55,6 +55,41 @@ impl PositiveNonzeroInteger {
     }
 }
 
+// convert unit tests to main
+fn main() {
+    fn test_parse_error() {
+        // We can't construct a ParseIntError, so we have to pattern match.
+        assert!(matches!(
+            parse_pos_nonzero("not a number"),
+            Err(ParsePosNonzeroError::ParseInt(_))
+        ));
+    }
+
+    fn test_negative() {
+        assert_eq!(
+            parse_pos_nonzero("-555"),
+            Err(ParsePosNonzeroError::Creation(CreationError::Negative))
+        );
+    }
+
+    fn test_zero() {
+        assert_eq!(
+            parse_pos_nonzero("0"),
+            Err(ParsePosNonzeroError::Creation(CreationError::Zero))
+        );
+    }
+
+    fn test_positive() {
+        let x = PositiveNonzeroInteger::new(42);
+        assert!(x.is_ok());
+        assert_eq!(parse_pos_nonzero("42"), Ok(x.unwrap()));
+    }
+    test_parse_error();
+    test_negative();
+    test_zero();
+    test_positive();
+}
+
 #[cfg(test)]
 mod test {
     use super::*;

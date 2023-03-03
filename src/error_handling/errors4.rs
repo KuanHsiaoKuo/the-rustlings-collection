@@ -19,6 +19,19 @@ impl PositiveNonzeroInteger {
     }
 }
 
+// convert unit tests to main
+fn main() {
+    fn test_creation() {
+        assert!(PositiveNonzeroInteger::new(10).is_ok());
+        assert_eq!(
+            Err(CreationError::Negative),
+            PositiveNonzeroInteger::new(-10)
+        );
+        assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+    }
+    test_creation();
+}
+
 #[test]
 fn test_creation() {
     assert!(PositiveNonzeroInteger::new(10).is_ok());

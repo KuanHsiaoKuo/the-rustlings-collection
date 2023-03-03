@@ -29,6 +29,22 @@ pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     Ok(qty * cost_per_item + processing_fee)
 }
 
+// convert unit tests to main
+fn main() {
+    fn item_quantity_is_a_valid_number() {
+        assert_eq!(total_cost("34"), Ok(171));
+    }
+
+    fn item_quantity_is_an_invalid_number() {
+        assert_eq!(
+            total_cost("beep boop").unwrap_err().to_string(),
+            "invalid digit found in string"
+        );
+    }
+    item_quantity_is_a_valid_number();
+    item_quantity_is_an_invalid_number()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
