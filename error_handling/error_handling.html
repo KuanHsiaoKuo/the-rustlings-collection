@@ -180,15 +180,24 @@
                     <nav class="pagetoc"></nav>
                 </div>
                 <h1 id="error-handling"><a class="header" href="#error-handling">Error handling</a></h1>
-<p>Most errors aren’t serious enough to require the program to stop entirely.
-Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.
-For example, if you try to open a file and that operation fails because the file doesn’t exist, you might want to create the file instead of terminating the process.</p>
+<ol>
+<li>Most errors aren’t serious enough to require the program to stop entirely.</li>
+<li>Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.</li>
+</ol>
+<blockquote>
+<p>For example, if you try to open a file and that operation fails because the file doesn’t exist, you might want to create the file instead of terminating the process.</p>
+</blockquote>
 <h2 id="further-information"><a class="header" href="#further-information">Further information</a></h2>
 <ul>
-<li><a href="https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html">Error Handling</a></li>
-<li><a href="https://doc.rust-lang.org/book/ch10-01-syntax.html">Generics</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/error/result.html">Result</a></li>
-<li><a href="https://doc.rust-lang.org/rust-by-example/error/multiple_error_types/boxing_errors.html">Boxing errors</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_3_1_error_content.html">错误处理内容和主流方法 - Anatomy In First Rust Programming Class 🦀</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch09-02-recoverable-errors-with-result.html">⭐️Recoverable Errors with Result - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-01-syntax.html">✨Generic Data Types - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error.html">⭐️Error handling: Panic、Option and Result - The Rust Programming Language</a>
+<ul>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/result.html">Result &amp; OK or ?: A Richer Version Of Option - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/multiple_error_types/boxing_errors.html">Boxing errors - The Rust Programming Language</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
 <details id="admonition-errors1" class="admonition note">
@@ -213,6 +222,26 @@ pub fn generate_nametag_text(name: String) -&gt; Option&lt;String&gt; {
     } else {
         Some(format!(&quot;Hi! My name is {}&quot;, name))
     }
+}
+
+// convert unit tests to main
+fn main() {
+    fn generates_nametag_text_for_a_nonempty_name() {
+        assert_eq!(
+            generate_nametag_text(&quot;Beyoncé&quot;.into()),
+            Ok(&quot;Hi! My name is Beyoncé&quot;.into())
+        );
+    }
+
+    fn explains_why_generating_nametag_text_fails() {
+        assert_eq!(
+            generate_nametag_text(&quot;&quot;.into()),
+            // Don't change this line
+            Err(&quot;`name` was empty; it must be nonempty.&quot;.into())
+        );
+    }
+    generates_nametag_text_for_a_nonempty_name();
+    explains_why_generating_nametag_text_fails();
 }
 
 #[cfg(test)]
@@ -274,6 +303,22 @@ pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt
     let qty = item_quantity.parse::&lt;i32&gt;();
 
     Ok(qty * cost_per_item + processing_fee)
+}
+
+// convert unit tests to main
+fn main() {
+    fn item_quantity_is_a_valid_number() {
+        assert_eq!(total_cost(&quot;34&quot;), Ok(171));
+    }
+
+    fn item_quantity_is_an_invalid_number() {
+        assert_eq!(
+            total_cost(&quot;beep boop&quot;).unwrap_err().to_string(),
+            &quot;invalid digit found in string&quot;
+        );
+    }
+    item_quantity_is_a_valid_number();
+    item_quantity_is_an_invalid_number()
 }
 
 #[cfg(test)]
@@ -361,6 +406,19 @@ impl PositiveNonzeroInteger {
         // Hmm...? Why is this only returning an Ok value?
         Ok(PositiveNonzeroInteger(value as u64))
     }
+}
+
+// convert unit tests to main
+fn main() {
+    fn test_creation() {
+        assert!(PositiveNonzeroInteger::new(10).is_ok());
+        assert_eq!(
+            Err(CreationError::Negative),
+            PositiveNonzeroInteger::new(-10)
+        );
+        assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+    }
+    test_creation();
 }
 
 #[test]
@@ -510,6 +568,41 @@ impl PositiveNonzeroInteger {
             x =&gt; Ok(PositiveNonzeroInteger(x as u64)),
         }
     }
+}
+
+// convert unit tests to main
+fn main() {
+    fn test_parse_error() {
+        // We can't construct a ParseIntError, so we have to pattern match.
+        assert!(matches!(
+            parse_pos_nonzero(&quot;not a number&quot;),
+            Err(ParsePosNonzeroError::ParseInt(_))
+        ));
+    }
+
+    fn test_negative() {
+        assert_eq!(
+            parse_pos_nonzero(&quot;-555&quot;),
+            Err(ParsePosNonzeroError::Creation(CreationError::Negative))
+        );
+    }
+
+    fn test_zero() {
+        assert_eq!(
+            parse_pos_nonzero(&quot;0&quot;),
+            Err(ParsePosNonzeroError::Creation(CreationError::Zero))
+        );
+    }
+
+    fn test_positive() {
+        let x = PositiveNonzeroInteger::new(42);
+        assert!(x.is_ok());
+        assert_eq!(parse_pos_nonzero(&quot;42&quot;), Ok(x.unwrap()));
+    }
+    test_parse_error();
+    test_negative();
+    test_zero();
+    test_positive();
 }
 
 #[cfg(test)]
