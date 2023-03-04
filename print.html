@@ -1992,7 +1992,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:38:31 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 10:23:18 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -2781,7 +2781,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:38:29 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 10:23:15 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
@@ -4092,6 +4092,28 @@ impl FromStr for Person {
 </ol>
 <blockquote>
 <p>For example, if you try to open a file and that operation fails because the file doesn’t exist, you might want to create the file instead of terminating the process.</p>
+</blockquote>
+<h2 id="is-option-part-of-error-handling"><a class="header" href="#is-option-part-of-error-handling">Is Option<T> part of error handling</a></h2>
+<blockquote>
+<p>In Rust, an “option” is not technically part of error handling, but it is often used in combination with error handling to represent the possibility of a value being absent or “None.”</p>
+</blockquote>
+<ol>
+<li>An “option” is a type that represents either Some value or None.</li>
+</ol>
+<ul>
+<li>When a function may not return a value, it can return an Option<T> where T is the type of the value that might be returned.</li>
+<li>If the function succeeds and returns a value, it returns Some(value); otherwise, it returns None.</li>
+</ul>
+<blockquote>
+<p>Error handling in Rust typically uses the Result&lt;T, E&gt; type</p>
+</blockquote>
+<ul>
+<li>where T is the type of the value that is returned if the operation succeeds</li>
+<li>and E is the type of the error that may occur.</li>
+<li>When an error occurs, a value of type E is returned, and when the operation succeeds, a value of type T is returned.</li>
+</ul>
+<blockquote>
+<p>So while Option and Result are different types in Rust, they are often used in combination to handle situations where a value may or may not be present or when an operation may or may not succeed.</p>
 </blockquote>
 <h2 id="further-information-10"><a class="header" href="#further-information-10">Further information</a></h2>
 <ul>
@@ -5801,7 +5823,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:38:31 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 10:23:18 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -6211,7 +6233,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Mar  3 14:38:30 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 10:23:17 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
