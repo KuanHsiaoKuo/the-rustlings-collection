@@ -1,6 +1,14 @@
 # Error handling
 
 <!--ts-->
+* [Error handling](#error-handling)
+   * [Is Option part of error handling](#is-option-part-of-error-handling)
+   * [Further information](#further-information)
+   * [Rustlings](#rustlings)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sat Mar  4 12:09:37 UTC 2023 -->
+
 <!--te-->
 
 1. Most errors aren’t serious enough to require the program to stop entirely.
