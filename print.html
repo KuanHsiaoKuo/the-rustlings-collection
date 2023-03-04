@@ -1992,7 +1992,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 10:23:18 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 12:09:39 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -2781,7 +2781,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 10:23:15 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 12:09:36 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
@@ -4086,6 +4086,19 @@ impl FromStr for Person {
 </div>
 </details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="error-handling"><a class="header" href="#error-handling">Error handling</a></h1>
+<!--ts-->
+<ul>
+<li><a href="error_handling/error_handling.html#error-handling">Error handling</a>
+<ul>
+<li><a href="error_handling/error_handling.html#is-option-part-of-error-handling">Is Option part of error handling</a></li>
+<li><a href="error_handling/error_handling.html#further-information">Further information</a></li>
+<li><a href="error_handling/error_handling.html#rustlings">Rustlings</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sat Mar  4 12:09:37 UTC 2023 -->
+<!--te-->
 <ol>
 <li>Most errors aren’t serious enough to require the program to stop entirely.</li>
 <li>Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.</li>
@@ -4117,6 +4130,7 @@ impl FromStr for Person {
 </blockquote>
 <h2 id="further-information-10"><a class="header" href="#further-information-10">Further information</a></h2>
 <ul>
+<li><a href="https://www.zhihu.com/question/36444352">Rust 使用 Result 的错误处理方式与 Golang 使用 error 的方式有什么本质区别？ - 知乎</a>: <a href="x-devonthink-item://21BCF1DC-17A0-428C-BA20-A1F1A515B207">dt link</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_3_1_error_content.html">错误处理内容和主流方法 - Anatomy In First Rust Programming Class 🦀</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch09-02-recoverable-errors-with-result.html">⭐️Recoverable Errors with Result - The Rust Programming Language</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-01-syntax.html">✨Generic Data Types - The Rust Programming Language</a></li>
@@ -4127,11 +4141,14 @@ impl FromStr for Person {
 </ul>
 </li>
 </ul>
+<blockquote>
+<p><a href="https://github.com/gaveen/rustlings-solutions-5/tree/main/error_handling">rustlings-solutions-5/error_handling at main · gaveen/rustlings-solutions-5</a></p>
+</blockquote>
 <h2 id="rustlings-9"><a class="header" href="#rustlings-9">Rustlings</a></h2>
-<details id="admonition-errors1" class="admonition note">
+<details id="admonition-errors1-change-option-to-result" class="admonition note">
 <summary class="admonition-title">
-<p>errors1</p>
-<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-errors1"></a></p>
+<p>errors1: change Option<T> to Result&lt;T, E&gt;</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-errors1-change-option-to-result"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// errors1.rs
@@ -4196,10 +4213,76 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-errors2" class="admonition note">
+<details id="admonition-hint" class="admonition tip">
 <summary class="admonition-title">
-<p>errors2</p>
-<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-errors2"></a></p>
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-hint"></a></p>
+</summary>
+<div>
+<p><code>Ok</code> and <code>Err</code> are one of the variants of <code>Result</code>, so what the tests are saying
+is that <code>generate_nametag_text</code> should return a <code>Result</code> instead of an
+<code>Option</code>.</p>
+<p>To make this change, you’ll need to:</p>
+<ul>
+<li>update the return type in the function signature to be a Result&lt;String, String&gt; that
+could be the variants <code>Ok(String)</code> and <code>Err(String)</code></li>
+<li>change the body of the function to return <code>Ok(stuff)</code> where it currently
+returns <code>Some(stuff)</code></li>
+<li>change the body of the function to return <code>Err(error message)</code> where it
+currently returns <code>None</code></li>
+</ul>
+</div>
+</details>
+<details id="admonition-solution-result" class="admonition success">
+<summary class="admonition-title">
+<p>solution: Result&lt;String, String&gt;</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution-result"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust editable">pub fn generate_nametag_text(name: String) -&gt; Result&lt;String, String&gt; {
+    if name.is_empty() {
+        // Empty names aren't allowed.
+        Err(format!(&quot;`name` was empty; it must be nonempty.&quot;))
+    } else {
+        Ok(format!(&quot;Hi! My name is {}&quot;, name))
+    }
+}
+</code></pre></pre>
+<ol>
+<li>这里其实单元测试代码已经指出要报错的内容</li>
+<li>Result&lt;T, E&gt;中，E其实就是各种Err</li>
+</ol>
+</div>
+</details>
+<hr />
+<ul>
+<li>Say we’re writing a game where you can buy items with tokens. All items cost
+5 tokens, and whenever you purchase items there is a processing fee of 1
+token.</li>
+<li>A player of the game will type in how many items they want to buy,
+and the <code>total_cost</code> function will calculate the total number of tokens.</li>
+<li>Since the player typed in the quantity, though, we get it as a string– and
+they might have typed anything, not just numbers!</li>
+</ul>
+<blockquote>
+<p>Right now, this function isn’t handling the error case at all (and isn’t
+handling the success case properly either). What we want to do is:</p>
+</blockquote>
+<ul>
+<li>if we call the <code>parse</code> function on a string that is not a number, that
+function will return a <code>ParseIntError</code>,</li>
+<li>and in that case, we want to
+immediately return that error from our function and not try to multiply
+and add.</li>
+</ul>
+<blockquote>
+<p>There are at least two ways to implement this that are both correct– but
+one is a lot shorter!</p>
+</blockquote>
+<details id="admonition-errors2-unwrap_err" class="admonition note">
+<summary class="admonition-title">
+<p>⭐️errors2: unwrap_err()</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-errors2-unwrap_err"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// errors2.rs
@@ -4269,10 +4352,81 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-errors3" class="admonition note">
+<details id="admonition-hint-1" class="admonition tip">
 <summary class="admonition-title">
-<p>errors3</p>
-<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-errors3"></a></p>
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-hint-1"></a></p>
+</summary>
+<div>
+<ol>
+<li>One way to handle this is using a <code>match</code> statement on
+<code>item_quantity.parse::&lt;i32&gt;()</code> where the cases are <code>Ok(something)</code> and
+<code>Err(something)</code>. This pattern is very common in Rust, though, so there’s
+a <code>?</code> operator that does pretty much what you would make that match statement
+do for you!</li>
+<li>Take a look at this section of the <code>match expression</code> part in Error Handling chapter:</li>
+</ol>
+<ul>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch09-02-recoverable-errors-with-result.html#match-expression-how-to-hanle-the-information">⭐️Recoverable Errors with Result - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/result/early_returns.html">Early returns: Catch Exception and Return - The Rust Programming Language</a>
+and give it a try!</li>
+</ul>
+</div>
+</details>
+<details id="admonition-solution1-match-err-to-panic-return" class="admonition success">
+<summary class="admonition-title">
+<p>solution1: match err to panic! return</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution1-match-err-to-panic-return"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = match item_quantity.parse::&lt;i32&gt;(){
+        Ok(iqty) =&gt; iqty,
+        Err(error) =&gt; panic!(&quot;Problem parsing the item_quantity: {:?}&quot;, error),
+    };
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution2-match-err-to-early-return" class="admonition success">
+<summary class="admonition-title">
+<p>solution2: match err to early return</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution2-match-err-to-early-return"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    let processing_fee = 1;
+    let cost_per_item = 5;
+    let qty = match item_quantity.parse::&lt;i32&gt;(){
+        Ok(iqty) =&gt; iqty,
+        Err(e) =&gt; return Err(e),
+    };
+
+    Ok(qty * cost_per_item + processing_fee)
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution3-return-custom-error-message" class="admonition danger">
+<summary class="admonition-title">
+<p>⌛️solution3: return custom error message</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution3-return-custom-error-message"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">todo()
+// return Err(String::from(&quot;invalid digit found in string&quot;)),
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-errors3----return-result-or-option-to-accept-" class="admonition note">
+<summary class="admonition-title">
+<p>errors3: ? -&gt; return <em>Result</em> or <em>Option</em> to accept <em>?</em></p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-errors3----return-result-or-option-to-accept-"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// errors3.rs
@@ -4307,6 +4461,21 @@ pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt
     Ok(qty * cost_per_item + processing_fee)
 }
 </code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-2" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-hint-2"></a></p>
+</summary>
+<div>
+<blockquote>
+<p>If other functions can return a <code>Result</code>, why shouldn’t <code>main</code>? </p>
+</blockquote>
+<p>It’s a fairly common
+convention to return something like Result&lt;(), ErrorType&gt; from your main function.
+The unit (<code>()</code>) type is there because nothing is really needed in terms of positive
+results.</p>
 </div>
 </details>
 <details id="admonition-errors4" class="admonition note">
@@ -5823,7 +5992,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 10:23:18 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 12:09:38 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -6233,7 +6402,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 10:23:17 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 12:09:38 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
