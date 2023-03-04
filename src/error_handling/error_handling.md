@@ -24,6 +24,7 @@
 
 ## Further information
 
+- [Rust 使用 Result 的错误处理方式与 Golang 使用 error 的方式有什么本质区别？ - 知乎](https://www.zhihu.com/question/36444352): [dt link](x-devonthink-item://10DA8124-856C-4BD3-A478-513A330B6171)
 - [错误处理内容和主流方法 - Anatomy In First Rust Programming Class 🦀](https://kuanhsiaokuo.github.io/geektime-tyr-rust/3_3_1_error_content.html)
 - [⭐️Recoverable Errors with Result - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch09-02-recoverable-errors-with-result.html)
 - [✨Generic Data Types - The Rust Programming Language](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch10-01-syntax.html)
