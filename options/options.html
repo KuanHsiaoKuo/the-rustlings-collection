@@ -180,8 +180,10 @@
                     <nav class="pagetoc"></nav>
                 </div>
                 <h1 id="options"><a class="header" href="#options">Options</a></h1>
-<p>Type Option represents an optional value: every Option is either Some and contains a value, or None, and does not.
-Option types are very common in Rust code, as they have a number of uses:</p>
+<p>Type <code>Option</code> represents an optional value: every Option is either Some and contains a value, or None, and does not.</p>
+<blockquote>
+<p>Option types are very common in Rust code, as they have a number of uses:</p>
+</blockquote>
 <ul>
 <li>Initial values</li>
 <li>Return values for functions that are not defined over their entire input range (partial functions)</li>
@@ -200,8 +202,11 @@ Option types are very common in Rust code, as they have a number of uses:</p>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/if_let.html">if let - The Rust Programming Language</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/while_let.html">while let - The Rust Programming Language</a></li>
 </ul>
+<blockquote>
+<p><a href="https://github.com/gaveen/rustlings-solutions-5/tree/main/options">rustlings-solutions-5/options at main · gaveen/rustlings-solutions-5</a></p>
+</blockquote>
 <h2 id="rustlings"><a class="header" href="#rustlings">Rustlings</a></h2>
-<details id="admonition-options1" class="admonition note">
+<details id="admonition-options1" class="admonition failure">
 <summary class="admonition-title">
 <p>options1</p>
 <p><a class="admonition-anchor-link" href="#admonition-options1"></a></p>
@@ -264,7 +269,43 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-options2" class="admonition note">
+<details id="admonition-hint" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint"></a></p>
+</summary>
+<div>
+<p>Options can have a Some value, with an inner value, or a None value, without an inner value.</p>
+<p>There’s multiple ways to get at the inner value, you can use <code>unwrap</code>, or <code>pattern match</code>. </p>
+<blockquote>
+<p>Unwrapping is the easiest, but how do you do it safely so that it doesn’t panic in your face later?</p>
+</blockquote>
+</div>
+</details>
+<details id="admonition-solution1-pattern-match" class="admonition success">
+<summary class="admonition-title">
+<p>solution1: pattern match </p>
+<p><a class="admonition-anchor-link" href="#admonition-solution1-pattern-match"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">fn maybe_icecream(time_of_day: u16) -&gt; Option&lt;u16&gt; {
+    // We use the 24-hour system here, so 10PM is a value of 22
+    // The Option output should gracefully handle cases where time_of_day &gt; 24.
+    match time_of_day {
+        0..=21 =&gt; Some(5),
+        22..=24 =&gt; Some(0),
+        _ =&gt; None,
+    }
+    // Exclusive range (e.g., 0..22) pattern use here is experimental
+    // on rustc 1.62.1
+}
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust  editable">assert_eq!(icecreams.unwrap_or(0), 5); // Use unwrapped Some or 0 
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-options2" class="admonition failure">
 <summary class="admonition-title">
 <p>options2</p>
 <p><a class="admonition-anchor-link" href="#admonition-options2"></a></p>
@@ -282,8 +323,7 @@ fn main() {
 
         // TODO: Make this an if let statement whose value is &quot;Some&quot; type
         word = optional_target {
-            assert_eq!(word,
-            target);
+            assert_eq!(word, target);
         }
     }
 
@@ -315,8 +355,7 @@ mod tests {
 
         // TODO: Make this an if let statement whose value is &quot;Some&quot; type
         word = optional_target {
-            assert_eq!(word,
-            target);
+            assert_eq!(word, target);
         }
     }
 
@@ -340,10 +379,44 @@ mod tests {
 </code></pre></pre>
 </div>
 </details>
-<details id="admonition-options3" class="admonition note">
+<details id="admonition-hint-1" class="admonition tip">
 <summary class="admonition-title">
-<p>options3</p>
-<p><a class="admonition-anchor-link" href="#admonition-options3"></a></p>
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-1"></a></p>
+</summary>
+<div>
+<p>check out:</p>
+<ul>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/if_let.html">if let - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/while_let.html">while let - The Rust Programming Language</a></li>
+</ul>
+<p>Remember that Options can be stacked in if let and while let.
+For example: Some(Some(variable)) = variable2
+Also see Option::flatten</p>
+</div>
+</details>
+<details id="admonition-solution-if-let--while-let" class="admonition success">
+<summary class="admonition-title">
+<p>solution: if let &amp; while let</p>
+<p><a class="admonition-anchor-link" href="#admonition-solution-if-let--while-let"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">        if let Some(word) = optional_target {
+            assert_eq!(word, target);
+        }
+</code></pre></pre>
+<pre><pre class="playground"><code class="language-rust  editable">        while let Some(integer) = optional_integers.pop().flatten() {
+            assert_eq!(integer, range);
+            range -= 1;
+        }
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<details id="admonition-options3-ref---value-partially-moved-here" class="admonition failure">
+<summary class="admonition-title">
+<p>options3: ref -&gt; value partially moved here</p>
+<p><a class="admonition-anchor-link" href="#admonition-options3-ref---value-partially-moved-here"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust editable">// options3.rs
@@ -365,6 +438,29 @@ fn main() {
     }
     y; // Fix without deleting this line.
 }
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-2" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="#admonition-hint-2"></a></p>
+</summary>
+<div>
+<p>The compiler says a <code>partial move</code> happened in the <code>match</code>
+statement.</p>
+<p>How can this be avoided? The compiler shows the correction needed.
+After making the correction as suggested by the compiler, do
+read: <a href="https://doc.rust-lang.org/std/keyword.ref.html">ref - Rust</a></p>
+</div>
+</details>
+<details id="admonition-solution-ref" class="admonition success">
+<summary class="admonition-title">
+<p>solution: ref </p>
+<p><a class="admonition-anchor-link" href="#admonition-solution-ref"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">Some(ref p)
 </code></pre></pre>
 </div>
 </details>
