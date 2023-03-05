@@ -1992,7 +1992,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 12:11:00 UTC 2023 -->
+<!-- Added by: runner, at: Sun Mar  5 07:11:28 UTC 2023 -->
 <!--te-->
 <p>In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
 Smart pointers in Rust often own the data they point to, while references only borrow data.</p>
@@ -2781,7 +2781,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 12:10:58 UTC 2023 -->
+<!-- Added by: runner, at: Sun Mar  5 07:11:24 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Rust offers a multitude of ways to convert a value of a given type into another type.</p>
@@ -4097,7 +4097,7 @@ impl FromStr for Person {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 12:10:58 UTC 2023 -->
+<!-- Added by: runner, at: Sun Mar  5 07:11:24 UTC 2023 -->
 <!--te-->
 <ol>
 <li>Most errors aren’t serious enough to require the program to stop entirely.</li>
@@ -4137,6 +4137,7 @@ impl FromStr for Person {
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error.html">⭐️Error handling: Panic、Option and Result - The Rust Programming Language</a>
 <ul>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/result.html">Result &amp; OK or ?: A Richer Version Of Option - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/option_unwrap/question_mark.html">Unpacking options with ? to return the Some or terminate - The Rust Programming Language</a></li>
 <li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/multiple_error_types/boxing_errors.html">Boxing errors - The Rust Programming Language</a></li>
 </ul>
 </li>
@@ -4476,8 +4477,36 @@ pub fn total_cost(item_quantity: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt
 convention to return something like Result&lt;(), ErrorType&gt; from your main function.
 The unit (<code>()</code>) type is there because nothing is really needed in terms of positive
 results.</p>
+<ul>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/option_unwrap/question_mark.html">Unpacking options with ? to return the Some or terminate - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/multiple_error_types/reenter_question_mark.html">Other uses of ? - The Rust Programming Language</a></li>
+</ul>
 </div>
 </details>
+<details id="admonition-solution-just-like-async-fn-to-accept-await---return-result-to-chain-" class="admonition danger">
+<summary class="admonition-title">
+<p>⚡️️solution: just like async fn to accept await -&gt; return Result&lt;T, E&gt; to chain ?</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution-just-like-async-fn-to-accept-await---return-result-to-chain-"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">fn main() -&gt; Result&lt;(), ParseIntError&gt;{ // main function also could return Result&lt;T, E&gt;
+    let mut tokens = 100;
+    let pretend_user_input = &quot;8&quot;;
+
+    let cost = total_cost(pretend_user_input)?; // should return Result to accept ?, if got error, here will return ParseIntError
+
+    if cost &gt; tokens {
+        println!(&quot;You can't afford that many!&quot;);
+    } else {
+        tokens -= cost;
+        println!(&quot;You now have {} tokens.&quot;, tokens);
+    }
+    Ok(()) // if successed, here return the OK result ()
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
 <details id="admonition-errors4" class="admonition note">
 <summary class="admonition-title">
 <p>errors4</p>
@@ -4530,6 +4559,81 @@ fn test_creation() {
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-hint-3" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-hint-3"></a></p>
+</summary>
+<div>
+<blockquote>
+<p><code>PositiveNonzeroInteger::new</code> is always creating a new instance and returning an <code>Ok</code> result.</p>
+</blockquote>
+<p>It should be doing some checking, returning an <code>Err</code> result if those checks fail, and only
+returning an <code>Ok</code> result if those checks determine that everything is… okay :)</p>
+</div>
+</details>
+<details id="admonition-solution1-use-if-to-catch-err" class="admonition success">
+<summary class="admonition-title">
+<p>solution1: use if to catch err</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution1-use-if-to-catch-err"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">impl PositiveNonzeroInteger {
+    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
+        // Hmm...? Why is this only returning an Ok value?
+        if value &lt; 0 {
+            Err(CreationError::Negative)
+        } else if value == 0 {
+            Err(CreationError::Zero)
+        } else {
+            Ok(PositiveNonzeroInteger(value as u64))
+        }      
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-solution2-use-match-to-catch-err" class="admonition success">
+<summary class="admonition-title">
+<p>solution2: use match to catch err</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution2-use-match-to-catch-err"></a></p>
+</summary>
+<div>
+<ul>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/match/guard.html">Guards: to filter the arm - The Rust Programming Language</a></li>
+<li><a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/flow_control/match/binding.html">@ Binding - The Rust Programming Language</a></li>
+</ul>
+<pre><pre class="playground"><code class="language-rust  editable">impl PositiveNonzeroInteger {
+    fn new(value: i64) -&gt; Result&lt;PositiveNonzeroInteger, CreationError&gt; {
+        // Hmm...? Why is this only returning an Ok value?
+        match value {
+            v if v &lt; 0 =&gt; return Err(CreationError::Negative),
+            v if v == 0 =&gt; return Err(CreationError::Zero),
+            _ =&gt; return Ok(PositiveNonzeroInteger(value as u64))
+        }
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<ul>
+<li>This exercise uses some concepts that we won’t get to until later in the course, like <code>Box</code> and the
+<code>From</code> trait.</li>
+<li>It’s not important to understand them in detail right now, but you can read ahead if you like.</li>
+</ul>
+<blockquote>
+<p>For now, think of the <code>Box&lt;dyn ...&gt;</code> type as an “I want anything that does ???” type, which, given
+Rust’s usual standards for runtime safety, should strike you as somewhat lenient!</p>
+</blockquote>
+<ul>
+<li>In short, this particular use case for boxes is for when you want to own a value and you care only that it is a type which implements a particular trait.</li>
+<li>To do so, The Box is declared as of type <code>Box&lt;dyn Trait&gt;</code> where Trait is the trait the compiler looks for on any value used in that context.</li>
+<li>For this exercise, that context is the potential errors which can be returned in a Result.</li>
+</ul>
+<blockquote>
+<p>What can we use to describe both errors? In other words, is there a trait which both errors implement?</p>
+</blockquote>
 <details id="admonition-errors5" class="admonition note">
 <summary class="admonition-title">
 <p>errors5</p>
@@ -4604,6 +4708,46 @@ impl error::Error for CreationError {}
 </code></pre></pre>
 </div>
 </details>
+<details id="admonition-hint-4" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-hint-4"></a></p>
+</summary>
+<div>
+<p>There are two different possible <code>Result</code> types produced within <code>main()</code>, which are
+propagated using <code>?</code> operators. </p>
+<blockquote>
+<p>How do we declare a return type from <code>main()</code> that allows both?</p>
+</blockquote>
+<ul>
+<li>Under the hood, the <code>?</code> operator calls <code>From::from</code> on the error value to convert it to a boxed trait object, a <code>Box&lt;dyn error::Error&gt;</code>. </li>
+<li>This boxed trait object is <code>polymorphic</code>, and since all errors implement the <code>error::Error</code> trait, we can capture lots of different errors in one “Box” object.</li>
+</ul>
+<p>Check out this section of the book:
+https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the–operator</p>
+<p>Read more about boxing errors: <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/ch09-02-recoverable-errors-with-result.html#the--operator-a-shortcut-for-propagating-errors">⭐️Recoverable Errors with Result - The Rust Programming Language</a></p>
+<p>Read more about using the <code>?</code> operator with boxed errors: <a href="https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/error/multiple_error_types/reenter_question_mark.html">Other uses of ? - The Rust Programming Language</a></p>
+</div>
+</details>
+<details id="admonition-solution-errorerror-trait" class="admonition success">
+<summary class="admonition-title">
+<p>solution: error::Error trait</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution-errorerror-trait"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">Box&lt;dyn error::Error&gt;
+</code></pre></pre>
+</div>
+</details>
+<hr />
+<p>Using catch-all error types like <code>Box&lt;dyn error::Error&gt;</code> isn’t recommended
+for library code:</p>
+<blockquote>
+<p>where callers might want to make decisions based on the
+error content, instead of printing it out or propagating it further.</p>
+</blockquote>
+<p>Here, we define a custom error type to make it possible for callers to decide
+what to do next when our function returns an error.</p>
 <details id="admonition-errors6" class="admonition note">
 <summary class="admonition-title">
 <p>errors6</p>
@@ -4737,6 +4881,61 @@ mod test {
         assert!(x.is_ok());
         assert_eq!(parse_pos_nonzero(&quot;42&quot;), Ok(x.unwrap()));
     }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-hint-5" class="admonition tip">
+<summary class="admonition-title">
+<p>Hint</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-hint-5"></a></p>
+</summary>
+<div>
+<blockquote>
+<p>This exercise uses a completed version of <code>PositiveNonzeroInteger</code> from
+errors4.</p>
+</blockquote>
+<ul>
+<li>Below the line that TODO asks you to change, there is an example of using the <code>map_err()</code> method on a <code>Result</code> to transform one type of error into another.</li>
+<li>Try using something similar on the <code>Result</code> from <code>parse()</code>.</li>
+<li>You might use the <code>?</code> operator to return early from the function</li>
+<li>or you might use a <code>match</code> expression, or maybe there’s another way!</li>
+</ul>
+<blockquote>
+<p>You can create another function inside <code>impl ParsePosNonzeroError</code> to use
+with <code>map_err()</code>.</p>
+</blockquote>
+<p>Read more about <code>map_err()</code> in the <code>std::result</code> documentation:
+<a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.map_err">Result in std::result - Rust</a></p>
+</div>
+</details>
+<details id="admonition-solution-define-a-custom-error-type" class="admonition success">
+<summary class="admonition-title">
+<p>solution: define a custom error type</p>
+<p><a class="admonition-anchor-link" href="error_handling/error_handling.html#admonition-solution-define-a-custom-error-type"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust  editable">impl ParsePosNonzeroError {
+    fn from_creation(err: CreationError) -&gt; ParsePosNonzeroError {
+        ParsePosNonzeroError::Creation(err)
+    }
+    // TODO: add another error conversion function here.
+    // fn from_parseint...
+    fn from_parseint(err: ParseIntError) -&gt; ParsePosNonzeroError {
+        ParsePosNonzeroError::ParseInt(err)
+    }
+}
+
+fn parse_pos_nonzero(s: &amp;str)
+    -&gt; Result&lt;PositiveNonzeroInteger, ParsePosNonzeroError&gt;
+{
+    // TODO: change this to return an appropriate error instead of panicking
+    // when `parse()` returns an error.
+    // let x: i64 = s.parse().unwrap();
+    let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parseint)?;
+
+    PositiveNonzeroInteger::new(x)
+        .map_err(ParsePosNonzeroError::from_creation)
 }
 </code></pre></pre>
 </div>
@@ -5992,7 +6191,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 12:11:00 UTC 2023 -->
+<!-- Added by: runner, at: Sun Mar  5 07:11:28 UTC 2023 -->
 <!--te-->
 <p>Lifetimes tell the compiler how to check:</p>
 <blockquote>
@@ -6402,7 +6601,7 @@ operator to bring these two in using only one line.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Mar  4 12:10:59 UTC 2023 -->
+<!-- Added by: runner, at: Sun Mar  5 07:11:27 UTC 2023 -->
 <!--te-->
 <p>These exercises are adapted from <a href="https://github.com/pnkfelix">pnkfelix</a>’s <a href="https://pnkfelix.github.io/rust-examples-icfp2014/">Rust Tutorial</a> – Thank you Felix!!!</p>
 <h2 id="further-information-20"><a class="header" href="#further-information-20">Further information</a></h2>
