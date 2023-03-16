@@ -11,7 +11,7 @@
       * [Memory Leak](#memory-leak)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Mar  5 08:47:32 UTC 2023 -->
+<!-- Added by: runner, at: Thu Mar 16 14:35:12 UTC 2023 -->
 
 <!--te-->
 In Rust, smart pointers are variables that contain an address in memory and reference some other data, but they also have additional metadata and capabilities.
